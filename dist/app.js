@@ -175,7 +175,7 @@ function appTemplate() {
   return `
     <div class="shell">
       <aside class="sidebar">
-        <div class="brand"><div class="brand-mark" aria-hidden="true">S</div><div class="brand-copy"><strong>SCOPE</strong><span class="brand-definition">Source · Contracts · Operation<br>Purpose · Environment</span></div></div>
+        <div class="brand"><div class="brand-mark" aria-hidden="true">S</div><div class="brand-copy"><strong>SCOPE</strong><span class="brand-positioning">Rights-Aware AI Governance<br>for Creative Production</span><span class="brand-definition">Source · Contracts · Operation<br>Purpose · Environment</span></div></div>
         <nav class="nav-list" aria-label="Primary">
           <button class="nav-button active" data-view="check"><span class="nav-icon">01</span><span>Run a check</span></button>
           <button class="nav-button" data-view="records"><span class="nav-icon">02</span><span>Rights library</span></button>

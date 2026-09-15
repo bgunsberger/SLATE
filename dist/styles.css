@@ -501,8 +501,16 @@ body { color: var(--ink); }
 
 .brand-copy { min-width: 0; }
 .brand strong { font-size: 1.05rem; letter-spacing: .12em; }
+.brand .brand-positioning {
+  display: block;
+  margin-top: 6px;
+  color: #d2dbe3;
+  font-size: .7rem;
+  font-weight: 650;
+  line-height: 1.42;
+}
 .brand .brand-definition {
-  margin-top: 5px;
+  margin-top: 7px;
   color: #83919d;
   font-size: .67rem;
   line-height: 1.45;
