@@ -175,12 +175,12 @@ function appTemplate() {
   return `
     <div class="shell">
       <aside class="sidebar">
-        <div class="brand"><div class="brand-mark" aria-hidden="true"></div><div><strong>SCOPE</strong><span>AI use decisions</span></div></div>
+        <div class="brand"><div class="brand-mark" aria-hidden="true">S</div><div class="brand-copy"><strong>SCOPE</strong><span class="brand-definition">Source · Contracts · Operation<br>Purpose · Environment</span></div></div>
         <nav class="nav-list" aria-label="Primary">
-          <button class="nav-button active" data-view="check"><span class="nav-icon">◎</span><span>Run a check</span></button>
-          <button class="nav-button" data-view="records"><span class="nav-icon">▤</span><span>Rights library</span></button>
-          <button class="nav-button" data-view="data"><span class="nav-icon">⌘</span><span>Data model</span></button>
-          <button class="nav-button" data-view="decisions"><span class="nav-icon">✓</span><span>Decisions</span></button>
+          <button class="nav-button active" data-view="check"><span class="nav-icon">01</span><span>Run a check</span></button>
+          <button class="nav-button" data-view="records"><span class="nav-icon">02</span><span>Rights library</span></button>
+          <button class="nav-button" data-view="data"><span class="nav-icon">03</span><span>Data model</span></button>
+          <button class="nav-button" data-view="decisions"><span class="nav-icon">04</span><span>Decisions</span></button>
         </nav>
         <div class="studio-card"><strong>${studio.name}</strong><span>Fictional prototype data</span><div class="studio-locations" aria-label="Three studio locations"><i></i><i></i><i></i></div></div>
       </aside>
@@ -202,7 +202,7 @@ function appTemplate() {
 function checkView() {
   return `
     <section class="view active" id="view-check">
-      <div class="page-heading"><div><p class="eyebrow">Decision support</p><h1>Can I use this with AI?</h1><p>Describe the source, rights, operation, purpose and environment. SCOPE will show the applicable policy position and decision owner.</p></div><span class="badge">Policy data current</span></div>
+      <div class="page-heading"><div><p class="eyebrow">Decision support</p><h1>Can I use this with AI?</h1><p class="scope-expansion">Source · Contracts & contributors · Operation · Purpose · Environment</p><p class="page-description">Describe the proposed use. SCOPE will show the applicable policy position and decision owner.</p></div><span class="badge">Policy data current</span></div>
       <div class="stats">
         <div class="stat"><div class="stat-label">Productions mapped</div><div class="stat-value"><strong>4</strong><span>3 locations</span></div></div>
         <div class="stat"><div class="stat-label">Contributor records</div><div class="stat-value"><strong>146</strong><span>8 need review</span></div></div>
