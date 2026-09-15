@@ -1,465 +1,67 @@
-const studio = {
-  name: "Northstar Animation",
-  locations: ["Sydney", "Brisbane", "Los Angeles"],
-};
-
-const productions = [
-  {
-    id: "harbor-heroes",
-    title: "Harbor Heroes · Season 2",
-    type: "service",
-    typeLabel: "Service production",
-    client: "StreamWave Kids",
-    status: "Completed",
-    locations: ["Sydney", "Los Angeles"],
-    owner: "Client-controlled materials",
-    reuse: "Cross-production use requires written client approval",
-    agreement: "PSA-2024-017",
-    aiPosition: "Same-show workflow assistance only",
-  },
-  {
-    id: "moss-moon",
-    title: "Moss & Moon",
-    type: "internal",
-    typeLabel: "Northstar original",
-    client: "Northstar Animation",
-    status: "In production",
-    locations: ["Sydney", "Brisbane"],
-    owner: "Northstar-owned IP and production assets",
-    reuse: "Internal R&D permitted where contributor rights are cleared",
-    agreement: "NIP-2026-004",
-    aiPosition: "Approved internal experimentation programme",
-  },
-  {
-    id: "sky-harbor",
-    title: "Sky Harbor",
-    type: "coproduction",
-    typeLabel: "Co-production",
-    client: "BrightArc Media",
-    status: "Pre-production",
-    locations: ["Brisbane", "Los Angeles"],
-    owner: "Jointly controlled production materials",
-    reuse: "Partner approval required outside the production",
-    agreement: "COP-2026-009",
-    aiPosition: "Project-specific approvals only",
-  },
-  {
-    id: "tiny-titans",
-    title: "Tiny Titans",
-    type: "service",
-    typeLabel: "Service production",
-    client: "Kitebox Studios",
-    status: "In production",
-    locations: ["Brisbane", "Los Angeles"],
-    owner: "Client owns show assets; Northstar retains background tools",
-    reuse: "Show assets confined to this production",
-    agreement: "PSA-2025-031",
-    aiPosition: "Approved tools listed in show security plan",
-  },
-];
-
-const materials = [
-  { id: "voice", label: "Performer voice recordings", sensitivity: "Performer rights", owner: "Casting & Legal" },
-  { id: "video", label: "Voice-record video / likeness", sensitivity: "Voice and likeness", owner: "Casting & Legal" },
-  { id: "script", label: "Scripts and story documents", sensitivity: "Unreleased creative", owner: "Production" },
-  { id: "client-notes", label: "Client notes in ShotGrid", sensitivity: "Client confidential", owner: "Production" },
-  { id: "production-data", label: "ShotGrid tasks, statuses and versions", sensitivity: "Production confidential", owner: "Production Technology" },
-  { id: "art", label: "Concept art and designs", sensitivity: "Creative rights", owner: "Art Department" },
-  { id: "rigs", label: "Rigs, tools and source code", sensitivity: "Company / show IP", owner: "Technology" },
-  { id: "comms", label: "Internal email, Chat and Spaces", sensitivity: "Internal / personal data", owner: "Information Governance" },
-];
-
-const operations = [
-  { id: "summarise", label: "Summarise or transcribe", persistence: "Task-specific output" },
-  { id: "search", label: "Index for search or retrieval", persistence: "Persistent derived store" },
-  { id: "analyse", label: "Analyse patterns or classify", persistence: "Analysis output" },
-  { id: "generate", label: "Generate or transform material", persistence: "New creative output" },
-  { id: "train", label: "Train or fine-tune a model", persistence: "Persistent model capability" },
-  { id: "automate", label: "Automate an action or decision", persistence: "Operational consequence" },
-];
-
-const purposes = [
-  { id: "same-task", label: "Complete this task", detail: "Task-specific internal output" },
-  { id: "same-show", label: "Use on the same production", detail: "Show-specific output" },
-  { id: "different-show", label: "Use on another production", detail: "Cross-production reuse" },
-  { id: "company-capability", label: "Create a reusable company capability", detail: "Model, dataset or system" },
-  { id: "client-delivery", label: "Deliver to a client", detail: "External production output" },
-  { id: "public", label: "Publish externally", detail: "Public or marketing output" },
-];
-
-const tools = [
-  {
-    id: "studio-lm",
-    name: "StudioLM Private",
-    scope: "Company-approved",
-    hosting: "Northstar private environment",
-    retention: "Company-controlled",
-    providerTraining: "None",
-    approvedFor: ["summarise", "search", "analyse"],
-    excludes: ["voice", "video"],
-  },
-  {
-    id: "motionmap",
-    name: "MotionMap Lab",
-    scope: "Show-approved",
-    hosting: "Isolated vendor tenant",
-    retention: "30-day source deletion",
-    providerTraining: "Contractually disabled",
-    approvedFor: ["analyse", "generate", "train"],
-    excludes: [],
-  },
-  {
-    id: "notepilot",
-    name: "NotePilot Enterprise",
-    scope: "Company-approved",
-    hosting: "Enterprise workspace",
-    retention: "90-day admin retention",
-    providerTraining: "Contractually disabled",
-    approvedFor: ["summarise", "analyse"],
-    excludes: ["voice", "video", "art", "rigs"],
-  },
-  {
-    id: "framefoundry",
-    name: "FrameFoundry Studio",
-    scope: "Show-approved",
-    hosting: "Dedicated creative tenant",
-    retention: "14-day input retention",
-    providerTraining: "Contractually disabled",
-    approvedFor: ["generate"],
-    excludes: ["voice", "video", "comms", "rigs"],
-  },
-];
-
-const contributors = [
-  { name: "Ava Lin", production: "Harbor Heroes · Season 2", role: "Lead voice performer", location: "Sydney", agreement: "Australian Voice Performers Collective 2024 · sample", training: "Individual approval required", status: "review" },
-  { name: "Mateo Ruiz", production: "Harbor Heroes · Season 2", role: "Voice performer", location: "Los Angeles", agreement: "US Screen Voice Agreement 2023 · sample", training: "Synthetic performance restricted", status: "restricted" },
-  { name: "Nia Okafor", production: "Moss & Moon", role: "Lead voice performer", location: "Brisbane", agreement: "Northstar Performer Agreement 2026 · sample", training: "Lip-sync research permitted with conditions", status: "approved" },
-  { name: "Eli Tran", production: "Sky Harbor", role: "Concept artist", location: "Sydney", agreement: "Co-production Artist Agreement · sample", training: "Partner and contributor approval required", status: "review" },
-];
-
-const dataDomains = [
-  { domain: "Productions", fields: "Client, ownership, locations, status, governing agreement, reuse position", entered: "Production Operations", verified: "Business & Legal Affairs", trigger: "Greenlight, contract amendment, wrap" },
-  { domain: "Agreements", fields: "Parties, clauses, jurisdiction, dates, permitted uses, restrictions", entered: "Business & Legal Affairs", verified: "Legal counsel", trigger: "Execution, amendment, renewal" },
-  { domain: "Contributor rights", fields: "Role, production, contract, collective terms, consent, use boundaries", entered: "Casting / People & Culture", verified: "Business & Legal Affairs", trigger: "Engagement, rider, withdrawal" },
-  { domain: "Material register", fields: "Type, production, owners, contributors, sensitivity, storage location", entered: "Production data steward", verified: "Production Technology", trigger: "Ingest, transfer, archive" },
-  { domain: "AI activities", fields: "Operation, purpose, output, persistence, affected people", entered: "Requesting team", verified: "AI Governance", trigger: "New or materially changed use" },
-  { domain: "Approved tools", fields: "Account, hosting, retention, provider training, security, approved scope", entered: "IT & Security", verified: "Legal + AI Governance", trigger: "Vendor or configuration change" },
-  { domain: "Rules and decisions", fields: "Outcome, conditions, rationale, authority, evidence, review date", entered: "Decision owner", verified: "Legal / policy owner", trigger: "Decision, appeal, policy change" },
-];
-
-const decisions = [
-  { date: "12 Sep 2026", title: "Meeting transcript summary for Tiny Titans", detail: "Internal review transcript · same-show workflow · NotePilot", status: "Approved", statusClass: "approved", owner: "Information Governance" },
-  { date: "08 Sep 2026", title: "Harbor Heroes voice data for reusable lip-sync model", detail: "Cross-production training · mixed performer agreements", status: "Review required", statusClass: "review", owner: "Business & Legal Affairs" },
-  { date: "02 Sep 2026", title: "Moss & Moon concept exploration", detail: "Company-owned art · same-show generation · FrameFoundry", status: "Conditional", statusClass: "approved", owner: "Creative Technology" },
-  { date: "29 Aug 2026", title: "Client review notes for management model training", detail: "Client-confidential notes · reusable company capability", status: "Restricted", statusClass: "restricted", owner: "Business & Legal Affairs" },
-];
-
-const scenarios = {
-  "voice-cross-show": { production: "harbor-heroes", material: "voice", operation: "train", purpose: "different-show", tool: "motionmap" },
-  "meeting-summary": { production: "tiny-titans", material: "comms", operation: "summarise", purpose: "same-task", tool: "notepilot" },
-  "internal-concepts": { production: "moss-moon", material: "art", operation: "generate", purpose: "same-show", tool: "framefoundry" },
-};
-
-let activeView = "check";
-let recordFilter = "all";
-
-function optionList(items, valueKey = "id", labelKey = "label") {
-  return items.map(item => `<option value="${item[valueKey]}">${item[labelKey]}</option>`).join("");
+import {productions,materials,operations,destinations,toolOptions,people,records,stewardship,scenarios,findRecord,label} from './data.js';
+import {assess} from './engine.js';
+const examples=scenarios.map(s=>s.question);
+const app=document.querySelector('#app');
+function shell(content,active='ask'){app.innerHTML=`<header><button class="brand" data-nav="ask" aria-label="SCOPE home"><span class="wordmark">SCOPE</span><span class="subtitle">Rights-Aware AI Governance<br>for Creative Production</span></button><nav class="nav" aria-label="Main navigation"><button data-nav="ask" class="${active==='ask'?'active':''}">Ask a question</button><button data-nav="briefs" class="${active==='briefs'?'active':''}">Decision briefs</button><button data-nav="records" class="${active==='records'?'active':''}">Supporting records</button></nav></header><main id="main" tabindex="-1">${content}</main><footer><span>Northstar Animation · Sydney / Brisbane / Los Angeles</span><button data-about>About SCOPE & this prototype</button></footer>`;}
+function home(){shell(`<div class="context"><span class="rule"></span> Northstar Animation <span>/</span> Fictional studio</div><div class="ask-layout"><section><h1>Before you use it,<br><em>know where you stand.</em></h1><p class="lede">Ask whether you can use production material with AI.<br>Get a clear answer, the reasons and a way forward.</p><form class="question-box" id="question-form"><label for="question">What would you like to do?</label><textarea id="question" required maxlength="1400" placeholder="Can I use voice recordings from a completed client show to train a lip-sync model for our own show?"></textarea><div class="question-bottom"><span>Describe the use. Keep scripts, recordings and personal details in their source systems.</span><button class="primary dark" type="submit">Work through this <span aria-hidden="true">↗</span></button></div></form><p class="kicker">Try a production question</p><ul class="examples">${examples.map((q,i)=>`<li><button data-example="${i}"><span>${q}</span><span aria-hidden="true">↗</span></button></li>`).join('')}</ul></section><aside class="aside"><h2>A useful answer needs<br>a little context.</h2><ol class="steps"><li><span class="number">01</span><div><strong>Start with your question</strong><p>In your own words, with the material and the use you have in mind.</p></div></li><li><span class="number">02</span><div><strong>Confirm the important details</strong><p>We’ll help identify the production, the people and the tool involved.</p></div></li><li><span class="number">03</span><div><strong>See what can happen next</strong><p>An answer grounded in records, with a named person for anything unresolved.</p></div></li></ol><div class="aside-note"><p>Rights follow the material.<br>That includes the people who made it, and the models built from it.</p><span class="studio-line">Prototype · All records are fictional</span></div></aside></div>`);}
+const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let current=null,briefs=[],view='ask',recordMode='browse',recordQuery='',returnFocus=null;
+const uid=()=>`S-${new Date().getFullYear()}-${String(briefs.length+1).padStart(3,'0')}`;
+const blankFacts=()=>({source:'unknown',material:'unknown',operation:'unknown',destination:'unknown',tool:'unknown',location:'unknown',dataset:'all',inventory:'unknown'});
+function inferQuestion(q){
+ const f=blankFacts(),t=q.toLowerCase();
+ // Recognition is deliberately limited. The user confirms every suggestion before assessment.
+ if(/harbor heroes|completed.*(client|third.party|netflix)/.test(t))f.source='harbor';else if(/tiny titans/.test(t))f.source='tiny';else if(/sky harbor/.test(t))f.source='sky';else if(/moss.*moon/.test(t))f.source='moss';else if(/employee|staff|internal.*(chat|email)/.test(t))f.source='studio';
+ if(/voice|lip.?sync|recordings/.test(t))f.material='voice';else if(/meeting|transcript/.test(t))f.material='meeting';else if(/artwork|design|concept/.test(t))f.material='art';else if(/employee|staff|messages/.test(t))f.material='comms';else if(/shotgrid|notes/.test(t))f.material='notes';else if(/rig|code/.test(t))f.material='rigs';
+ if(/rank|performance.*(score|evaluat)/.test(t))f.operation='automate';else if(/train|fine.tun/.test(t))f.operation='train';else if(/summari|transcrib/.test(t))f.operation='summarise';else if(/synthe|clone.*voice/.test(t))f.operation='synthesise';else if(/concept|generat/.test(t))f.operation='generate';else if(/search|index/.test(t))f.operation='search';
+ if(/for moss|own show|own production|own ip/.test(t))f.destination='moss';else if(/same show|same production/.test(t))f.destination=f.source;else if(/studio model|reusable/.test(t))f.destination='studio';
+ for(const [id,rx]of [['motion',/motionmap/],['note',/notepilot/],['frame',/framefoundry/],['studio',/studiolm/]])if(rx.test(t))f.tool=id;
+ return f;
 }
-
-function statusLabel(type) {
-  return type === "service" ? "Service" : type === "internal" ? "Internal IP" : "Co-production";
+function begin(q,index=null){current={question:q,facts:index===null?inferQuestion(q):{...scenarios[index].facts},sample:index!==null,notes:'',result:null,id:null};confirmView();}
+function optionList(items,value){return items.map(([v,l])=>`<option value="${v}" ${v===value?'selected':''}>${escapeHTML(l)}</option>`).join('');}
+function selectField(key,title,items,help=''){return `<div class="field"><label for="${key}">${title}</label><select id="${key}" name="${key}">${optionList(items,current.facts[key])}</select>${help?`<p class="field-help">${help}</p>`:''}</div>`;}
+function inventoryDescription(f){if(f.source==='harbor'&&f.material==='voice')return 'HH-204 · 12 takes · Ava Lin and Mateo Ruiz';if(f.source==='moss'&&f.material==='voice')return 'MM-NIA-06 · Nia Okafor’s research recordings';if(f.source==='moss'&&f.material==='art')return 'MM-C18 · 18 cleared concept designs';if(f.source==='tiny'&&f.material==='meeting')return 'TT-0912 · verified production-only transcript';return null;}
+function confirmView(){
+ view='confirm';const f=current.facts,inventory=inventoryDescription(f);
+ shell(`<button class="back" data-action="edit-question">← Edit the question</button><div class="flow-heading"><div><p class="kicker">Your proposal · 1 of 2</p><h1>Let’s get the details right.</h1><p class="lede">The answer depends on this specific use. Change anything that doesn’t fit.</p></div></div><blockquote class="question-quote">${escapeHTML(current.question)}</blockquote><div class="confirm-layout"><form id="details-form"><div class="form-grid">${selectField('source','Where is the material from?',[['unknown','Not yet confirmed'],...productions.map(p=>[p.id,p.name])])}${selectField('material','What material will you use?',materials)}${selectField('operation','What will the AI do?',operations)}${selectField('destination','Where will the result be used?',destinations)}${selectField('tool','Which account or environment?',toolOptions)}${selectField('location','Where will your team access it?',[['unknown','Not yet confirmed'],['Sydney','Sydney'],['Brisbane','Brisbane'],['Los Angeles','Los Angeles']], 'The sample tools specify their processing regions separately.')}</div><div class="inventory-box"><h3>Which exact material is covered?</h3>${inventory?`<p>${inventory}</p><label class="radio"><input type="radio" name="inventory" value="known" ${f.inventory==='known'?'checked':''}> Use this verified sample inventory</label>`:''}<label class="radio"><input type="radio" name="inventory" value="unknown" ${f.inventory!=='known'||!inventory?'checked':''}> ${inventory?'A different or unverified selection':'The files and contributor list still need verification'}</label>${f.source==='harbor'&&f.material==='voice'?`<div class="field inline-field"><label for="dataset">Performers included in the selection</label><select name="dataset" id="dataset">${optionList([['all','Ava and Mateo · all 12 takes'],['ava','Ava only · takes 01–06'],['mateo','Mateo only · takes 07–12']],f.dataset)}</select><p class="field-help">Changing the selection does not grant rights. Each included performer must be cleared.</p></div>`:''}</div><label class="confirm-check"><input type="checkbox" required name="confirmed"> I have checked these details against the proposed use.</label><div class="form-actions"><button class="primary" type="submit">See the decision brief <span aria-hidden="true">↗</span></button><span>Unknown details will stay open for review.</span></div></form><aside class="context-aside"><p class="kicker">What we can establish</p>${current.sample?'<p>You’re exploring a fictional scenario. The suggested details describe its sample records.</p>':'<p>Some details may be suggested from words in your question. Choose the matching records or leave them unconfirmed.</p>'}<div class="aside-note"><h3>One file can carry several rights.</h3><p>Production ownership, individual contracts and collective terms all apply. The answer includes every represented contributor.</p></div><div class="aside-note"><h3>The model matters too.</h3><p>Training and search can create a lasting copy or capability. Its purpose, access and deletion obligations follow the source.</p></div><p class="small-muted">This prototype uses a fixed set of fictional rules. Unmatched proposals go to review.</p></aside></div>`);scrollTop();
 }
-
-function appTemplate() {
-  return `
-    <div class="shell">
-      <aside class="sidebar">
-        <div class="brand"><div class="brand-mark" aria-hidden="true">S</div><div class="brand-copy"><strong>SCOPE</strong><span class="brand-positioning">Rights-Aware AI Governance<br>for Creative Production</span><span class="brand-definition">Source · Contracts · Operation<br>Purpose · Environment</span></div></div>
-        <nav class="nav-list" aria-label="Primary">
-          <button class="nav-button active" data-view="check"><span class="nav-icon">01</span><span>Run a check</span></button>
-          <button class="nav-button" data-view="records"><span class="nav-icon">02</span><span>Rights library</span></button>
-          <button class="nav-button" data-view="data"><span class="nav-icon">03</span><span>Data model</span></button>
-          <button class="nav-button" data-view="decisions"><span class="nav-icon">04</span><span>Decisions</span></button>
-        </nav>
-        <div class="studio-card"><strong>${studio.name}</strong><span>Fictional prototype data</span><div class="studio-locations" aria-label="Three studio locations"><i></i><i></i><i></i></div></div>
-      </aside>
-      <main class="main">
-        <header class="topbar">
-          <div class="topbar-title"><strong>Northstar policy workspace</strong><span>Sample environment · v0.1</span></div>
-          <div class="profile"><div class="avatar">AL</div><div class="profile-copy"><strong>Alex Lee</strong><span>AI Governance</span></div></div>
-        </header>
-        <div class="content">
-          ${checkView()}
-          ${recordsView()}
-          ${dataView()}
-          ${decisionsView()}
-        </div>
-      </main>
-    </div>`;
+function recordLink(id,text=null){const r=findRecord(id);return r?`<button class="record-link" data-record="${id}">${escapeHTML(text||r.title)} <span aria-hidden="true">↗</span></button>`:'';}
+function factsRows(f){return [['Material',`${label(materials,f.material)} · ${productions.find(p=>p.id===f.source)?.name||'Source unconfirmed'}`],['Activity',label(operations,f.operation)],['Destination',label(destinations,f.destination)],['Environment',label(toolOptions,f.tool)],['Team access',f.location==='unknown'?'Unconfirmed':f.location],['Inventory',f.inventory==='known'?(inventoryDescription(f)||'Not verified'):'Unverified selection'],...(f.material==='voice'&&f.source==='harbor'?[['Included people',f.dataset==='ava'?'Ava Lin':f.dataset==='mateo'?'Mateo Ruiz':'Ava Lin and Mateo Ruiz']]:[])];}
+function resultView(){
+ view='result';const r=current.result;if(!r)return;const color={'Approved':'approved','Conditional':'conditional','Review required':'review','Restricted':'restricted'}[r.status];
+ shell(`<div class="brief-top"><button class="back" data-action="adjust">← Adjust the proposal</button><span class="small-muted">Decision brief · ${escapeHTML(current.id||'Unsaved draft')}</span></div><div class="result-layout"><article class="paper"><div class="decision-label ${color}"><span class="decision-mark" aria-hidden="true">${r.status==='Approved'?'✓':r.status==='Restricted'?'×':'—'}</span>${r.status}</div><h1>${r.headline}</h1><p class="answer-summary">${r.summary}</p><div class="decision-owner"><span>Decision-maker</span><strong>${r.owner}</strong></div><blockquote>${escapeHTML(current.question)}</blockquote><section class="brief-section"><h2>Why this is the answer</h2>${r.reasons.map((reason,i)=>`<div class="reason"><span class="reason-number">${String(i+1).padStart(2,'0')}</span><div><h3>${reason.title}</h3><p>${reason.detail}</p><div class="citations">${reason.ids.map(id=>recordLink(id,id)).join('')}</div></div></div>`).join('')}</section>${r.conditions.length?`<section class="brief-section"><h2>Conditions to carry into the work</h2><p class="small">${r.status==='Conditional'?'These belong to the recorded permission. Track them through delivery.':'These would also apply if the open issues are resolved.'}</p><ol class="conditions">${r.conditions.map(c=>`<li>${c}</li>`).join('')}</ol></section>`:''}<section class="brief-section"><h2>${r.status==='Approved'?'Keep within the approved scope':'What happens next'}</h2>${r.open.length?`<div class="next-steps">${r.open.map(o=>`<div><h3>${o.title}</h3><span class="responsible">${o.owner}</span></div>`).join('')}</div>`:r.status==='Restricted'?'<p>Discuss an alternative proposal with the decision-maker. Changing a checkbox or saving this brief cannot override a restriction.</p>':'<p>Use only the confirmed material, destination and environment. Recheck before expanding the dataset, sharing outputs, or changing the tool or purpose.</p>'}<div class="owner-block"><span class="kicker">Responsible decision-maker</span><strong>${r.owner}</strong><p>${r.authority}</p></div></section><details class="scope-details"><summary>Confirmed scope & audit trail</summary><dl>${factsRows(current.facts).map(([k,v])=>`<div><dt>${k}</dt><dd>${escapeHTML(v)}</dd></div>`).join('')}<div><dt>Record snapshot</dt><dd>${r.recordDate} · fictional</dd></div><div><dt>Rules</dt><dd>${r.rulesVersion}</dd></div><div><dt>Review / expiry</dt><dd>${r.expiry}</dd></div><div><dt>Checked at</dt><dd>${escapeHTML(current.createdAt)}</dd></div></dl><p class="small">This brief records an assessment against the listed record versions. It grants no new permission. Changes to rights, consent, tools or the proposal require reassessment.</p></details></article><aside class="evidence-aside"><p class="kicker">Behind this answer</p><h2>Supporting records</h2><p class="small-muted">Open a record to see its terms, scope, source and verifier.</p><div class="evidence-list">${r.evidence.map(id=>{const rec=findRecord(id);return `<div>${recordLink(id)}<span>${rec.type} · ${id} · v${rec.version}</span></div>`}).join('')}</div><div class="brief-actions"><button class="primary" data-action="save">${current.id?'Brief saved':'Save this brief'}</button>${r.status==='Review required'||r.status==='Restricted'?'<button class="secondary" data-action="review">Prepare a review note</button>':''}<button class="secondary" data-action="export">Download the evidence brief</button><p class="small-muted">Saved briefs and review drafts stay in this session. Download a copy to keep it.</p><p role="status" id="save-status"></p></div></aside></div>`);scrollTop();
 }
-
-function checkView() {
-  return `
-    <section class="view active" id="view-check">
-      <div class="page-heading"><div><p class="eyebrow">Decision support</p><h1>Can I use this with AI?</h1><p class="scope-expansion">Source · Contracts & contributors · Operation · Purpose · Environment</p><p class="page-description">Describe the proposed use. SCOPE will show the applicable policy position and decision owner.</p></div><span class="badge">Policy data current</span></div>
-      <div class="stats">
-        <div class="stat"><div class="stat-label">Productions mapped</div><div class="stat-value"><strong>4</strong><span>3 locations</span></div></div>
-        <div class="stat"><div class="stat-label">Contributor records</div><div class="stat-value"><strong>146</strong><span>8 need review</span></div></div>
-        <div class="stat"><div class="stat-label">Approved tools</div><div class="stat-value"><strong>4</strong><span>2 show-specific</span></div></div>
-        <div class="stat"><div class="stat-label">Open decisions</div><div class="stat-value"><strong>6</strong><span>Legal queue</span></div></div>
-      </div>
-      <div class="checker-grid">
-        <section class="panel">
-          <div class="panel-head"><div><h2>SCOPE check</h2><p>Choose a sample scenario or change any field.</p></div><span class="tag">Fictional data</span></div>
-          <div class="scenario-row" aria-label="Sample scenarios">
-            <button class="scenario-button" data-scenario="voice-cross-show">Voice data → lip-sync model</button>
-            <button class="scenario-button" data-scenario="meeting-summary">Summarise a meeting</button>
-            <button class="scenario-button" data-scenario="internal-concepts">Internal concept generation</button>
-          </div>
-          <form class="form-body" id="scope-form">
-            <div class="scope-field"><div class="scope-letter">S</div><div><div class="scope-label"><label for="source">Source</label><span>Origin and material</span></div><div class="select-stack"><select id="source" aria-label="Source production">${optionList(productions, "id", "title")}</select><select id="material" aria-label="Material type">${optionList(materials)}</select></div></div></div>
-            <div class="scope-field"><div class="scope-letter">C</div><div><div class="scope-label"><label for="contributors">Contracts & contributors</label><span>Resolved from the source</span></div><div class="select-stack one"><select id="contributors" aria-label="Contracts and contributors"><option value="all">All contributors represented in the material</option><option value="cleared">Only contributors already cleared for this use</option><option value="unknown">Contributor identities or terms are incomplete</option></select></div></div></div>
-            <div class="scope-field"><div class="scope-letter">O</div><div><div class="scope-label"><label for="operation">Operation</label><span>What the AI will do</span></div><div class="select-stack one"><select id="operation">${optionList(operations)}</select></div></div></div>
-            <div class="scope-field"><div class="scope-letter">P</div><div><div class="scope-label"><label for="purpose">Purpose</label><span>Where the result will be used</span></div><div class="select-stack one"><select id="purpose">${optionList(purposes)}</select></div></div></div>
-            <div class="scope-field"><div class="scope-letter">E</div><div><div class="scope-label"><label for="tool">Environment</label><span>Approved account and controls</span></div><div class="select-stack one"><select id="tool">${optionList(tools, "id", "name")}</select></div></div></div>
-            <button class="primary-button" type="submit">Check this use</button>
-          </form>
-        </section>
-        <aside class="panel result-card" aria-live="polite" id="result-card"></aside>
-      </div>
-    </section>`;
-}
-
-function recordsView() {
-  return `
-    <section class="view" id="view-records">
-      <div class="page-heading"><div><p class="eyebrow">Rights library</p><h1>The records behind each answer</h1><p>Production, contributor and tool records are maintained once, then reused across every SCOPE check.</p></div><span class="badge">Sample register</span></div>
-      <div class="toolbar"><input class="search-input" id="record-search" type="search" placeholder="Search productions…" aria-label="Search productions"><button class="filter-button active" data-filter="all">All</button><button class="filter-button" data-filter="service">Service</button><button class="filter-button" data-filter="internal">Internal</button><button class="filter-button" data-filter="coproduction">Co-production</button></div>
-      <div class="record-grid" id="production-grid">${productionCards(productions)}</div>
-      <div class="section-block"><div class="section-title"><h2>Contributor rights</h2><p>Examples show how people on one production can carry different permissions.</p></div>${contributorTable()}</div>
-      <div class="section-block"><div class="section-title"><h2>Approved environments</h2><p>Approval belongs to a specific account, configuration and use.</p></div>${toolTable()}</div>
-    </section>`;
-}
-
-function productionCards(items) {
-  return items.map(p => `<article class="record-card"><div class="record-top"><div><h3>${p.title}</h3><p>${p.client} · ${p.status}</p></div><span class="status-chip ${p.type}">${statusLabel(p.type)}</span></div><div class="meta-grid"><div class="meta"><span>Rights position</span><strong>${p.owner}</strong></div><div class="meta"><span>AI position</span><strong>${p.aiPosition}</strong></div><div class="meta"><span>Cross-show reuse</span><strong>${p.reuse}</strong></div><div class="meta"><span>Governing record</span><strong>${p.agreement}</strong></div></div><div class="tag-row">${p.locations.map(x => `<span class="tag">${x}</span>`).join("")}</div></article>`).join("");
-}
-
-function contributorTable() {
-  return `<div class="table-wrap"><table><thead><tr><th>Contributor</th><th>Production</th><th>Agreement</th><th>Model training position</th></tr></thead><tbody>${contributors.map(c => `<tr><td><strong>${c.name}</strong><small>${c.role} · ${c.location}</small></td><td>${c.production}</td><td>${c.agreement}</td><td><span class="status-chip ${c.status}">${c.training}</span></td></tr>`).join("")}</tbody></table></div>`;
-}
-
-function toolTable() {
-  return `<div class="table-wrap"><table><thead><tr><th>Environment</th><th>Approval</th><th>Hosting</th><th>Retention</th><th>Provider training</th></tr></thead><tbody>${tools.map(t => `<tr><td><strong>${t.name}</strong></td><td>${t.scope}</td><td>${t.hosting}</td><td>${t.retention}</td><td>${t.providerTraining}</td></tr>`).join("")}</tbody></table></div>`;
-}
-
-function dataView() {
-  return `
-    <section class="view" id="view-data">
-      <div class="page-heading"><div><p class="eyebrow">Operating model</p><h1>Who enters what?</h1><p>The prototype separates source records from legal verification and decision ownership, so each fact is maintained by the team closest to it.</p></div><span class="badge">7 data domains</span></div>
-      <div class="flow">
-        <div class="flow-step"><b>S</b><strong>Source records</strong><span>Production, client, material and ownership context</span></div>
-        <div class="flow-step"><b>C</b><strong>Rights records</strong><span>Contracts, contributors, consent and collective terms</span></div>
-        <div class="flow-step"><b>O</b><strong>Activity catalogue</strong><span>What the system does and what persists</span></div>
-        <div class="flow-step"><b>P</b><strong>Use boundaries</strong><span>Task, show, cross-show, reusable or public</span></div>
-        <div class="flow-step"><b>E</b><strong>Tool register</strong><span>Approved accounts, retention and security controls</span></div>
-      </div>
-      <div class="table-wrap"><table><thead><tr><th>Data domain</th><th>Required information</th><th>Entered by</th><th>Verified by</th><th>Review trigger</th></tr></thead><tbody>${dataDomains.map(d => `<tr><td><strong>${d.domain}</strong></td><td>${d.fields}</td><td>${d.entered}</td><td>${d.verified}</td><td>${d.trigger}</td></tr>`).join("")}</tbody></table></div>
-      <div class="section-block note"><strong>Design principle:</strong> SCOPE stores each rights fact once and links it to the relevant productions, people, materials and agreements. Unknown remains an explicit state and routes the use to the named decision owner.</div>
-    </section>`;
-}
-
-function decisionsView() {
-  return `
-    <section class="view" id="view-decisions">
-      <div class="page-heading"><div><p class="eyebrow">Decision history</p><h1>Auditable answers</h1><p>Every outcome records the question, applicable rule, responsible owner and policy version used at the time.</p></div><span class="badge">4 sample decisions</span></div>
-      <div class="decision-list">${decisions.map(d => `<article class="decision-row"><time>${d.date}</time><div class="decision-copy"><strong>${d.title}</strong><span>${d.detail}</span></div><div class="decision-owner">${d.owner}</div><span class="status-chip ${d.statusClass}">${d.status}</span></article>`).join("")}</div>
-      <div class="section-block"><div class="section-title"><h2>What the audit record preserves</h2><p>Enough context to explain and reproduce an answer later.</p></div><div class="record-grid"><article class="record-card"><h3>Decision evidence</h3><p>Matched production, contracts, contributor records, policy rules and tool configuration.</p><div class="tag-row"><span class="tag">Source IDs</span><span class="tag">Clause references</span><span class="tag">Rule version</span></div></article><article class="record-card"><h3>Decision lifecycle</h3><p>Requester, approver, conditions, effective period, review trigger and superseding decisions.</p><div class="tag-row"><span class="tag">Owner</span><span class="tag">Review date</span><span class="tag">Change history</span></div></article></div></div>
-    </section>`;
-}
-
-function evaluate(selection) {
-  const source = productions.find(x => x.id === selection.production);
-  const material = materials.find(x => x.id === selection.material);
-  const operation = operations.find(x => x.id === selection.operation);
-  const purpose = purposes.find(x => x.id === selection.purpose);
-  const tool = tools.find(x => x.id === selection.tool);
-  const factors = [];
-  let level = 0;
-  let owner = "AI Governance";
-  let rule = "SCOPE-GEN-001";
-
-  factors.push({ title: source.typeLabel, text: source.owner });
-  factors.push({ title: material.label, text: material.sensitivity });
-  factors.push({ title: operation.label, text: operation.persistence });
-  factors.push({ title: purpose.label, text: purpose.detail });
-
-  if (!tool.approvedFor.includes(operation.id) || tool.excludes.includes(material.id)) {
-    level = 3;
-    owner = "IT, Security & AI Governance";
-    rule = "SCOPE-ENV-004";
-    factors.push({ title: "Environment outside approval", text: `${tool.name} is not approved for this material and operation.` });
-  }
-
-  if (selection.contributors === "unknown") {
-    level = Math.max(level, 2);
-    owner = "Business & Legal Affairs";
-    rule = "SCOPE-RGT-002";
-    factors.push({ title: "Contributor terms incomplete", text: "The people represented in the material must be identified and linked to rights records." });
-  }
-
-  if (["voice", "video"].includes(material.id) && ["train", "generate"].includes(operation.id)) {
-    level = Math.max(level, 2);
-    owner = "Business & Legal Affairs + Casting";
-    rule = "SCOPE-PERF-017";
-    factors.push({ title: "Performer rights apply", text: "Individual and collective terms must permit the proposed model use." });
-  }
-
-  if (["service", "coproduction"].includes(source.type) && ["different-show", "company-capability", "public"].includes(purpose.id)) {
-    level = Math.max(level, 2);
-    owner = "Business & Legal Affairs";
-    rule = "SCOPE-XPR-011";
-    factors.push({ title: "Use crosses the production boundary", text: source.reuse });
-  }
-
-  if (operation.id === "train" && purpose.id === "company-capability") {
-    level = Math.max(level, 1);
-    factors.push({ title: "Persistent reusable capability", text: "Source restrictions must carry into the model record and approved-use scope." });
-  }
-
-  if (source.type === "internal" && selection.contributors === "cleared" && tool.approvedFor.includes(operation.id) && !tool.excludes.includes(material.id)) {
-    if (["same-task", "same-show"].includes(purpose.id)) {
-      level = operation.id === "generate" ? Math.max(level, 1) : level;
-      rule = operation.id === "generate" ? "SCOPE-INT-006" : "SCOPE-INT-003";
-      owner = operation.id === "generate" ? "Creative Technology" : "AI Governance";
-    }
-  }
-
-  if (source.type === "service" && purpose.id === "same-show" && ["summarise", "analyse"].includes(operation.id) && tool.approvedFor.includes(operation.id)) {
-    level = Math.min(level, 1);
-    rule = "SCOPE-SVC-005";
-    owner = "Production + Information Governance";
-  }
-
-  const outputs = [
-    { key: "approved", title: "Approved", symbol: "✓", summary: "The current records support this use in the selected environment." },
-    { key: "conditional", title: "Approved with conditions", symbol: "≈", summary: "This use can proceed when the listed scope and handling conditions are applied." },
-    { key: "review", title: "Review required", symbol: "!", summary: "Existing records do not provide sufficient permission for this use. The named owner must decide before work begins." },
-    { key: "restricted", title: "Restricted", symbol: "×", summary: "The selected environment or recorded rights position prevents this use as described." },
-  ];
-  return { ...outputs[level], factors, owner, rule, tool, source };
-}
-
-function renderResult(result) {
-  document.getElementById("result-card").innerHTML = `
-    <div class="result-top ${result.key}"><div class="result-kicker">SCOPE outcome</div><div class="result-status"><div class="result-icon">${result.symbol}</div><h2>${result.title}</h2></div><p class="result-summary">${result.summary}</p></div>
-    <div class="result-body">
-      <section class="result-section"><h3>Factors considered</h3><div class="factor-list">${result.factors.map((f, i) => `<div class="factor"><div class="factor-icon">${i + 1}</div><div><strong>${f.title}</strong><span>${f.text}</span></div></div>`).join("")}</div></section>
-      <section class="result-section"><h3>Decision owner</h3><div class="owner-box"><strong>${result.owner}</strong><span>${result.key === "review" || result.key === "restricted" ? "Submit the proposed use with the linked source records." : "Conditions are recorded against this use case."}</span></div></section>
-      <section class="result-section"><div class="rule-ref"><span>Matched rule</span><strong>${result.rule}</strong></div><div class="rule-ref"><span>Environment</span><strong>${result.tool.name}</strong></div><div class="rule-ref"><span>Policy version</span><strong>0.1 · sample</strong></div></section>
-    </div>`;
-}
-
-function currentSelection() {
-  return {
-    production: document.getElementById("source").value,
-    material: document.getElementById("material").value,
-    contributors: document.getElementById("contributors").value,
-    operation: document.getElementById("operation").value,
-    purpose: document.getElementById("purpose").value,
-    tool: document.getElementById("tool").value,
-  };
-}
-
-function setScenario(id) {
-  const s = scenarios[id];
-  if (!s) return;
-  Object.entries(s).forEach(([key, value]) => {
-    const elementId = key === "production" ? "source" : key;
-    document.getElementById(elementId).value = value;
-  });
-  document.getElementById("contributors").value = id === "internal-concepts" ? "cleared" : "all";
-  renderResult(evaluate(currentSelection()));
-}
-
-function bindEvents() {
-  document.querySelectorAll(".nav-button").forEach(button => button.addEventListener("click", () => {
-    activeView = button.dataset.view;
-    document.querySelectorAll(".nav-button").forEach(x => x.classList.toggle("active", x === button));
-    document.querySelectorAll(".view").forEach(x => x.classList.toggle("active", x.id === `view-${activeView}`));
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }));
-
-  document.getElementById("scope-form").addEventListener("submit", event => {
-    event.preventDefault();
-    renderResult(evaluate(currentSelection()));
-  });
-  document.querySelectorAll("#scope-form select").forEach(select => select.addEventListener("change", () => renderResult(evaluate(currentSelection()))));
-  document.querySelectorAll("[data-scenario]").forEach(button => button.addEventListener("click", () => setScenario(button.dataset.scenario)));
-
-  function filterRecords() {
-    const query = document.getElementById("record-search").value.trim().toLowerCase();
-    const filtered = productions.filter(p => (recordFilter === "all" || p.type === recordFilter) && `${p.title} ${p.client} ${p.locations.join(" ")}`.toLowerCase().includes(query));
-    document.getElementById("production-grid").innerHTML = filtered.length ? productionCards(filtered) : `<div class="note">No production records match this search.</div>`;
-  }
-  document.getElementById("record-search").addEventListener("input", filterRecords);
-  document.querySelectorAll("[data-filter]").forEach(button => button.addEventListener("click", () => {
-    recordFilter = button.dataset.filter;
-    document.querySelectorAll("[data-filter]").forEach(x => x.classList.toggle("active", x === button));
-    filterRecords();
-  }));
-}
-
-document.getElementById("app").innerHTML = appTemplate();
-bindEvents();
-setScenario("voice-cross-show");
-
-function registerWebMcp() {
-  const context = document.modelContext;
-  if (!context?.registerTool) return;
-  const valid = {
-    production: new Set(productions.map(x => x.id)),
-    material: new Set(materials.map(x => x.id)),
-    operation: new Set(operations.map(x => x.id)),
-    purpose: new Set(purposes.map(x => x.id)),
-    tool: new Set(tools.map(x => x.id)),
-    contributors: new Set(["all", "cleared", "unknown"]),
-  };
-  const lifecycle = new AbortController();
-  try {
-    void Promise.resolve(context.registerTool({
-      name: "run_scope_check",
-      title: "Run a SCOPE check",
-      description: "Evaluate a proposed AI use against the fictional Northstar Animation rights records and update the visible SCOPE decision. Production IDs: harbor-heroes, moss-moon, sky-harbor, tiny-titans. Material IDs: voice, video, script, client-notes, production-data, art, rigs, comms. Operation IDs: summarise, search, analyse, generate, train, automate. Purpose IDs: same-task, same-show, different-show, company-capability, client-delivery, public. Tool IDs: studio-lm, motionmap, notepilot, framefoundry.",
-      inputSchema: {
-        type: "object",
-        properties: {
-          production: { type: "string" },
-          material: { type: "string" },
-          contributors: { type: "string", enum: ["all", "cleared", "unknown"] },
-          operation: { type: "string" },
-          purpose: { type: "string" },
-          tool: { type: "string" },
-        },
-        required: ["production", "material", "contributors", "operation", "purpose", "tool"],
-        additionalProperties: false,
-      },
-      annotations: { readOnlyHint: false, untrustedContentHint: false },
-      execute(input) {
-        if (!input || typeof input !== "object") throw new Error("A complete SCOPE selection is required.");
-        for (const [key, allowed] of Object.entries(valid)) {
-          if (!allowed.has(input[key])) throw new Error(`Unknown ${key} value.`);
-        }
-        const fields = { production: "source", material: "material", contributors: "contributors", operation: "operation", purpose: "purpose", tool: "tool" };
-        Object.entries(fields).forEach(([key, id]) => { document.getElementById(id).value = input[key]; });
-        document.querySelector('[data-view="check"]').click();
-        const result = evaluate(input);
-        renderResult(result);
-        return { status: result.title, owner: result.owner, matchedRule: result.rule, environment: result.tool.name };
-      },
-    }, { signal: lifecycle.signal })).catch(() => {});
-  } catch (_) {}
-}
-
-registerWebMcp();
+function saveCurrent(){if(!current.id){current.id=uid();briefs.unshift(structuredClone(current));}else{briefs=briefs.map(b=>b.id===current.id?structuredClone(current):b);}return current.id;}
+function briefsView(){view='briefs';shell(`<p class="kicker">A record of the reasoning</p><h1>Decision briefs</h1><p class="lede">Keep the proposal, the answer and its supporting evidence together.</p><div class="section-heading"><h2>This session</h2><span class="small-muted">Download a copy before closing or refreshing.</span></div>${briefs.length?`<div class="brief-list">${briefs.map(b=>`<button data-brief="${b.id}"><span class="brief-id">${b.id}</span><div><h3>${escapeHTML(b.question)}</h3><p>${b.result.owner}${b.notes?' · Review note drafted':''}</p></div><span class="brief-status">${b.result.status} <span aria-hidden="true">↗</span></span></button>`).join('')}</div>`:'<div class="empty"><h2>Your next decision starts with a question.</h2><p>Save an answer to keep its confirmed scope and evidence together during this session.</p><button class="primary" data-nav="ask">Ask a question ↗</button></div>'}<div class="section-heading previous"><h2>Decisions already in the sample records</h2></div><div class="prior-decisions">${['DEC-012','DEC-014','DEC-008'].map(id=>{const r=findRecord(id);return `<div><p class="kicker">${r.checked}</p>${recordLink(id)}<p>${r.summary}</p></div>`}).join('')}</div>`,'briefs');scrollTop();}
+function recordsView(){view='records';shell(`<p class="kicker">The evidence people maintain</p><h1>Good answers start with good records.</h1><p class="lede">Every rights position needs a source, a scope and someone who stands behind it.</p><div class="records-tabs" role="group" aria-label="Records view"><button data-record-mode="browse" class="${recordMode==='browse'?'selected':''}">Explore the records</button><button data-record-mode="maintain" class="${recordMode==='maintain'?'selected':''}">What the studio needs to maintain</button></div>${recordMode==='browse'?`<div class="record-controls"><label for="record-search">Find a production, person, tool or agreement</label><input id="record-search" type="search" value="${escapeHTML(recordQuery)}" placeholder="Try ‘Ava’, ‘retention’ or ‘Sky Harbor’"></div><div id="record-results">${recordResults()}</div>`:`<div class="maintain-intro"><h2>Capture a fact once. Connect it to each use.</h2><p>A material inventory connects files to productions and people. Their agreements define the rights. A proposal adds the activity, destination and environment. The decision preserves that complete chain.</p></div><div class="stewardship">${stewardship.map(([title,fields,supplied,verified,trigger,id],i)=>`<section><span class="step-index">0${i+1}</span><div><h2>${title}</h2><p>${fields}</p><dl><div><dt>Supplied by</dt><dd>${supplied}</dd></div><div><dt>Verified by</dt><dd>${verified}</dd></div><div><dt>Update when</dt><dd>${trigger}</dd></div></dl>${recordLink(id,'Explore a connected example')}</div></section>`).join('')}</div><div class="unresolved-note"><h3>Missing information is useful work to surface.</h3><p>A new question may reveal an unindexed contract, an unidentified contributor, or an unrecorded tool setting. Keep that gap visible and assign it to the person who can supply evidence. Only a verified update should change the decision.</p></div>`}`,'records');scrollTop();}
+function recordResults(){const q=recordQuery.toLowerCase();const found=records.filter(r=>[r.title,r.id,r.type,r.summary,r.body,r.supplied,r.verified].some(s=>s.toLowerCase().includes(q)));return `<p class="small-muted" role="status">${found.length} fictional records${recordQuery?' matching your search':''}</p><div class="records-list">${found.map(r=>`<button data-record="${r.id}"><div class="record-type">${r.type}<span>${r.id} · v${r.version}</span></div><div><h3>${r.title}</h3><p>${r.summary}</p></div><span aria-hidden="true">↗</span></button>`).join('')}</div>${found.length?'':'<div class="empty"><h2>No matching records.</h2><p>Try a production name, a person, or a term such as consent.</p><button class="text-button" data-action="clear-search">Clear search</button></div>'}`;}
+const dialog=document.querySelector('#record-dialog');
+function showDialog(html){if(!dialog.open)returnFocus=document.activeElement;dialog.innerHTML=`<button class="dialog-close" data-close aria-label="Close dialog">×</button>${html}`;if(!dialog.open)dialog.showModal();dialog.scrollTop=0;}
+function openRecord(id){const r=findRecord(id);if(!r)return;showDialog(`<p class="kicker">${r.type} · ${r.id}</p><h2 id="dialog-title">${r.title}</h2><p class="record-summary">${r.summary}</p><div class="record-extract"><p class="kicker">Verified fictional record summary</p><p>${r.body}</p></div><dl class="record-meta"><div><dt>Supplied by</dt><dd>${r.supplied}</dd></div><div><dt>Verified by</dt><dd>${r.verified}</dd></div><div><dt>Verified on</dt><dd>${r.checked} · version ${r.version}</dd></div><div><dt>Review / expiry</dt><dd>${r.review}</dd></div><div><dt>Update trigger</dt><dd>${r.trigger}</dd></div><div><dt>Source</dt><dd>${r.id} · curated sample extract. No underlying contract file is attached.</dd></div></dl><div class="related"><h3>Connected records</h3>${r.links.map(id=>recordLink(id)).join('')}</div><p class="small-muted">All names, agreements and terms are invented for this prototype. In a live service, the verified extract would link to a controlled source document.</p>`);dialog.setAttribute('aria-labelledby','dialog-title');}
+function about(){showDialog(`<p class="kicker">The framework behind the question</p><h2 id="dialog-title">SCOPE</h2><p>Rights-Aware AI Governance for Creative Production</p><dl class="record-meta"><div><dt>S · Source</dt><dd>Where the material came from and who controls it.</dd></div><div><dt>C · Contracts and contributors</dt><dd>Individual rights, agreements, licences and collective terms.</dd></div><div><dt>O · Operation</dt><dd>What the AI will do and what it will retain.</dd></div><div><dt>P · Purpose</dt><dd>Where, why and for whom the result will be used.</dd></div><div><dt>E · Environment</dt><dd>The tool, account, access, processing region and retention.</dd></div></dl><h3>A fictional studio. Accountable decisions.</h3><p>Northstar Animation works in Sydney, Brisbane and Los Angeles, across originals, client productions and co-productions. Every record here is fictional.</p><p>This prototype recognises some question keywords and asks you to confirm the details. A fixed rule set evaluates the confirmed proposal. It has no live AI, contract system or approval service.</p><p>Permissions come from the verified sample records and their named authorities. Unknowns go to review; explicit restrictions prevent the proposed use. Saved briefs and notes exist only in this browser session.</p>`);dialog.setAttribute('aria-labelledby','dialog-title');}
+function reviewNote(){showDialog(`<p class="kicker">Prepare the handoff</p><h2 id="dialog-title">Give the decision-maker a clear brief.</h2><p><strong>${current.result.owner}</strong></p><p>The question, confirmed scope, open items and supporting records will be included in the download.</p><form id="review-form"><label for="review-note">What else should they know?</label><textarea id="review-note" rows="5" maxlength="2000" placeholder="For example: the experiment will retain a model for six months. We need help confirming which takes can be included.">${escapeHTML(current.notes)}</textarea><button class="primary" type="submit">Save review draft</button><p class="small-muted">This creates a draft in this session. No message is sent and no permission changes.</p></form>`);dialog.setAttribute('aria-labelledby','dialog-title');}
+function exportBrief(){const r=current.result;saveCurrent();const content=`SCOPE — Rights-Aware AI Governance for Creative Production\nFICTIONAL PROTOTYPE — ${current.id}\n\nQUESTION\n${current.question}\n\n${r.status.toUpperCase()}\n${r.headline}\n${r.summary}\n\nCONFIRMED SCOPE\n${factsRows(current.facts).map(([k,v])=>`${k}: ${v}`).join('\n')}\n\nREASONS\n${r.reasons.map(x=>`${x.title}\n${x.detail}\nRecords: ${x.ids.join(', ')}`).join('\n\n')}\n\nCONDITIONS\n${r.conditions.join('\n')||'See confirmed scope.'}\n\nOPEN ITEMS\n${r.open.map(x=>`${x.title}\n${x.detail}\nResponsible: ${x.owner}`).join('\n\n')||'None for the confirmed sample scope.'}\n\nDECISION OWNER\n${r.owner}\n${r.authority}\nReview/expiry: ${r.expiry}\n\nREVIEW NOTE (DRAFT — NOT SENT)\n${current.notes||'None'}\n\nAUDIT\nChecked: ${current.createdAt}\n${r.rulesVersion}\nRecord snapshot: ${r.recordDate}\n\nEVIDENCE SNAPSHOT\n${r.evidence.map(id=>{const e=findRecord(id);return `${e.id} v${e.version} — ${e.title}\n${e.body}\nSupplied: ${e.supplied}\nVerified: ${e.verified}, ${e.checked}\nReview/expiry: ${e.review}`}).join('\n\n')}\n\nAll records are fictional. This assessment grants no new permission. Reassess if the scope or evidence changes.\n`;const blob=new Blob([content],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`SCOPE-${current.id}.txt`;a.click();setTimeout(()=>URL.revokeObjectURL(url),5000);const status=document.querySelector('#save-status');if(status)status.textContent='Download prepared with the full evidence snapshot.';}
+function scrollTop(){window.scrollTo({top:0,behavior:'instant'});document.querySelector('#main')?.focus({preventScroll:true});}
+function navigate(target){if(target==='ask'){view='ask';home();scrollTop();}else if(target==='briefs')briefsView();else recordsView();}
+document.addEventListener('click',e=>{
+ const b=e.target.closest('button');if(!b)return;
+ if(b.dataset.nav){navigate(b.dataset.nav);return;}
+ if(b.hasAttribute('data-example')){begin(scenarios[Number(b.dataset.example)].question,Number(b.dataset.example));return;}
+ if(b.dataset.record){openRecord(b.dataset.record);return;}
+ if(b.hasAttribute('data-about')){about();return;}
+ if(b.hasAttribute('data-close')){dialog.close();return;}
+ if(b.dataset.brief){current=structuredClone(briefs.find(x=>x.id===b.dataset.brief));resultView();return;}
+ if(b.dataset.recordMode){recordMode=b.dataset.recordMode;recordsView();return;}
+ switch(b.dataset.action){case'edit-question':navigate('ask');document.querySelector('#question').value=current.question;document.querySelector('#question').focus();break;case'adjust':confirmView();break;case'save':saveCurrent();b.textContent='Brief saved';document.querySelector('#save-status').textContent=`Saved as ${current.id} in this session.`;break;case'review':reviewNote();break;case'export':exportBrief();break;case'clear-search':recordQuery='';recordsView();document.querySelector('#record-search').focus();break;}
+});
+document.addEventListener('submit',e=>{
+ if(e.target.id==='question-form'){e.preventDefault();const input=document.querySelector('#question');const q=input.value.trim();if(q.length<8){input.setCustomValidity('Describe the proposed use in a short sentence.');input.reportValidity();return;}begin(q);}
+ if(e.target.id==='details-form'){e.preventDefault();const data=new FormData(e.target);current.facts={...current.facts,...Object.fromEntries([...data.entries()].filter(([k])=>k!=='confirmed'))};if(!inventoryDescription(current.facts))current.facts.inventory='unknown';current.result=assess(current.facts);current.id=null;current.createdAt=new Date().toLocaleString('en-AU',{timeZone:'Australia/Sydney'})+' Sydney';resultView();}
+ if(e.target.id==='review-form'){e.preventDefault();current.notes=document.querySelector('#review-note').value.trim();saveCurrent();dialog.close();resultView();document.querySelector('#save-status').textContent='Review draft saved in this session. Download the brief to hand it over.';}
+});
+document.addEventListener('input',e=>{if(e.target.id==='question')e.target.setCustomValidity('');if(e.target.id==='record-search'){recordQuery=e.target.value;document.querySelector('#record-results').innerHTML=recordResults();}});
+document.addEventListener('change',e=>{if(e.target.closest('#details-form')&&['source','material'].includes(e.target.name)){const data=new FormData(document.querySelector('#details-form'));current.facts={...current.facts,...Object.fromEntries(data)};current.facts.inventory='unknown';current.facts.dataset='all';const focusName=e.target.name;confirmView();document.querySelector(`[name="${focusName}"]`).focus();}});
+dialog.addEventListener('close',()=>{if(returnFocus?.isConnected)returnFocus.focus();});
+dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
+home();
