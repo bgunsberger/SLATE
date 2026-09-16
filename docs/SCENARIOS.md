@@ -1,6 +1,6 @@
 # SCOPE Worked Scenarios
 
-Version 0.1.0
+Version 0.2.0
 
 ## Fictional studio
 
@@ -29,7 +29,7 @@ These scenarios demonstrate reasoning structure rather than real legal outcomes.
 - **Contracts and contributors:** StreamWave Kids controls archived production material. Ava's rider requires a purpose-specific training agreement. Mateo's rider prohibits synthetic voice substitution and does not expressly address mouth-shape training. Different fictional collective terms apply to each performer.
 - **Operation:** Train and retain a model that predicts mouth shapes from dialogue audio. The technical description says the model does not generate audio, but its learned representation and deletion behaviour still require confirmation.
 - **Purpose:** Use the model on *Moss & Moon*, a different production owned by Northstar.
-- **Environment:** MotionMap Lab, an Australia-hosted private tenant with provider training disabled and a retained model artefact.
+- **Environment:** MotionMap Lab, an Australia-hosted private tenant with provider training disabled and 30-day service-output retention. The exported model is retained in the studio research registry, where its retention duration remains unresolved.
 
 ### Gate result
 
@@ -39,9 +39,9 @@ These scenarios demonstrate reasoning structure rather than real legal outcomes.
 | Source authority | Approval required | No verified client permission covers cross-production model training. |
 | Contributor rights | Approval required | Ava requires a new agreement; Mateo's terms need an authorised interpretation and potentially new consent. |
 | Privacy and people impact | Approval required | Purpose-specific handling and contributor expectations require review. |
-| Operation | Approval required | The retained capability must be described clearly enough to distinguish lip-sync prediction from synthetic performance. |
+| Operation | Information required | The retained capability, retention and deletion response need verified technical facts before interpretation. |
 | Purpose and destination | Approval required | The proposed use crosses from client work to company IP. |
-| Environment | Conditional | The private tenant is technically suitable if Legal approves this dataset and purpose. |
+| Environment | Satisfied | The private tenant configuration is verified. Source permission and retained-model controls remain unresolved in other gates. |
 | Obligations | Approval required | Consent, compensation, collective minimums, model expiry and withdrawal response are unresolved. |
 
 ### Decision
@@ -144,3 +144,21 @@ Nia Okafor signed a fictional rider permitting named *Moss & Moon* takes to trai
 ## What these scenarios demonstrate
 
 The same data category can receive different outcomes because permission depends on the full proposal. Training is also not one category: a mouth-shape predictor, synthetic voice model, embedding index and reusable foundation model create different artefacts and risks. SCOPE makes those distinctions explicit and routes each unresolved issue to its actual owner.
+
+## Additional boundary cases for version 0.2
+
+| Case | Expected finding | Evidence needed |
+|---|---|---|
+| Qualified reviewer verifies public-domain source status | Source-rights basis may be satisfied; remaining gates are assessed separately | Jurisdiction, provenance, reviewer and bounded conclusion |
+| Licence covers the exact ordinary use | Use the licence as a rights basis; obtain extra consent only where independently required | Licence version, scope, contributor/privacy applicability findings |
+| Qualified reviewer records an applicable legal exception | Use the scoped legal interpretation as evidence | Jurisdiction, conditions, facts and authorised reviewer; internal policy still applies |
+| Verified material contains no identifiable people | Contributor/privacy non-applicability may be recorded where the reviewer confirms it | Verified source content, relevant rights review and named authority |
+| Research uses another show's assets and publishes results | Preserve research, cross-production and public-release facts together | Source/destination IDs and all applicable distribution rights |
+| Rule selects Show A and Performer B, who appears only in Show B | Rule fails to match that relationship | Bound material/person/production rows |
+| Permit allows AU; actual processing is AU and US | Environment permission does not cover the proposal | Complete current processing-region set |
+| Transcript retains a confidentiality restriction | Propagate the duty to the transcript | Source authority and retained applicability finding |
+| Reviewer establishes a source-specific duty does not govern an aggregate | Record a scoped release for that output | Transformation facts and qualified interpretation; other duties remain assessed |
+| Training-source influence cannot be removed after a withdrawal trigger | Suspend the affected model and record quarantine, retirement or retraining review | Lineage, applicability assessment, technical limits and accountable owner |
+| Conditional approval requires a research fee before processing | Await prerequisites until payment evidence is verified | Condition event and fresh operator preflight |
+
+These cases describe evaluation structure. Positive findings require the stated evidence and all other applicable gates. They establish no general legal rule about public-domain status, exceptions, consent or derivative rights.

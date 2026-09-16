@@ -1,0 +1,2188 @@
+{
+  "specVersion": "0.2.0",
+  "proposedUse": {
+    "id": "USE-HH-MM-001",
+    "version": "2.0",
+    "title": "Train a Moss & Moon lip-sync model from Harbor Heroes recordings",
+    "plainLanguageQuestion": "Can I use voice recordings from a completed client show to train a lip-sync model for our own IP show?",
+    "requestedBy": "PERSON-REQUESTER-01",
+    "requestedAt": "2026-09-16T02:00:00Z",
+    "businessOwnerId": "ROLE-CREATIVE-TECH-DIRECTOR",
+    "source": {
+      "inventoryStatus": "verified",
+      "collectionId": "COLLECTION-HH-VOICE-204",
+      "collectionVersion": "3.0",
+      "manifestReference": "HH-204 manifest v3",
+      "materials": [
+        {
+          "materialId": "MATERIAL-HH-204-AVA",
+          "version": "1.0",
+          "category": "voice_or_audio",
+          "productionId": "PRODUCTION-HARBOR-HEROES",
+          "containsPersonalData": true,
+          "containsSensitiveData": null
+        },
+        {
+          "materialId": "MATERIAL-HH-204-MATEO",
+          "version": "1.0",
+          "category": "voice_or_audio",
+          "productionId": "PRODUCTION-HARBOR-HEROES",
+          "containsPersonalData": true,
+          "containsSensitiveData": null
+        }
+      ],
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "lineageComplete": true,
+      "notes": "Twelve dialogue takes from two represented performers."
+    },
+    "contractsAndContributors": {
+      "contributorInventoryStatus": "verified",
+      "representedPersonIds": [
+        "PERSON-AVA-LIN",
+        "PERSON-MATEO-RUIZ"
+      ],
+      "representedCohortIds": [],
+      "agreementIds": [
+        "AGREEMENT-HH-PRODUCTION"
+      ],
+      "individualAgreementIds": [
+        "AGREEMENT-AVA-12",
+        "AGREEMENT-MATEO-08"
+      ],
+      "collectiveInstrumentIds": [
+        "COLLECTIVE-AVPC-24",
+        "COLLECTIVE-USV-23"
+      ],
+      "consentRecordIds": [],
+      "privacyBasisIds": [],
+      "applicableJurisdictions": [
+        "AU-NSW",
+        "US-CA"
+      ],
+      "unknowns": [
+        "Client permission for cross-production training",
+        "Purpose-specific performer permissions",
+        "Authorised interpretation of mouth-shape model under Mateo's rider"
+      ]
+    },
+    "operation": {
+      "types": [
+        "fine_tune"
+      ],
+      "description": "Train a model that predicts animation mouth shapes from dialogue audio.",
+      "humanRole": "assistive",
+      "persistence": [
+        "model_weights",
+        "logs"
+      ],
+      "expectedDerivatives": [
+        {
+          "category": "lip_sync_model",
+          "retained": true,
+          "retention": "unknown",
+          "destinationReference": "Moss & Moon research model registry"
+        }
+      ],
+      "learnedCapability": "Predict viseme and mouth-shape timing. The technical team must confirm whether performance characteristics can be reproduced or memorised.",
+      "technicalOwnerId": "ROLE-ML-LEAD"
+    },
+    "purpose": {
+      "description": "Use the retained lip-sync capability to assist animation on Northstar-owned Moss & Moon.",
+      "destinationProductionIds": [
+        "PRODUCTION-MOSS-AND-MOON"
+      ],
+      "beneficiaryOrganisationIds": [
+        "ORG-NORTHSTAR-ANIMATION"
+      ],
+      "audiences": [
+        "production_team",
+        "system_only"
+      ],
+      "affectedGroups": [
+        "Voice performers",
+        "Animation team"
+      ],
+      "commercialUse": true,
+      "impactIfWrong": "high",
+      "productionRelationships": [
+        "different_production"
+      ],
+      "businessPurposes": [
+        "research_or_evaluation",
+        "production_work"
+      ],
+      "reuseIntent": "production_only",
+      "distribution": [
+        "internal"
+      ]
+    },
+    "environment": {
+      "status": "verified",
+      "toolEnvironmentId": "ENV-MOTIONMAP-AU-LAB",
+      "product": "MotionMap Lab",
+      "provider": "Fictional Motion Systems",
+      "model": "MouthShape Research",
+      "modelVersion": "2.0",
+      "tenantOrAccountId": "northstar-au-research",
+      "deploymentType": "private_tenant",
+      "providerTraining": "disabled_by_contract",
+      "providerHumanAccess": "support_only",
+      "processingRegions": [
+        "AU"
+      ],
+      "storageRegions": [
+        "AU"
+      ],
+      "supportAccessRegions": [
+        "AU"
+      ],
+      "accessGroupIds": [
+        "GROUP-MM-RESEARCH-AU"
+      ],
+      "subprocessorIds": [],
+      "connectedServiceIds": [],
+      "retention": {
+        "source": 30,
+        "output": 30,
+        "logs": 90,
+        "backups": 30
+      },
+      "deletionSupported": true,
+      "securityApprovalId": "APPROVAL-MOTIONMAP-SECURITY"
+    },
+    "requestedControls": [
+      {
+        "control": "Exclude all voice and likeness synthesis features",
+        "ownerId": "ROLE-ML-LEAD",
+        "dueBeforeProcessing": true
+      }
+    ]
+  },
+  "decision": {
+    "id": "DECISION-HH-MM-001",
+    "version": "2.0",
+    "proposedUseId": "USE-HH-MM-001",
+    "proposedUseVersion": "2.0",
+    "outcome": "hold_approval_required",
+    "answer": "Hold the training. Business and Legal Affairs must resolve the client and performer permissions before the recordings enter the training environment.",
+    "scopeSummary": "Twelve Harbor Heroes dialogue takes from Ava Lin and Mateo Ruiz, used to train and retain a mouth-shape prediction model for Moss & Moon in MotionMap Lab's Australian private tenant.",
+    "gateResults": [
+      {
+        "gate": "inventory",
+        "result": "satisfied",
+        "explanation": "The exact recordings and both represented performers are identified in manifest version 3.0.",
+        "ruleIds": [
+          "RULE-EXACT-INVENTORY"
+        ],
+        "evidenceIds": [
+          "COLLECTION-HH-VOICE-204"
+        ],
+        "responsibleRole": "Production data steward",
+        "basis": [
+          {
+            "kind": "inventory_verification",
+            "evidenceIds": [
+              "COLLECTION-HH-VOICE-204"
+            ],
+            "verifiedBy": "ROLE-DATA-STEWARD",
+            "scopeReferences": [
+              "USE-HH-MM-001"
+            ],
+            "explanation": "The exact recordings and both represented performers are identified in manifest version 3.0."
+          }
+        ]
+      },
+      {
+        "gate": "source_authority",
+        "result": "approval_required",
+        "explanation": "No verified client permission covers training a retained model for a different production.",
+        "ruleIds": [
+          "RULE-HH-CROSS-PRODUCTION-APPROVAL"
+        ],
+        "evidenceIds": [
+          "AGREEMENT-HH-PRODUCTION"
+        ],
+        "responsibleRole": "Business and Legal Affairs",
+        "basis": []
+      },
+      {
+        "gate": "contributor_rights",
+        "result": "approval_required",
+        "explanation": "Ava requires purpose-specific agreement and Mateo's restriction requires an authorised technical and legal interpretation. Collective terms apply separately.",
+        "ruleIds": [
+          "RULE-AVA-AI-CONSENT",
+          "RULE-MATEO-SYNTHETIC-PERFORMANCE"
+        ],
+        "evidenceIds": [
+          "AGREEMENT-AVA-12",
+          "AGREEMENT-MATEO-08",
+          "COLLECTIVE-AVPC-24",
+          "COLLECTIVE-USV-23"
+        ],
+        "responsibleRole": "Business and Legal Affairs",
+        "basis": []
+      },
+      {
+        "gate": "privacy_and_people_impact",
+        "result": "approval_required",
+        "explanation": "The secondary use of identifiable voice recordings requires a verified purpose-specific privacy basis and contributor process.",
+        "ruleIds": [
+          "RULE-PERSONAL-DATA-SECONDARY-USE"
+        ],
+        "evidenceIds": [
+          "COLLECTION-HH-VOICE-204"
+        ],
+        "responsibleRole": "Privacy owner",
+        "basis": []
+      },
+      {
+        "gate": "operation",
+        "result": "missing_information",
+        "explanation": "The learned capability, model retention duration and deletion plan require technical verification before approval can be assessed.",
+        "ruleIds": [
+          "RULE-PERSISTENT-MODEL-DESCRIPTION"
+        ],
+        "evidenceIds": [
+          "ENV-MOTIONMAP-AU-LAB"
+        ],
+        "responsibleRole": "ML lead",
+        "basis": []
+      },
+      {
+        "gate": "purpose_and_destination",
+        "result": "approval_required",
+        "explanation": "The destination is company-owned IP and differs from the client production that created the recordings.",
+        "ruleIds": [
+          "RULE-HH-CROSS-PRODUCTION-APPROVAL"
+        ],
+        "evidenceIds": [
+          "AGREEMENT-HH-PRODUCTION",
+          "PRODUCTION-MOSS-AND-MOON"
+        ],
+        "responsibleRole": "Business and Legal Affairs",
+        "basis": []
+      },
+      {
+        "gate": "environment",
+        "result": "satisfied",
+        "explanation": "The current Australian private tenant configuration is technically approved; source rights and final model retention remain separate unresolved gates.",
+        "ruleIds": [
+          "RULE-MOTIONMAP-AU-ENVIRONMENT"
+        ],
+        "evidenceIds": [
+          "ENV-MOTIONMAP-AU-LAB",
+          "APPROVAL-MOTIONMAP-SECURITY"
+        ],
+        "responsibleRole": "IT and security",
+        "basis": [
+          {
+            "kind": "technical_verification",
+            "evidenceIds": [
+              "ENV-MOTIONMAP-AU-LAB",
+              "APPROVAL-MOTIONMAP-SECURITY"
+            ],
+            "verifiedBy": "ROLE-IT-SECURITY",
+            "scopeReferences": [
+              "USE-HH-MM-001"
+            ],
+            "explanation": "The current Australian private tenant configuration is technically approved; source rights and final model retention remain separate unresolved gates."
+          }
+        ]
+      },
+      {
+        "gate": "obligations",
+        "result": "approval_required",
+        "explanation": "Compensation, consent, collective minimums, model expiry and withdrawal response remain unresolved.",
+        "ruleIds": [
+          "RULE-AVA-AI-CONSENT",
+          "RULE-PERSISTENT-MODEL-DESCRIPTION"
+        ],
+        "evidenceIds": [
+          "AGREEMENT-AVA-12",
+          "AGREEMENT-MATEO-08"
+        ],
+        "responsibleRole": "Decision owner",
+        "basis": []
+      }
+    ],
+    "blockers": [
+      {
+        "id": "BLOCKER-CLIENT-PERMISSION",
+        "description": "Obtain and verify client authority for the exact dataset, learned artefact, destination and retention.",
+        "ownerId": "ROLE-BUSINESS-LEGAL",
+        "timing": "before_processing",
+        "evidenceRequired": true
+      },
+      {
+        "id": "BLOCKER-PERFORMER-RIGHTS",
+        "description": "Resolve each performer's agreement, consent, compensation and collective requirements.",
+        "ownerId": "ROLE-BUSINESS-LEGAL",
+        "timing": "before_processing",
+        "evidenceRequired": true
+      },
+      {
+        "id": "BLOCKER-TECHNICAL-DESCRIPTION",
+        "description": "Approve a technical description of learned capability, memorisation risk, access, retention and deletion.",
+        "ownerId": "ROLE-ML-LEAD",
+        "timing": "before_processing",
+        "evidenceRequired": true
+      }
+    ],
+    "conditions": [],
+    "requiredApproverIds": [
+      "ROLE-BUSINESS-LEGAL",
+      "ORG-STREAMWAVE-KIDS",
+      "PERSON-AVA-LIN",
+      "PERSON-MATEO-RUIZ",
+      "ROLE-PRIVACY"
+    ],
+    "approvals": [],
+    "applicableRuleIds": [
+      "RULE-EXACT-INVENTORY",
+      "RULE-HH-CROSS-PRODUCTION-APPROVAL",
+      "RULE-AVA-AI-CONSENT",
+      "RULE-MATEO-SYNTHETIC-PERFORMANCE",
+      "RULE-PERSONAL-DATA-SECONDARY-USE",
+      "RULE-PERSISTENT-MODEL-DESCRIPTION",
+      "RULE-MOTIONMAP-AU-ENVIRONMENT"
+    ],
+    "evidenceSnapshot": [
+      {
+        "recordId": "ORG-NORTHSTAR-ANIMATION",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:a742c4aa42a0abbc55662c381ce7a4f9dd3dbdac0fcc541152a3239aae4abbb5"
+      },
+      {
+        "recordId": "ORG-STREAMWAVE-KIDS",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:fcc396d931aead54d1646073f6e88d62ac18df2843d37d4b3857536c107a3532"
+      },
+      {
+        "recordId": "AGREEMENT-HH-PRODUCTION",
+        "version": "2.1",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:e5d76e0a487aeb5e5ad789f3e47c07fa7bcc3c3158fc98f6095928516677854f"
+      },
+      {
+        "recordId": "AGREEMENT-AVA-12",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:4933e5bcef40748ce216523b49e323b05a64c8e2c41e7e8adab856adc3a522f3"
+      },
+      {
+        "recordId": "AGREEMENT-MATEO-08",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:e5cea1fcb7dea8d268826efa8d0efa6b4bc12316dc532ece8384959c983b7b48"
+      },
+      {
+        "recordId": "COLLECTIVE-AVPC-24",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:539fa95586c2eae3fbf7f1201bb57272dbe8883c581f1cde4faabf0f3275c7a7"
+      },
+      {
+        "recordId": "COLLECTIVE-USV-23",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:4c5d9facc3d6fb9eb51d7b065b2c646ba6264f4fa3b9c572c560c75bc5eb5647"
+      },
+      {
+        "recordId": "PERSON-AVA-LIN",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:913892a9ae3806a9d769bd9612de0e6f50c83b2cb33e20476c2f4018ebf80fff"
+      },
+      {
+        "recordId": "PERSON-MATEO-RUIZ",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:d5a381188e46260d483d202b7eec075682c6e58e3153724aed7ae38b8c5dd27f"
+      },
+      {
+        "recordId": "PRODUCTION-HARBOR-HEROES",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:d98055baa6d0c4140dae10a5eaaeb54cb49d526312a5681644e99d18c5f675a4"
+      },
+      {
+        "recordId": "PRODUCTION-MOSS-AND-MOON",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:20e3d81a9711f25489fe3fc2992d6b0af083f02bf3c8faf070d493af1fdbdbb1"
+      },
+      {
+        "recordId": "MATERIAL-HH-204-AVA",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:857e466160d9c9789059a8391b90bba147026a4e7442bd28f18c18d34c52752b"
+      },
+      {
+        "recordId": "MATERIAL-HH-204-MATEO",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:5b4d7d11559ad9af12ae0e6a65515864734a3f1e6fcbdf2c8b380658847a5ed5"
+      },
+      {
+        "recordId": "COLLECTION-HH-VOICE-204",
+        "version": "3.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:b0c6995832ea15394e235994f48050bbd8241034b0e98fd46182335fcb4cafc7"
+      },
+      {
+        "recordId": "APPROVAL-MOTIONMAP-SECURITY",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:927aca08dbcf85ece43c0e80b1d8218cd734af1cdbdf100935a1380fd8835ac0"
+      },
+      {
+        "recordId": "ENV-MOTIONMAP-AU-LAB",
+        "version": "2.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:4ac9f6fea9901d38391e3fa5dcb97771a48e8d522f78f640f811d0229136af12"
+      },
+      {
+        "recordId": "PROFILE-NORTHSTAR-PILOT",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:bc67724a7597cd4de0fc619fd242dd1a3a1ec4e26ee508ccd2e671accaa650ee"
+      },
+      {
+        "recordId": "RULE-HH-CROSS-PRODUCTION-APPROVAL",
+        "version": "2.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:6a3302d534dd19e0a266392602f6bda791fbbe2ed5eaff77fbd98516617175e5"
+      },
+      {
+        "recordId": "RULE-EXACT-INVENTORY",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:10fa05d9100821e21cfbdc51a2ac347901ef20ab23dfd298118456f548594fca"
+      },
+      {
+        "recordId": "RULE-AVA-AI-CONSENT",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:b5c5ed413b777e332c2a8cfcc88d9fc87f8a744715801b48c5962fb7d6619763"
+      },
+      {
+        "recordId": "RULE-MATEO-SYNTHETIC-PERFORMANCE",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:93bd109d4edd4920739539c3829e4bbdb8b7965b1f70934a923aca1c000ee7e4"
+      },
+      {
+        "recordId": "RULE-PERSONAL-DATA-SECONDARY-USE",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:78122018ea3e4558134f35ca8b52b2e2148adb17b234808a48cdd856d3f144b2"
+      },
+      {
+        "recordId": "RULE-PERSISTENT-MODEL-DESCRIPTION",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:fae1da12ed7621f6483a15b1621c9135a0ae5953aa310783cda7e436ad33f7cd"
+      },
+      {
+        "recordId": "RULE-MOTIONMAP-AU-ENVIRONMENT",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-14T00:00:00Z",
+        "integrityValue": "sha256:9955aa39b10fe5047aad3f08d7f022f3d964c41df6fecc64c8cbf9cb9a95d97f"
+      },
+      {
+        "recordId": "FINDING-INVENTORY",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-16T03:00:00Z",
+        "integrityValue": "sha256:2471e41dae8bbfc7e5003e26dd92d800eebdfacbaa9bc7944f950ff5c1207576"
+      },
+      {
+        "recordId": "FINDING-SOURCE-AUTHORITY",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-16T03:00:00Z",
+        "integrityValue": "sha256:dd41397511e57589d09cab3f5aab8b971617d5a825f29da374ca3f0a2daf79e4"
+      },
+      {
+        "recordId": "FINDING-CONTRIBUTOR-RIGHTS",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-16T03:00:00Z",
+        "integrityValue": "sha256:cc8f561851348a9610d51767eb265cf418ffeac4b675a7be9f27e3e3024c4a2b"
+      },
+      {
+        "recordId": "FINDING-PRIVACY-AND-PEOPLE-IMPACT",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-16T03:00:00Z",
+        "integrityValue": "sha256:39749072a8b23a91a93e80b2cc1ea71dbb851deef08b79a2085f600a24bc3317"
+      },
+      {
+        "recordId": "FINDING-OPERATION",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-16T03:00:00Z",
+        "integrityValue": "sha256:08158ebf84dc723bdaf9708643d2f44df9f49fa7df8fd857412e8cb1b83a61aa"
+      },
+      {
+        "recordId": "FINDING-PURPOSE-AND-DESTINATION",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-16T03:00:00Z",
+        "integrityValue": "sha256:b822acaba8d5f0b4cb207528c7b08f1f03e4ac3e91a3ba00cc832e95e3ddac0a"
+      },
+      {
+        "recordId": "FINDING-ENVIRONMENT",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-16T03:00:00Z",
+        "integrityValue": "sha256:51bc92ad8a10daf527a392173ee429e7bf74e48ca75d48b1a10f3ff34121ca7f"
+      },
+      {
+        "recordId": "FINDING-OBLIGATIONS",
+        "version": "1.0",
+        "status": "active",
+        "verifiedAt": "2026-09-16T03:00:00Z",
+        "integrityValue": "sha256:54bd763ca20eea4d9dd34a379cae987566e0eb20c87a7c07ac2e10d18713538a"
+      }
+    ],
+    "decisionOwnerId": "ROLE-BUSINESS-LEGAL",
+    "evaluationMethod": {
+      "type": "hybrid",
+      "version": "scope-manual-0.2.0",
+      "evaluatorId": "ROLE-AI-GOVERNANCE",
+      "profileId": "PROFILE-NORTHSTAR-PILOT",
+      "profileVersion": "1.0",
+      "findingRecordIds": [
+        "FINDING-INVENTORY",
+        "FINDING-SOURCE-AUTHORITY",
+        "FINDING-CONTRIBUTOR-RIGHTS",
+        "FINDING-PRIVACY-AND-PEOPLE-IMPACT",
+        "FINDING-OPERATION",
+        "FINDING-PURPOSE-AND-DESTINATION",
+        "FINDING-ENVIRONMENT",
+        "FINDING-OBLIGATIONS"
+      ]
+    },
+    "decidedAt": "2026-09-16T03:00:00Z",
+    "validity": {
+      "validFrom": "2026-09-16T03:00:00Z",
+      "reviewAt": "2026-10-16T03:00:00Z"
+    },
+    "reassessmentTriggers": [
+      "Client authority is added or amended",
+      "A performer agreement, consent or collective term changes",
+      "The material collection changes",
+      "The learned capability or destination changes",
+      "The environment, region, access or retention changes"
+    ],
+    "relatedDerivativeIds": [],
+    "evaluatedAt": "2026-09-16T03:00:00Z"
+  },
+  "records": [
+    {
+      "id": "ORG-NORTHSTAR-ANIMATION",
+      "recordType": "organisation",
+      "version": "1.0",
+      "status": "active",
+      "name": "Org Northstar Animation",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/ORG-NORTHSTAR-ANIMATION",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [],
+      "facts": {
+        "role": "studio",
+        "jurisdictions": [
+          "AU-NSW"
+        ]
+      }
+    },
+    {
+      "id": "ORG-STREAMWAVE-KIDS",
+      "recordType": "organisation",
+      "version": "1.0",
+      "status": "active",
+      "name": "Org Streamwave Kids",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/ORG-STREAMWAVE-KIDS",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [],
+      "facts": {
+        "role": "client",
+        "controlsProduction": "PRODUCTION-HARBOR-HEROES"
+      }
+    },
+    {
+      "id": "AGREEMENT-HH-PRODUCTION",
+      "recordType": "agreement",
+      "version": "2.1",
+      "status": "active",
+      "name": "Agreement Hh Production",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/AGREEMENT-HH-PRODUCTION",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "ORG-STREAMWAVE-KIDS",
+          "version": "1.0"
+        },
+        {
+          "recordId": "ORG-NORTHSTAR-ANIMATION",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "clause": "PSA-017 section 11.4",
+        "parties": [
+          "ORG-STREAMWAVE-KIDS",
+          "ORG-NORTHSTAR-ANIMATION"
+        ],
+        "interpretation": "Archived client material requires written client approval for cross-production AI reuse and reusable studio capabilities. No approval for this request is recorded.",
+        "interpretationOwner": "ROLE-BUSINESS-LEGAL"
+      }
+    },
+    {
+      "id": "AGREEMENT-AVA-12",
+      "recordType": "agreement",
+      "version": "1.0",
+      "status": "active",
+      "name": "Agreement Ava 12",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/AGREEMENT-AVA-12",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [],
+      "facts": {
+        "interpretation": "A purpose-specific training agreement and applicable compensation are required. No agreement for the proposed training is recorded.",
+        "coveredPersonId": "PERSON-AVA-LIN"
+      }
+    },
+    {
+      "id": "AGREEMENT-MATEO-08",
+      "recordType": "agreement",
+      "version": "1.0",
+      "status": "active",
+      "name": "Agreement Mateo 08",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/AGREEMENT-MATEO-08",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [],
+      "facts": {
+        "interpretation": "Synthetic voice substitution is prohibited. Mouth-shape prediction is unaddressed and requires an authorised interpretation informed by technical evidence.",
+        "coveredPersonId": "PERSON-MATEO-RUIZ"
+      }
+    },
+    {
+      "id": "COLLECTIVE-AVPC-24",
+      "recordType": "agreement",
+      "version": "1.0",
+      "status": "active",
+      "name": "Collective Avpc 24",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/COLLECTIVE-AVPC-24",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [],
+      "facts": {
+        "type": "fictional_collective_instrument",
+        "interpretation": "Individual AI permissions do not waive collective compensation and consultation minimums. Application to this proposal requires labour-relations review."
+      }
+    },
+    {
+      "id": "COLLECTIVE-USV-23",
+      "recordType": "agreement",
+      "version": "1.0",
+      "status": "active",
+      "name": "Collective Usv 23",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/COLLECTIVE-USV-23",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [],
+      "facts": {
+        "type": "fictional_collective_instrument",
+        "interpretation": "Synthetic performance and retained learned capability require separate collective coverage review."
+      }
+    },
+    {
+      "id": "PERSON-AVA-LIN",
+      "recordType": "person",
+      "version": "1.0",
+      "status": "active",
+      "name": "Person Ava Lin",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/PERSON-AVA-LIN",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "AGREEMENT-AVA-12",
+          "version": "1.0"
+        },
+        {
+          "recordId": "COLLECTIVE-AVPC-24",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "role": "performer",
+        "jurisdictions": [
+          "AU-NSW"
+        ],
+        "agreementIds": [
+          "AGREEMENT-AVA-12"
+        ],
+        "collectiveInstrumentIds": [
+          "COLLECTIVE-AVPC-24"
+        ]
+      }
+    },
+    {
+      "id": "PERSON-MATEO-RUIZ",
+      "recordType": "person",
+      "version": "1.0",
+      "status": "active",
+      "name": "Person Mateo Ruiz",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/PERSON-MATEO-RUIZ",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "AGREEMENT-MATEO-08",
+          "version": "1.0"
+        },
+        {
+          "recordId": "COLLECTIVE-USV-23",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "role": "performer",
+        "jurisdictions": [
+          "US-CA"
+        ],
+        "agreementIds": [
+          "AGREEMENT-MATEO-08"
+        ],
+        "collectiveInstrumentIds": [
+          "COLLECTIVE-USV-23"
+        ]
+      }
+    },
+    {
+      "id": "PRODUCTION-HARBOR-HEROES",
+      "recordType": "production",
+      "version": "1.0",
+      "status": "active",
+      "name": "Production Harbor Heroes",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/PRODUCTION-HARBOR-HEROES",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "AGREEMENT-HH-PRODUCTION",
+          "version": "2.1"
+        }
+      ],
+      "facts": {
+        "productionType": "client_service",
+        "controller": "ORG-STREAMWAVE-KIDS",
+        "agreementIds": [
+          "AGREEMENT-HH-PRODUCTION"
+        ]
+      }
+    },
+    {
+      "id": "PRODUCTION-MOSS-AND-MOON",
+      "recordType": "production",
+      "version": "1.0",
+      "status": "active",
+      "name": "Production Moss And Moon",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/PRODUCTION-MOSS-AND-MOON",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "ORG-NORTHSTAR-ANIMATION",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "productionType": "company_owned_ip",
+        "owner": "ORG-NORTHSTAR-ANIMATION"
+      }
+    },
+    {
+      "id": "MATERIAL-HH-204-AVA",
+      "recordType": "material",
+      "version": "1.0",
+      "status": "active",
+      "name": "Material Hh 204 Ava",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/MATERIAL-HH-204-AVA",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "PERSON-AVA-LIN",
+          "version": "1.0"
+        },
+        {
+          "recordId": "PRODUCTION-HARBOR-HEROES",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "category": "voice_or_audio",
+        "productionId": "PRODUCTION-HARBOR-HEROES",
+        "representedPersonIds": [
+          "PERSON-AVA-LIN"
+        ],
+        "containsPersonalData": true,
+        "containsSensitiveData": null,
+        "takeManifest": [
+          {
+            "takeId": "HH-204-AVA-01",
+            "immutableReference": "fictional://takes/HH-204-AVA-01/v1"
+          },
+          {
+            "takeId": "HH-204-AVA-02",
+            "immutableReference": "fictional://takes/HH-204-AVA-02/v1"
+          },
+          {
+            "takeId": "HH-204-AVA-03",
+            "immutableReference": "fictional://takes/HH-204-AVA-03/v1"
+          },
+          {
+            "takeId": "HH-204-AVA-04",
+            "immutableReference": "fictional://takes/HH-204-AVA-04/v1"
+          },
+          {
+            "takeId": "HH-204-AVA-05",
+            "immutableReference": "fictional://takes/HH-204-AVA-05/v1"
+          },
+          {
+            "takeId": "HH-204-AVA-06",
+            "immutableReference": "fictional://takes/HH-204-AVA-06/v1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "MATERIAL-HH-204-MATEO",
+      "recordType": "material",
+      "version": "1.0",
+      "status": "active",
+      "name": "Material Hh 204 Mateo",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/MATERIAL-HH-204-MATEO",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "PERSON-MATEO-RUIZ",
+          "version": "1.0"
+        },
+        {
+          "recordId": "PRODUCTION-HARBOR-HEROES",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "category": "voice_or_audio",
+        "productionId": "PRODUCTION-HARBOR-HEROES",
+        "representedPersonIds": [
+          "PERSON-MATEO-RUIZ"
+        ],
+        "containsPersonalData": true,
+        "containsSensitiveData": null,
+        "takeManifest": [
+          {
+            "takeId": "HH-204-MATEO-01",
+            "immutableReference": "fictional://takes/HH-204-MATEO-01/v1"
+          },
+          {
+            "takeId": "HH-204-MATEO-02",
+            "immutableReference": "fictional://takes/HH-204-MATEO-02/v1"
+          },
+          {
+            "takeId": "HH-204-MATEO-03",
+            "immutableReference": "fictional://takes/HH-204-MATEO-03/v1"
+          },
+          {
+            "takeId": "HH-204-MATEO-04",
+            "immutableReference": "fictional://takes/HH-204-MATEO-04/v1"
+          },
+          {
+            "takeId": "HH-204-MATEO-05",
+            "immutableReference": "fictional://takes/HH-204-MATEO-05/v1"
+          },
+          {
+            "takeId": "HH-204-MATEO-06",
+            "immutableReference": "fictional://takes/HH-204-MATEO-06/v1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "COLLECTION-HH-VOICE-204",
+      "recordType": "collection",
+      "version": "3.0",
+      "status": "active",
+      "name": "Collection Hh Voice 204",
+      "ownerId": "ROLE-DATA-STEWARD",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/COLLECTION-HH-VOICE-204",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "MATERIAL-HH-204-AVA",
+          "version": "1.0"
+        },
+        {
+          "recordId": "MATERIAL-HH-204-MATEO",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "inventoryStatus": "verified",
+        "manifest": [
+          {
+            "materialId": "MATERIAL-HH-204-AVA",
+            "version": "1.0"
+          },
+          {
+            "materialId": "MATERIAL-HH-204-MATEO",
+            "version": "1.0"
+          }
+        ],
+        "takeCount": 12,
+        "representedPersonIds": [
+          "PERSON-AVA-LIN",
+          "PERSON-MATEO-RUIZ"
+        ],
+        "lineageComplete": true
+      }
+    },
+    {
+      "id": "APPROVAL-MOTIONMAP-SECURITY",
+      "recordType": "approval",
+      "version": "1.0",
+      "status": "active",
+      "name": "Approval Motionmap Security",
+      "ownerId": "ROLE-IT-SECURITY",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/APPROVAL-MOTIONMAP-SECURITY",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [],
+      "facts": {
+        "authority": "ROLE-IT-SECURITY",
+        "approvedConfiguration": {
+          "status": "verified",
+          "toolEnvironmentId": "ENV-MOTIONMAP-AU-LAB",
+          "product": "MotionMap Lab",
+          "provider": "Fictional Motion Systems",
+          "model": "MouthShape Research",
+          "modelVersion": "2.0",
+          "tenantOrAccountId": "northstar-au-research",
+          "deploymentType": "private_tenant",
+          "providerTraining": "disabled_by_contract",
+          "providerHumanAccess": "support_only",
+          "processingRegions": [
+            "AU"
+          ],
+          "storageRegions": [
+            "AU"
+          ],
+          "supportAccessRegions": [
+            "AU"
+          ],
+          "accessGroupIds": [
+            "GROUP-MM-RESEARCH-AU"
+          ],
+          "subprocessorIds": [],
+          "connectedServiceIds": [],
+          "retention": {
+            "source": 30,
+            "output": 30,
+            "logs": 90,
+            "backups": 30
+          },
+          "deletionSupported": true,
+          "securityApprovalId": "APPROVAL-MOTIONMAP-SECURITY"
+        },
+        "scope": "Technical configuration approval includes 30-day service-output retention. Retention of the exported research model in the studio registry remains unresolved and is assessed separately."
+      }
+    },
+    {
+      "id": "ENV-MOTIONMAP-AU-LAB",
+      "recordType": "environment",
+      "version": "2.0",
+      "status": "active",
+      "name": "Env Motionmap Au Lab",
+      "ownerId": "ROLE-IT-SECURITY",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/ENV-MOTIONMAP-AU-LAB",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "APPROVAL-MOTIONMAP-SECURITY",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "status": "verified",
+        "toolEnvironmentId": "ENV-MOTIONMAP-AU-LAB",
+        "product": "MotionMap Lab",
+        "provider": "Fictional Motion Systems",
+        "model": "MouthShape Research",
+        "modelVersion": "2.0",
+        "tenantOrAccountId": "northstar-au-research",
+        "deploymentType": "private_tenant",
+        "providerTraining": "disabled_by_contract",
+        "providerHumanAccess": "support_only",
+        "processingRegions": [
+          "AU"
+        ],
+        "storageRegions": [
+          "AU"
+        ],
+        "supportAccessRegions": [
+          "AU"
+        ],
+        "accessGroupIds": [
+          "GROUP-MM-RESEARCH-AU"
+        ],
+        "subprocessorIds": [],
+        "connectedServiceIds": [],
+        "retention": {
+          "source": 30,
+          "output": 30,
+          "logs": 90,
+          "backups": 30
+        },
+        "deletionSupported": true,
+        "securityApprovalId": "APPROVAL-MOTIONMAP-SECURITY"
+      }
+    },
+    {
+      "id": "PROFILE-NORTHSTAR-PILOT",
+      "recordType": "policy_profile",
+      "version": "1.0",
+      "status": "active",
+      "name": "Profile Northstar Pilot",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/PROFILE-NORTHSTAR-PILOT",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-14T00:00:00Z",
+      "classification": "internal",
+      "dependsOn": [],
+      "facts": {
+        "specVersion": "0.2.0",
+        "methodVersion": "scope-manual-0.2.0",
+        "jurisdictions": [
+          "AU-NSW",
+          "US-CA"
+        ],
+        "gates": [
+          "inventory",
+          "source_authority",
+          "contributor_rights",
+          "privacy_and_people_impact",
+          "operation",
+          "purpose_and_destination",
+          "environment",
+          "obligations"
+        ],
+        "authorityCoverage": [
+          "client rights",
+          "each performer individual and collective rights",
+          "privacy basis",
+          "technical environment",
+          "operational obligations"
+        ],
+        "policy": "Current verified evidence is required for every applicable gate. Manual gate findings are approved by their domain owner and preserved. Unknown technical facts create an information hold.",
+        "delegations": {
+          "ROLE-DATA-STEWARD": "inventory",
+          "ROLE-BUSINESS-LEGAL": "source, contributor and purpose interpretation",
+          "ROLE-PRIVACY": "privacy basis",
+          "ROLE-ML-LEAD": "technical description",
+          "ROLE-IT-SECURITY": "environment"
+        },
+        "testCases": [
+          "SPEC-POSITIVE-BASIS",
+          "SPEC-MISSING-EVIDENCE"
+        ]
+      }
+    },
+    {
+      "id": "RULE-HH-CROSS-PRODUCTION-APPROVAL",
+      "version": "2.0",
+      "name": "Harbor Heroes cross-production AI use requires client approval",
+      "status": "active",
+      "effect": "require_approval",
+      "authority": {
+        "recordIds": [
+          "AGREEMENT-HH-PRODUCTION"
+        ],
+        "authorityType": "production_agreement",
+        "sourceReference": "Controlled legal repository: PSA-017 section 11.4"
+      },
+      "selectors": {
+        "sourceProductionIds": {
+          "operator": "any_of",
+          "values": [
+            "PRODUCTION-HARBOR-HEROES"
+          ]
+        },
+        "productionRelationships": {
+          "operator": "any_of",
+          "values": [
+            "different_production"
+          ]
+        }
+      },
+      "requirements": [
+        {
+          "type": "approval",
+          "description": "Obtain written client approval for the exact source collection, AI operation, retained artefact, destination and duration.",
+          "ownerRole": "Business and Legal Affairs",
+          "due": "before_processing",
+          "evidenceRequired": true
+        }
+      ],
+      "approvalAuthorityIds": [
+        "ORG-STREAMWAVE-KIDS"
+      ],
+      "explanation": "The verified agreement does not provide a standing basis for using Harbor Heroes material to create AI capabilities for another production.",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "reviewAt": "2027-01-01T00:00:00Z",
+      "supersedesRuleIds": [],
+      "exceptionToRuleIds": [],
+      "changeTriggers": [
+        "Client amendment",
+        "New destination",
+        "New operation",
+        "Agreement expiry"
+      ],
+      "testCaseIds": [
+        "TEST-HH-CROSS-SHOW-TRAINING",
+        "TEST-HH-SAME-SHOW-SUMMARY"
+      ],
+      "interpretationConfidence": "confirmed",
+      "recordType": "policy_rule",
+      "sourceSystem": "fictional-legal-register",
+      "sourceReference": "Controlled legal repository: PSA-017 section 11.4",
+      "classification": "internal",
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T00:00:00Z",
+      "gates": [
+        "source_authority",
+        "purpose_and_destination"
+      ]
+    },
+    {
+      "id": "RULE-EXACT-INVENTORY",
+      "version": "1.0",
+      "name": "A verified manifest and represented-person set establish the inventory gate.",
+      "status": "active",
+      "effect": "permit",
+      "authority": {
+        "recordIds": [
+          "PROFILE-NORTHSTAR-PILOT"
+        ],
+        "authorityType": "organisation_policy",
+        "sourceReference": "fictional://verified/RULE-EXACT-INVENTORY"
+      },
+      "selectors": {
+        "materialIds": {
+          "operator": "any_of",
+          "values": [
+            "MATERIAL-HH-204-AVA",
+            "MATERIAL-HH-204-MATEO"
+          ]
+        }
+      },
+      "explanation": "A verified manifest and represented-person set establish the inventory gate.",
+      "ownerId": "ROLE-DATA-STEWARD",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "reviewAt": "2027-01-01T00:00:00Z",
+      "supersedesRuleIds": [],
+      "exceptionToRuleIds": [],
+      "changeTriggers": [
+        "Client amendment",
+        "New destination",
+        "New operation",
+        "Agreement expiry"
+      ],
+      "testCaseIds": [
+        "RULE-EXACT-INVENTORY-MATCH",
+        "RULE-EXACT-INVENTORY-BOUNDARY"
+      ],
+      "interpretationConfidence": "confirmed",
+      "recordType": "policy_rule",
+      "sourceSystem": "fictional-legal-register",
+      "sourceReference": "fictional://verified/RULE-EXACT-INVENTORY",
+      "classification": "internal",
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T00:00:00Z",
+      "gates": [
+        "inventory"
+      ]
+    },
+    {
+      "id": "RULE-AVA-AI-CONSENT",
+      "version": "1.0",
+      "name": "Ava requires a purpose-specific agreement and collective compensation review.",
+      "status": "active",
+      "effect": "require_approval",
+      "authority": {
+        "recordIds": [
+          "AGREEMENT-AVA-12",
+          "COLLECTIVE-AVPC-24"
+        ],
+        "authorityType": "consent_or_rider",
+        "sourceReference": "fictional://verified/RULE-AVA-AI-CONSENT"
+      },
+      "selectors": {
+        "personIds": {
+          "operator": "any_of",
+          "values": [
+            "PERSON-AVA-LIN"
+          ]
+        },
+        "operationTypes": {
+          "operator": "any_of",
+          "values": [
+            "fine_tune",
+            "lora_or_adapter",
+            "train_base_model"
+          ]
+        }
+      },
+      "explanation": "Ava requires a purpose-specific agreement and collective compensation review.",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "reviewAt": "2027-01-01T00:00:00Z",
+      "supersedesRuleIds": [],
+      "exceptionToRuleIds": [],
+      "changeTriggers": [
+        "Client amendment",
+        "New destination",
+        "New operation",
+        "Agreement expiry"
+      ],
+      "testCaseIds": [
+        "RULE-AVA-AI-CONSENT-MATCH",
+        "RULE-AVA-AI-CONSENT-BOUNDARY"
+      ],
+      "interpretationConfidence": "confirmed",
+      "recordType": "policy_rule",
+      "sourceSystem": "fictional-legal-register",
+      "sourceReference": "fictional://verified/RULE-AVA-AI-CONSENT",
+      "classification": "internal",
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T00:00:00Z",
+      "gates": [
+        "contributor_rights",
+        "obligations"
+      ],
+      "requirements": [
+        {
+          "type": "approval",
+          "description": "Ava requires a purpose-specific agreement and collective compensation review.",
+          "ownerRole": "ROLE-BUSINESS-LEGAL",
+          "due": "before_processing",
+          "evidenceRequired": true
+        }
+      ],
+      "approvalAuthorityIds": [
+        "ROLE-BUSINESS-LEGAL",
+        "PERSON-AVA-LIN"
+      ]
+    },
+    {
+      "id": "RULE-MATEO-SYNTHETIC-PERFORMANCE",
+      "version": "1.0",
+      "name": "An authorised interpretation must determine whether the proposed predictor falls within the rider.",
+      "status": "active",
+      "effect": "require_approval",
+      "authority": {
+        "recordIds": [
+          "AGREEMENT-MATEO-08",
+          "COLLECTIVE-USV-23"
+        ],
+        "authorityType": "individual_agreement",
+        "sourceReference": "fictional://verified/RULE-MATEO-SYNTHETIC-PERFORMANCE"
+      },
+      "selectors": {
+        "personIds": {
+          "operator": "any_of",
+          "values": [
+            "PERSON-MATEO-RUIZ"
+          ]
+        },
+        "operationTypes": {
+          "operator": "any_of",
+          "values": [
+            "fine_tune",
+            "lora_or_adapter",
+            "train_base_model"
+          ]
+        }
+      },
+      "explanation": "An authorised interpretation must determine whether the proposed predictor falls within the rider.",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "reviewAt": "2027-01-01T00:00:00Z",
+      "supersedesRuleIds": [],
+      "exceptionToRuleIds": [],
+      "changeTriggers": [
+        "Client amendment",
+        "New destination",
+        "New operation",
+        "Agreement expiry"
+      ],
+      "testCaseIds": [
+        "RULE-MATEO-SYNTHETIC-PERFORMANCE-MATCH",
+        "RULE-MATEO-SYNTHETIC-PERFORMANCE-BOUNDARY"
+      ],
+      "interpretationConfidence": "confirmed",
+      "recordType": "policy_rule",
+      "sourceSystem": "fictional-legal-register",
+      "sourceReference": "fictional://verified/RULE-MATEO-SYNTHETIC-PERFORMANCE",
+      "classification": "internal",
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T00:00:00Z",
+      "gates": [
+        "contributor_rights",
+        "obligations"
+      ],
+      "requirements": [
+        {
+          "type": "approval",
+          "description": "An authorised interpretation must determine whether the proposed predictor falls within the rider.",
+          "ownerRole": "ROLE-BUSINESS-LEGAL",
+          "due": "before_processing",
+          "evidenceRequired": true
+        }
+      ],
+      "approvalAuthorityIds": [
+        "ROLE-BUSINESS-LEGAL",
+        "PERSON-MATEO-RUIZ"
+      ]
+    },
+    {
+      "id": "RULE-PERSONAL-DATA-SECONDARY-USE",
+      "version": "1.0",
+      "name": "A privacy owner must establish the basis for this secondary use of identifiable recordings.",
+      "status": "active",
+      "effect": "require_approval",
+      "authority": {
+        "recordIds": [
+          "PROFILE-NORTHSTAR-PILOT"
+        ],
+        "authorityType": "organisation_policy",
+        "sourceReference": "fictional://verified/RULE-PERSONAL-DATA-SECONDARY-USE"
+      },
+      "selectors": {
+        "productionRelationships": {
+          "operator": "any_of",
+          "values": [
+            "different_production"
+          ]
+        },
+        "materialCategories": {
+          "operator": "any_of",
+          "values": [
+            "voice_or_audio"
+          ]
+        }
+      },
+      "explanation": "A privacy owner must establish the basis for this secondary use of identifiable recordings.",
+      "ownerId": "ROLE-PRIVACY",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "reviewAt": "2027-01-01T00:00:00Z",
+      "supersedesRuleIds": [],
+      "exceptionToRuleIds": [],
+      "changeTriggers": [
+        "Client amendment",
+        "New destination",
+        "New operation",
+        "Agreement expiry"
+      ],
+      "testCaseIds": [
+        "RULE-PERSONAL-DATA-SECONDARY-USE-MATCH",
+        "RULE-PERSONAL-DATA-SECONDARY-USE-BOUNDARY"
+      ],
+      "interpretationConfidence": "confirmed",
+      "recordType": "policy_rule",
+      "sourceSystem": "fictional-legal-register",
+      "sourceReference": "fictional://verified/RULE-PERSONAL-DATA-SECONDARY-USE",
+      "classification": "internal",
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T00:00:00Z",
+      "gates": [
+        "privacy_and_people_impact"
+      ],
+      "requirements": [
+        {
+          "type": "approval",
+          "description": "A privacy owner must establish the basis for this secondary use of identifiable recordings.",
+          "ownerRole": "ROLE-PRIVACY",
+          "due": "before_processing",
+          "evidenceRequired": true
+        }
+      ],
+      "approvalAuthorityIds": [
+        "ROLE-PRIVACY"
+      ]
+    },
+    {
+      "id": "RULE-PERSISTENT-MODEL-DESCRIPTION",
+      "version": "1.0",
+      "name": "Confirm retained capability, model retention, memorisation testing and deletion response.",
+      "status": "active",
+      "effect": "require_information",
+      "authority": {
+        "recordIds": [
+          "PROFILE-NORTHSTAR-PILOT"
+        ],
+        "authorityType": "organisation_policy",
+        "sourceReference": "fictional://verified/RULE-PERSISTENT-MODEL-DESCRIPTION"
+      },
+      "selectors": {
+        "persistenceTypes": {
+          "operator": "any_of",
+          "values": [
+            "model_weights",
+            "adapter_or_lora"
+          ]
+        }
+      },
+      "explanation": "Confirm retained capability, model retention, memorisation testing and deletion response.",
+      "ownerId": "ROLE-ML-LEAD",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "reviewAt": "2027-01-01T00:00:00Z",
+      "supersedesRuleIds": [],
+      "exceptionToRuleIds": [],
+      "changeTriggers": [
+        "Client amendment",
+        "New destination",
+        "New operation",
+        "Agreement expiry"
+      ],
+      "testCaseIds": [
+        "RULE-PERSISTENT-MODEL-DESCRIPTION-MATCH",
+        "RULE-PERSISTENT-MODEL-DESCRIPTION-BOUNDARY"
+      ],
+      "interpretationConfidence": "confirmed",
+      "recordType": "policy_rule",
+      "sourceSystem": "fictional-legal-register",
+      "sourceReference": "fictional://verified/RULE-PERSISTENT-MODEL-DESCRIPTION",
+      "classification": "internal",
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T00:00:00Z",
+      "gates": [
+        "operation",
+        "obligations"
+      ],
+      "requirements": [
+        {
+          "type": "information",
+          "description": "Confirm retained capability, model retention, memorisation testing and deletion response.",
+          "ownerRole": "ROLE-ML-LEAD",
+          "due": "before_processing",
+          "evidenceRequired": true
+        }
+      ]
+    },
+    {
+      "id": "RULE-MOTIONMAP-AU-ENVIRONMENT",
+      "version": "1.0",
+      "name": "The verified private Australian configuration meets the technical environment requirements.",
+      "status": "active",
+      "effect": "permit",
+      "authority": {
+        "recordIds": [
+          "APPROVAL-MOTIONMAP-SECURITY"
+        ],
+        "authorityType": "environment_approval",
+        "sourceReference": "fictional://verified/RULE-MOTIONMAP-AU-ENVIRONMENT"
+      },
+      "selectors": {
+        "toolEnvironmentIds": {
+          "operator": "all_in",
+          "values": [
+            "ENV-MOTIONMAP-AU-LAB"
+          ]
+        },
+        "processingRegions": {
+          "operator": "all_in",
+          "values": [
+            "AU"
+          ]
+        },
+        "providerTrainingValues": {
+          "operator": "all_in",
+          "values": [
+            "disabled_by_contract"
+          ]
+        }
+      },
+      "explanation": "The verified private Australian configuration meets the technical environment requirements.",
+      "ownerId": "ROLE-IT-SECURITY",
+      "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "reviewAt": "2027-01-01T00:00:00Z",
+      "supersedesRuleIds": [],
+      "exceptionToRuleIds": [],
+      "changeTriggers": [
+        "Client amendment",
+        "New destination",
+        "New operation",
+        "Agreement expiry"
+      ],
+      "testCaseIds": [
+        "RULE-MOTIONMAP-AU-ENVIRONMENT-MATCH",
+        "RULE-MOTIONMAP-AU-ENVIRONMENT-BOUNDARY"
+      ],
+      "interpretationConfidence": "confirmed",
+      "recordType": "policy_rule",
+      "sourceSystem": "fictional-legal-register",
+      "sourceReference": "fictional://verified/RULE-MOTIONMAP-AU-ENVIRONMENT",
+      "classification": "internal",
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T00:00:00Z",
+      "gates": [
+        "environment"
+      ]
+    },
+    {
+      "id": "FINDING-INVENTORY",
+      "recordType": "gate_finding",
+      "version": "1.0",
+      "status": "active",
+      "name": "Finding Inventory",
+      "ownerId": "ROLE-DATA-STEWARD",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/FINDING-INVENTORY",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "verifiedBy": "ROLE-DATA-STEWARD",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T03:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "COLLECTION-HH-VOICE-204",
+          "version": "3.0"
+        },
+        {
+          "recordId": "RULE-EXACT-INVENTORY",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "gateResult": {
+          "gate": "inventory",
+          "result": "satisfied",
+          "explanation": "The exact recordings and both represented performers are identified in manifest version 3.0.",
+          "ruleIds": [
+            "RULE-EXACT-INVENTORY"
+          ],
+          "evidenceIds": [
+            "COLLECTION-HH-VOICE-204"
+          ],
+          "responsibleRole": "Production data steward",
+          "basis": [
+            {
+              "kind": "inventory_verification",
+              "evidenceIds": [
+                "COLLECTION-HH-VOICE-204"
+              ],
+              "verifiedBy": "ROLE-DATA-STEWARD",
+              "scopeReferences": [
+                "USE-HH-MM-001"
+              ],
+              "explanation": "The exact recordings and both represented performers are identified in manifest version 3.0."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "FINDING-SOURCE-AUTHORITY",
+      "recordType": "gate_finding",
+      "version": "1.0",
+      "status": "active",
+      "name": "Finding Source Authority",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/FINDING-SOURCE-AUTHORITY",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "verifiedBy": "ROLE-BUSINESS-LEGAL",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T03:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "AGREEMENT-HH-PRODUCTION",
+          "version": "2.1"
+        },
+        {
+          "recordId": "RULE-HH-CROSS-PRODUCTION-APPROVAL",
+          "version": "2.0"
+        }
+      ],
+      "facts": {
+        "gateResult": {
+          "gate": "source_authority",
+          "result": "approval_required",
+          "explanation": "No verified client permission covers training a retained model for a different production.",
+          "ruleIds": [
+            "RULE-HH-CROSS-PRODUCTION-APPROVAL"
+          ],
+          "evidenceIds": [
+            "AGREEMENT-HH-PRODUCTION"
+          ],
+          "responsibleRole": "Business and Legal Affairs",
+          "basis": []
+        }
+      }
+    },
+    {
+      "id": "FINDING-CONTRIBUTOR-RIGHTS",
+      "recordType": "gate_finding",
+      "version": "1.0",
+      "status": "active",
+      "name": "Finding Contributor Rights",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/FINDING-CONTRIBUTOR-RIGHTS",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "verifiedBy": "ROLE-BUSINESS-LEGAL",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T03:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "AGREEMENT-AVA-12",
+          "version": "1.0"
+        },
+        {
+          "recordId": "AGREEMENT-MATEO-08",
+          "version": "1.0"
+        },
+        {
+          "recordId": "COLLECTIVE-AVPC-24",
+          "version": "1.0"
+        },
+        {
+          "recordId": "COLLECTIVE-USV-23",
+          "version": "1.0"
+        },
+        {
+          "recordId": "RULE-AVA-AI-CONSENT",
+          "version": "1.0"
+        },
+        {
+          "recordId": "RULE-MATEO-SYNTHETIC-PERFORMANCE",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "gateResult": {
+          "gate": "contributor_rights",
+          "result": "approval_required",
+          "explanation": "Ava requires purpose-specific agreement and Mateo's restriction requires an authorised technical and legal interpretation. Collective terms apply separately.",
+          "ruleIds": [
+            "RULE-AVA-AI-CONSENT",
+            "RULE-MATEO-SYNTHETIC-PERFORMANCE"
+          ],
+          "evidenceIds": [
+            "AGREEMENT-AVA-12",
+            "AGREEMENT-MATEO-08",
+            "COLLECTIVE-AVPC-24",
+            "COLLECTIVE-USV-23"
+          ],
+          "responsibleRole": "Business and Legal Affairs",
+          "basis": []
+        }
+      }
+    },
+    {
+      "id": "FINDING-PRIVACY-AND-PEOPLE-IMPACT",
+      "recordType": "gate_finding",
+      "version": "1.0",
+      "status": "active",
+      "name": "Finding Privacy And People Impact",
+      "ownerId": "ROLE-PRIVACY",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/FINDING-PRIVACY-AND-PEOPLE-IMPACT",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "verifiedBy": "ROLE-PRIVACY",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T03:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "COLLECTION-HH-VOICE-204",
+          "version": "3.0"
+        },
+        {
+          "recordId": "RULE-PERSONAL-DATA-SECONDARY-USE",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "gateResult": {
+          "gate": "privacy_and_people_impact",
+          "result": "approval_required",
+          "explanation": "The secondary use of identifiable voice recordings requires a verified purpose-specific privacy basis and contributor process.",
+          "ruleIds": [
+            "RULE-PERSONAL-DATA-SECONDARY-USE"
+          ],
+          "evidenceIds": [
+            "COLLECTION-HH-VOICE-204"
+          ],
+          "responsibleRole": "Privacy owner",
+          "basis": []
+        }
+      }
+    },
+    {
+      "id": "FINDING-OPERATION",
+      "recordType": "gate_finding",
+      "version": "1.0",
+      "status": "active",
+      "name": "Finding Operation",
+      "ownerId": "ROLE-ML-LEAD",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/FINDING-OPERATION",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "verifiedBy": "ROLE-ML-LEAD",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T03:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "ENV-MOTIONMAP-AU-LAB",
+          "version": "2.0"
+        },
+        {
+          "recordId": "RULE-PERSISTENT-MODEL-DESCRIPTION",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "gateResult": {
+          "gate": "operation",
+          "result": "missing_information",
+          "explanation": "The learned capability, model retention duration and deletion plan require technical verification before approval can be assessed.",
+          "ruleIds": [
+            "RULE-PERSISTENT-MODEL-DESCRIPTION"
+          ],
+          "evidenceIds": [
+            "ENV-MOTIONMAP-AU-LAB"
+          ],
+          "responsibleRole": "ML lead",
+          "basis": []
+        }
+      }
+    },
+    {
+      "id": "FINDING-PURPOSE-AND-DESTINATION",
+      "recordType": "gate_finding",
+      "version": "1.0",
+      "status": "active",
+      "name": "Finding Purpose And Destination",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/FINDING-PURPOSE-AND-DESTINATION",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "verifiedBy": "ROLE-BUSINESS-LEGAL",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T03:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "AGREEMENT-HH-PRODUCTION",
+          "version": "2.1"
+        },
+        {
+          "recordId": "PRODUCTION-MOSS-AND-MOON",
+          "version": "1.0"
+        },
+        {
+          "recordId": "RULE-HH-CROSS-PRODUCTION-APPROVAL",
+          "version": "2.0"
+        }
+      ],
+      "facts": {
+        "gateResult": {
+          "gate": "purpose_and_destination",
+          "result": "approval_required",
+          "explanation": "The destination is company-owned IP and differs from the client production that created the recordings.",
+          "ruleIds": [
+            "RULE-HH-CROSS-PRODUCTION-APPROVAL"
+          ],
+          "evidenceIds": [
+            "AGREEMENT-HH-PRODUCTION",
+            "PRODUCTION-MOSS-AND-MOON"
+          ],
+          "responsibleRole": "Business and Legal Affairs",
+          "basis": []
+        }
+      }
+    },
+    {
+      "id": "FINDING-ENVIRONMENT",
+      "recordType": "gate_finding",
+      "version": "1.0",
+      "status": "active",
+      "name": "Finding Environment",
+      "ownerId": "ROLE-IT-SECURITY",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/FINDING-ENVIRONMENT",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "verifiedBy": "ROLE-IT-SECURITY",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T03:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "ENV-MOTIONMAP-AU-LAB",
+          "version": "2.0"
+        },
+        {
+          "recordId": "APPROVAL-MOTIONMAP-SECURITY",
+          "version": "1.0"
+        },
+        {
+          "recordId": "RULE-MOTIONMAP-AU-ENVIRONMENT",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "gateResult": {
+          "gate": "environment",
+          "result": "satisfied",
+          "explanation": "The current Australian private tenant configuration is technically approved; source rights and final model retention remain separate unresolved gates.",
+          "ruleIds": [
+            "RULE-MOTIONMAP-AU-ENVIRONMENT"
+          ],
+          "evidenceIds": [
+            "ENV-MOTIONMAP-AU-LAB",
+            "APPROVAL-MOTIONMAP-SECURITY"
+          ],
+          "responsibleRole": "IT and security",
+          "basis": [
+            {
+              "kind": "technical_verification",
+              "evidenceIds": [
+                "ENV-MOTIONMAP-AU-LAB",
+                "APPROVAL-MOTIONMAP-SECURITY"
+              ],
+              "verifiedBy": "ROLE-IT-SECURITY",
+              "scopeReferences": [
+                "USE-HH-MM-001"
+              ],
+              "explanation": "The current Australian private tenant configuration is technically approved; source rights and final model retention remain separate unresolved gates."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "FINDING-OBLIGATIONS",
+      "recordType": "gate_finding",
+      "version": "1.0",
+      "status": "active",
+      "name": "Finding Obligations",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "sourceSystem": "fictional-northstar-register",
+      "sourceReference": "fictional://northstar/FINDING-OBLIGATIONS",
+      "effectiveFrom": "2025-01-01T00:00:00Z",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "verifiedBy": "ROLE-BUSINESS-LEGAL",
+      "changeTriggers": [
+        "Source amendment",
+        "Scheduled review"
+      ],
+      "createdAt": "2026-09-14T00:00:00Z",
+      "updatedAt": "2026-09-16T03:00:00Z",
+      "classification": "internal",
+      "dependsOn": [
+        {
+          "recordId": "AGREEMENT-AVA-12",
+          "version": "1.0"
+        },
+        {
+          "recordId": "AGREEMENT-MATEO-08",
+          "version": "1.0"
+        },
+        {
+          "recordId": "RULE-AVA-AI-CONSENT",
+          "version": "1.0"
+        },
+        {
+          "recordId": "RULE-PERSISTENT-MODEL-DESCRIPTION",
+          "version": "1.0"
+        }
+      ],
+      "facts": {
+        "gateResult": {
+          "gate": "obligations",
+          "result": "approval_required",
+          "explanation": "Compensation, consent, collective minimums, model expiry and withdrawal response remain unresolved.",
+          "ruleIds": [
+            "RULE-AVA-AI-CONSENT",
+            "RULE-PERSISTENT-MODEL-DESCRIPTION"
+          ],
+          "evidenceIds": [
+            "AGREEMENT-AVA-12",
+            "AGREEMENT-MATEO-08"
+          ],
+          "responsibleRole": "Decision owner",
+          "basis": []
+        }
+      }
+    }
+  ]
+}

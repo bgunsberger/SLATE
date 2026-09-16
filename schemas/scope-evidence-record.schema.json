@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:scope:schema:evidence-record:0.2.0",
+  "title": "SCOPE controlled evidence record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "recordType",
+    "version",
+    "status",
+    "name",
+    "ownerId",
+    "sourceSystem",
+    "sourceReference",
+    "effectiveFrom",
+    "verifiedAt",
+    "verifiedBy",
+    "changeTriggers",
+    "createdAt",
+    "updatedAt",
+    "classification",
+    "dependsOn",
+    "facts"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/id"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "ownerId": {
+      "$ref": "#/$defs/id"
+    },
+    "sourceSystem": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceReference": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effectiveFrom": {
+      "$ref": "#/$defs/dateTime"
+    },
+    "effectiveUntil": {
+      "$ref": "#/$defs/dateTime"
+    },
+    "verifiedAt": {
+      "$ref": "#/$defs/dateTime"
+    },
+    "verifiedBy": {
+      "$ref": "#/$defs/id"
+    },
+    "reviewAt": {
+      "$ref": "#/$defs/dateTime"
+    },
+    "changeTriggers": {
+      "$ref": "#/$defs/stringList"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ]
+    },
+    "recordType": {
+      "enum": [
+        "organisation",
+        "production",
+        "person",
+        "cohort",
+        "agreement",
+        "material",
+        "collection",
+        "environment",
+        "approval",
+        "policy_profile",
+        "gate_finding",
+        "obligation",
+        "lineage",
+        "other"
+      ]
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "active",
+        "superseded",
+        "expired",
+        "withdrawn",
+        "deleted"
+      ]
+    },
+    "dependsOn": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "recordId",
+          "version"
+        ],
+        "properties": {
+          "recordId": {
+            "$ref": "#/$defs/id"
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "facts": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9._:-]{2,127}$"
+    },
+    "dateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "idList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      }
+    },
+    "stringList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "setPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operator",
+        "values"
+      ],
+      "properties": {
+        "operator": {
+          "enum": [
+            "any_of",
+            "all_in",
+            "contains_all",
+            "equals_set"
+          ]
+        },
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

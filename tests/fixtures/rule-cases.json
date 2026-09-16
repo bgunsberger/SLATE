@@ -1,0 +1,706 @@
+[
+  {
+    "id": "TEST-HH-CROSS-SHOW-TRAINING",
+    "ruleId": "RULE-HH-CROSS-PRODUCTION-APPROVAL",
+    "ruleVersion": "2.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": true,
+    "description": "The bounded proposed facts match the recorded rule."
+  },
+  {
+    "id": "TEST-HH-SAME-SHOW-SUMMARY",
+    "ruleId": "RULE-HH-CROSS-PRODUCTION-APPROVAL",
+    "ruleVersion": "2.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "same_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": false,
+    "description": "Same-show use does not invoke the cross-production rule."
+  },
+  {
+    "id": "RULE-EXACT-INVENTORY-MATCH",
+    "ruleId": "RULE-EXACT-INVENTORY",
+    "ruleVersion": "1.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": true,
+    "description": "The bounded proposed facts match the recorded rule."
+  },
+  {
+    "id": "RULE-EXACT-INVENTORY-BOUNDARY",
+    "ruleId": "RULE-EXACT-INVENTORY",
+    "ruleVersion": "1.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-UNVERIFIED"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": false,
+    "description": "A different package cannot inherit the manifest verification."
+  },
+  {
+    "id": "RULE-AVA-AI-CONSENT-MATCH",
+    "ruleId": "RULE-AVA-AI-CONSENT",
+    "ruleVersion": "1.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": true,
+    "description": "The bounded proposed facts match the recorded rule."
+  },
+  {
+    "id": "RULE-AVA-AI-CONSENT-BOUNDARY",
+    "ruleId": "RULE-AVA-AI-CONSENT",
+    "ruleVersion": "1.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "summarise"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": false,
+    "description": "The purpose-specific training rule does not match summarisation."
+  },
+  {
+    "id": "RULE-MATEO-SYNTHETIC-PERFORMANCE-MATCH",
+    "ruleId": "RULE-MATEO-SYNTHETIC-PERFORMANCE",
+    "ruleVersion": "1.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-MATEO-RUIZ"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": true,
+    "description": "The bounded proposed facts match the recorded rule."
+  },
+  {
+    "id": "RULE-MATEO-SYNTHETIC-PERFORMANCE-BOUNDARY",
+    "ruleId": "RULE-MATEO-SYNTHETIC-PERFORMANCE",
+    "ruleVersion": "1.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": false,
+    "description": "Mateo-specific review does not apply to an Ava-only row."
+  },
+  {
+    "id": "RULE-PERSONAL-DATA-SECONDARY-USE-MATCH",
+    "ruleId": "RULE-PERSONAL-DATA-SECONDARY-USE",
+    "ruleVersion": "1.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": true,
+    "description": "The bounded proposed facts match the recorded rule."
+  },
+  {
+    "id": "RULE-PERSONAL-DATA-SECONDARY-USE-BOUNDARY",
+    "ruleId": "RULE-PERSONAL-DATA-SECONDARY-USE",
+    "ruleVersion": "1.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "same_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": false,
+    "description": "The cross-production secondary-use rule does not match same-production use."
+  },
+  {
+    "id": "RULE-PERSISTENT-MODEL-DESCRIPTION-MATCH",
+    "ruleId": "RULE-PERSISTENT-MODEL-DESCRIPTION",
+    "ruleVersion": "1.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": true,
+    "description": "The bounded proposed facts match the recorded rule."
+  },
+  {
+    "id": "RULE-PERSISTENT-MODEL-DESCRIPTION-BOUNDARY",
+    "ruleId": "RULE-PERSISTENT-MODEL-DESCRIPTION",
+    "ruleVersion": "1.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "ephemeral"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": false,
+    "description": "The retained-model rule does not apply to ephemeral-only processing."
+  },
+  {
+    "id": "RULE-MOTIONMAP-AU-ENVIRONMENT-MATCH",
+    "ruleId": "RULE-MOTIONMAP-AU-ENVIRONMENT",
+    "ruleVersion": "1.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": true,
+    "description": "The bounded proposed facts match the recorded rule."
+  },
+  {
+    "id": "RULE-MOTIONMAP-AU-ENVIRONMENT-BOUNDARY",
+    "ruleId": "RULE-MOTIONMAP-AU-ENVIRONMENT",
+    "ruleVersion": "1.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU",
+        "US"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": false,
+    "description": "Australian permission does not cover additional US processing."
+  },
+  {
+    "id": "TEST-HH-REUSABLE",
+    "ruleId": "RULE-HH-REUSABLE-CAPABILITY-APPROVAL",
+    "ruleVersion": "2.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "reusable_studio_capability"
+      ]
+    },
+    "expected": true,
+    "description": "The bounded proposed facts match the recorded rule."
+  },
+  {
+    "id": "TEST-HH-PRODUCTION-ONLY",
+    "ruleId": "RULE-HH-REUSABLE-CAPABILITY-APPROVAL",
+    "ruleVersion": "2.0",
+    "at": "2026-09-16T03:00:00Z",
+    "row": {
+      "sourceProductionIds": [
+        "PRODUCTION-HARBOR-HEROES"
+      ],
+      "materialIds": [
+        "MATERIAL-HH-204-AVA"
+      ],
+      "personIds": [
+        "PERSON-AVA-LIN"
+      ],
+      "productionRelationships": [
+        "different_production"
+      ],
+      "operationTypes": [
+        "fine_tune"
+      ],
+      "persistenceTypes": [
+        "model_weights",
+        "logs"
+      ],
+      "materialCategories": [
+        "voice_or_audio"
+      ],
+      "toolEnvironmentIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "processingRegions": [
+        "AU"
+      ],
+      "providerTrainingValues": [
+        "disabled_by_contract"
+      ],
+      "reuseIntents": [
+        "production_only"
+      ]
+    },
+    "expected": false,
+    "description": "A production-only capability does not invoke the reusable-capability rule."
+  }
+]

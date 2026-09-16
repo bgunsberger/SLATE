@@ -1,6 +1,6 @@
 # SCOPE Implementation Specification
 
-Version 0.1.0
+Version 0.2.0
 
 ## 1. Purpose and system boundary
 
@@ -44,11 +44,11 @@ The system MUST evaluate each represented person against their individual and co
 
 ### FR-05 — Resolve modular rules
 
-The system MUST select active rules by structured SCOPE selectors and evaluate them deterministically. It MUST keep the rule effect, authority, explanation and requirements traceable.
+The system MUST use the structured selector semantics and preserve rule effect, authority, explanation and requirements. Levels 1 and 2 may record human-verified matching and findings. A Level 3 evaluator MUST automate deterministic matching and authority coverage proofs.
 
 ### FR-06 — Require a positive basis
 
-The system MUST require an applicable permission or standing approval for each relevant gate. Silence and ambiguity MUST produce a hold.
+The system MUST require the gate-specific basis in the Decision Specification, including evidenced non-applicability where appropriate. Silence and ambiguity MUST produce a hold.
 
 ### FR-07 — Return a standard outcome
 
@@ -84,7 +84,7 @@ The system MUST provide a plain-language answer while respecting access controls
 
 ### FR-15 — Export and test
 
-The system MUST support machine-readable export of proposed uses, rules and decisions. Rule changes MUST pass documented regression tests before activation.
+Level 2 and above MUST support the published machine-readable exports. Every level MUST preserve reconstructable records and pass documented rule regression cases before activation. Level 3 MUST automate those cases.
 
 ## 4. Quality requirements
 
@@ -123,7 +123,7 @@ The system MUST support machine-readable export of proposed uses, rules and deci
 ### Interoperability
 
 - Records use documented controlled vocabularies and stable IDs.
-- Import and export use JSON matching the published schemas.
+- Level 2 and above import and export JSON matching the published schemas and semantic invariants.
 - Source references can point to contract, production, identity and asset systems without copying protected contents.
 - Extensions identify their namespace and do not change the meaning of core fields.
 
@@ -180,7 +180,7 @@ The pilot may calculate results manually. It still uses the same record structur
 
 ## 8. Acceptance criteria
 
-An initial implementation is ready for controlled internal use when it can demonstrate:
+An initial implementation is ready for controlled internal use when it can demonstrate the following. Automated evaluation is required only at Level 3; lower levels demonstrate equivalent documented human controls. Machine-readable export criteria apply at Level 2 and above:
 
 1. all example JSON documents validate against their schemas;
 2. every active rule has authority, verifier, effective status and tests;
@@ -223,3 +223,27 @@ Test controls independently, publish conformance and methodology, and release fi
 ## 10. Explicitly deferred interface questions
 
 Visual design, conversational query, dashboards, notifications and integrations remain implementation choices. The framework first needs validation against real production agreements, contributor patterns, tool configurations and decision workflows. Interface work should begin from tested user tasks and the stable outcome vocabulary in this specification.
+
+## 11. Implementation priorities for version 0.2
+
+1. Agree on gate-specific authority and non-applicability decisions with domain owners.
+2. Migrate purpose fields and selectors using [MIGRATION_0.2.md](MIGRATION_0.2.md).
+3. Complete a frozen assessment bundle and run structural and semantic checks.
+4. Operate prerequisite checks, suspension and obligation events manually in a bounded pilot.
+5. Measure reviewer agreement, decision quality and maintenance cost using [PILOT_EVALUATION.md](PILOT_EVALUATION.md).
+6. Automate only validated standing approvals, with bound source relationships, full authority coverage and change-trigger enforcement.
+
+A controlled-sheet pilot must use a restricted audience and external controlled evidence storage. Protected editing ranges allocate stewardship; confidentiality needs appropriate file/record access boundaries. Issued decision snapshots must be retained immutably outside mutable intake rows or through an equivalent controlled archive.
+
+## 12. Additional acceptance criteria
+
+- Research labels preserve cross-production and public-distribution facts.
+- A rule requiring a production/person relationship cannot match unrelated material rows.
+- Australia-only permission fails an Australia-plus-US processing environment.
+- Unknown selector facts and retention never establish positive coverage.
+- Every satisfied or non-applicable gate has the right kind of evidence and verifier.
+- Every referenced rule/evidence version resolves in the frozen bundle.
+- A conditional decision remains blocked until prerequisite evidence is verified.
+- Withdrawal, stale evidence and missed duties suspend affected processing.
+- A retained derivative obligation and an authorised release are both reconstructable.
+- Conformance statements identify the level, manual controls, automated capabilities and unimplemented extensions.

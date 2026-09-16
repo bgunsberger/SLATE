@@ -1,6 +1,6 @@
 {
   "id": "USE-HH-MM-001",
-  "version": "1.0",
+  "version": "2.0",
   "title": "Train a Moss & Moon lip-sync model from Harbor Heroes recordings",
   "plainLanguageQuestion": "Can I use voice recordings from a completed client show to train a lip-sync model for our own IP show?",
   "requestedBy": "PERSON-REQUESTER-01",
@@ -29,20 +29,36 @@
         "containsSensitiveData": null
       }
     ],
-    "sourceProductionIds": ["PRODUCTION-HARBOR-HEROES"],
+    "sourceProductionIds": [
+      "PRODUCTION-HARBOR-HEROES"
+    ],
     "lineageComplete": true,
     "notes": "Twelve dialogue takes from two represented performers."
   },
   "contractsAndContributors": {
     "contributorInventoryStatus": "verified",
-    "representedPersonIds": ["PERSON-AVA-LIN", "PERSON-MATEO-RUIZ"],
+    "representedPersonIds": [
+      "PERSON-AVA-LIN",
+      "PERSON-MATEO-RUIZ"
+    ],
     "representedCohortIds": [],
-    "agreementIds": ["AGREEMENT-HH-PRODUCTION"],
-    "individualAgreementIds": ["AGREEMENT-AVA-12", "AGREEMENT-MATEO-08"],
-    "collectiveInstrumentIds": ["COLLECTIVE-AVPC-24", "COLLECTIVE-USV-23"],
+    "agreementIds": [
+      "AGREEMENT-HH-PRODUCTION"
+    ],
+    "individualAgreementIds": [
+      "AGREEMENT-AVA-12",
+      "AGREEMENT-MATEO-08"
+    ],
+    "collectiveInstrumentIds": [
+      "COLLECTIVE-AVPC-24",
+      "COLLECTIVE-USV-23"
+    ],
     "consentRecordIds": [],
     "privacyBasisIds": [],
-    "applicableJurisdictions": ["AU-NSW", "US-CA"],
+    "applicableJurisdictions": [
+      "AU-NSW",
+      "US-CA"
+    ],
     "unknowns": [
       "Client permission for cross-production training",
       "Purpose-specific performer permissions",
@@ -50,10 +66,15 @@
     ]
   },
   "operation": {
-    "types": ["fine_tune"],
+    "types": [
+      "fine_tune"
+    ],
     "description": "Train a model that predicts animation mouth shapes from dialogue audio.",
     "humanRole": "assistive",
-    "persistence": ["model_weights", "logs"],
+    "persistence": [
+      "model_weights",
+      "logs"
+    ],
     "expectedDerivatives": [
       {
         "category": "lip_sync_model",
@@ -66,14 +87,34 @@
     "technicalOwnerId": "ROLE-ML-LEAD"
   },
   "purpose": {
-    "relationship": "different_production",
     "description": "Use the retained lip-sync capability to assist animation on Northstar-owned Moss & Moon.",
-    "destinationProductionIds": ["PRODUCTION-MOSS-AND-MOON"],
-    "beneficiaryOrganisationIds": ["ORG-NORTHSTAR-ANIMATION"],
-    "audiences": ["production_team", "system_only"],
-    "affectedGroups": ["Voice performers", "Animation team"],
+    "destinationProductionIds": [
+      "PRODUCTION-MOSS-AND-MOON"
+    ],
+    "beneficiaryOrganisationIds": [
+      "ORG-NORTHSTAR-ANIMATION"
+    ],
+    "audiences": [
+      "production_team",
+      "system_only"
+    ],
+    "affectedGroups": [
+      "Voice performers",
+      "Animation team"
+    ],
     "commercialUse": true,
-    "impactIfWrong": "high"
+    "impactIfWrong": "high",
+    "productionRelationships": [
+      "different_production"
+    ],
+    "businessPurposes": [
+      "research_or_evaluation",
+      "production_work"
+    ],
+    "reuseIntent": "production_only",
+    "distribution": [
+      "internal"
+    ]
   },
   "environment": {
     "status": "verified",
@@ -86,15 +127,23 @@
     "deploymentType": "private_tenant",
     "providerTraining": "disabled_by_contract",
     "providerHumanAccess": "support_only",
-    "processingRegions": ["AU"],
-    "storageRegions": ["AU"],
-    "supportAccessRegions": ["AU"],
-    "accessGroupIds": ["GROUP-MM-RESEARCH-AU"],
+    "processingRegions": [
+      "AU"
+    ],
+    "storageRegions": [
+      "AU"
+    ],
+    "supportAccessRegions": [
+      "AU"
+    ],
+    "accessGroupIds": [
+      "GROUP-MM-RESEARCH-AU"
+    ],
     "subprocessorIds": [],
     "connectedServiceIds": [],
     "retention": {
       "source": 30,
-      "output": "unknown",
+      "output": 30,
       "logs": 90,
       "backups": 30
     },

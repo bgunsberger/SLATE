@@ -1,6 +1,6 @@
 # SCOPE Framework
 
-Version 0.1.0 — working specification
+Version 0.2.0 — working specification
 
 ## 1. Purpose
 
@@ -137,6 +137,8 @@ It MUST distinguish:
 
 The destination production and its ownership context are separate facts from the source production. This distinction makes cross-production reuse visible, including movement from a client-funded show to company-owned IP.
 
+The purpose record stores production relationships, business purposes, reuse intent and distribution separately. A cross-production research experiment intended for public release records all three facts. Production relationships are derived from the source and destination IDs, including mixed same-production and different-production sets.
+
 The purpose record SHOULD include the expected benefit, affected people, intended users, output audience, commercial context and impact if the system is wrong or misused.
 
 ### 4.5 Environment
@@ -162,7 +164,11 @@ A product-level approval is insufficient when settings vary by account, region o
 
 ### 5.1 Positive basis
 
-Permission requires a recorded positive basis covering the proposed use. Contractual silence, missing records or general ownership claims create a hold for information or approval.
+A positive basis is verified evidence sufficient for the particular gate. Rights gates require a bounded rights conclusion; inventory requires verified completeness; environment requires technical verification and approval; obligations require an executable control plan. An internal approval exercises only the authority delegated to its issuer.
+
+SCOPE's default is an organisational processing hold until the applicable bases are established. An authorised reviewer can record an applicable licence, ownership-based authority, legal exception or a reasoned determination that a particular permission is unnecessary. The reviewer records the jurisdiction, exact scope, evidence and authority exercised. Consent is required where the applicable authority requires it. A non-applicability finding requires equivalent evidence and verification; silence cannot establish it.
+
+The per-gate evidence requirements are defined in the Decision Specification. Missing facts create an information hold; known facts requiring an authorised interpretation or grant create an approval hold.
 
 ### 5.2 Cumulative rights
 
@@ -170,7 +176,7 @@ Applicable authorities accumulate. A client approval does not satisfy a performe
 
 ### 5.3 Lineage and inheritance
 
-Derived artefacts MUST link to their sources. Unless an authorised rule explicitly narrows or replaces an obligation, a derivative inherits the relevant restrictions, expiry, access boundaries and deletion triggers of every source used to create it.
+Derived artefacts MUST link to their sources. Each source obligation receives a recorded applicability assessment for each relevant derivative type. The assessment identifies its authority, transformation, affected artefact, trigger and disposition: retained, released by verified interpretation, or uncertain. Uncertain applicability creates a hold on the affected downstream use until resolved. An authorised interpretation can narrow or replace an obligation only within its recorded authority.
 
 This applies to transcripts, summaries, crops, annotations, embeddings, indexes, prompts, outputs, datasets, evaluation sets, adapters, LoRAs and model weights.
 
@@ -237,43 +243,23 @@ Controlled source documents remain in their systems of record. SCOPE stores stab
 
 ## 9. Conformance levels
 
+All unqualified MUST requirements in the specification set apply at every level. A level describes how those controls are operated. Manual evidence checking, controlled registers and signed records can implement the baseline. Requirements explicitly marked Level 3 apply to automated evaluators. The normative capability matrix is in [CONFORMANCE.md](CONFORMANCE.md).
+
 ### Level 1 — Recorded
 
-An implementation:
-
-- captures all five SCOPE dimensions;
-- uses the five outcome states;
-- records evidence, owner, date and scope;
-- preserves an immutable decision snapshot.
+An implementation captures all five dimensions, evaluates all eight gates, preserves the basis and authority of each finding, uses the five outcomes and issues an immutable, reconstructable decision. It checks current validity and prerequisites before processing, retains source and derivative links, controls access to sensitive evidence and records changes and stop-use actions. These controls may be manual.
 
 ### Level 2 — Governed
 
-An implementation also:
-
-- assigns record owners and verifiers;
-- versions rules and interpretations;
-- tracks expiry, withdrawal and reassessment triggers;
-- enforces role-based access and audit history;
-- records conditions through completion.
+An implementation also operates a maintained programme of record stewardship, reusable standing approvals, cohort exception checks, rule review, condition tracking, appeals, service levels and periodic access review. It exports the published record formats and validates their semantics. Manual operation remains supported.
 
 ### Level 3 — Connected
 
-An implementation also:
-
-- maintains item- and contributor-level lineage;
-- propagates relevant restrictions to derived artefacts;
-- detects affected decisions when evidence changes;
-- supports deterministic rule evaluation and test cases;
-- integrates production, identity, contract and tool inventories.
+An implementation also automates manifest and relationship expansion, deterministic rule evaluation, coverage checking, downstream applicability tracking and change-impact discovery. Integrations bind actual processing to current decisions and evidence. Published conformance cases must pass before automated permission is enabled.
 
 ### Level 4 — Assured
 
-An implementation also:
-
-- undergoes periodic independent control testing;
-- measures decision quality, coverage and review performance;
-- supports appeals, incident handling and accountable overrides;
-- publishes its configured vocabulary, governance process and conformance statement.
+An implementation also undergoes independent control testing, measures decision quality and operating cost, exercises incident and appeal procedures and publishes its configured vocabulary, limitations and conformance statement.
 
 ## 10. Scope boundaries
 

@@ -26,7 +26,7 @@
 
 **Policy rule** — A structured, queryable interpretation with an effect, applicability scope, authority and evidence.
 
-**Positive basis** — Verified authority that affirmatively covers the proposed use.
+**Positive basis** — Verified evidence sufficient for the specific gate and proposed use, including rights authority, technical verification or operational controls as appropriate.
 
 **Proposed use** — The versioned combination of Source, Contracts and contributors, Operation, Purpose and Environment submitted for assessment.
 
@@ -41,3 +41,15 @@
 **Synthetic performance** — Generated or transformed audio, visual or behavioural material that depicts, imitates, substitutes for or materially derives from a person's performance or identity.
 
 **Verifier** — A qualified person who confirms that a structured record accurately represents its authoritative source for the stated purpose.
+
+**Basis kind** — The evidence category appropriate to a gate: inventory verification, rights authority, privacy basis, technical verification, operational control or non-applicability.
+
+**Non-applicability finding** — A scoped, evidenced determination by a qualified authority that a particular requirement does not apply.
+
+**Execution state** — Current operational readiness or activity, maintained separately from the historical decision outcome.
+
+**Coverage proof** — Evidence that every required material/person/operation/authority combination has an applicable basis within the assessed scope.
+
+**Obligation applicability** — A verified finding that a source duty is retained, released by authorised interpretation or uncertain for a particular derivative and transformation.
+
+**Frozen assessment bundle** — Archived proposal, decision, profile, rules and controlled evidence versions sufficient to reconstruct the recorded assessment.

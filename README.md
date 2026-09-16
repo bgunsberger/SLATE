@@ -25,14 +25,18 @@ SCOPE turns fragmented production, contractual, contributor and technical inform
 - [`docs/IMPLEMENTATION_SPECIFICATION.md`](docs/IMPLEMENTATION_SPECIFICATION.md) — system requirements, pilot structure and acceptance criteria
 - [`docs/SCENARIOS.md`](docs/SCENARIOS.md) — worked examples for a fictional multi-location studio
 - [`docs/GLOSSARY.md`](docs/GLOSSARY.md) — shared terminology
-- [`schemas/`](schemas/) — JSON Schemas for proposed uses, policy rules and decisions
+- [`docs/CONFORMANCE.md`](docs/CONFORMANCE.md) — level requirements and validation boundaries
+- [`docs/MIGRATION_0.2.md`](docs/MIGRATION_0.2.md) — incompatible changes from 0.1
+- [`docs/PILOT_EVALUATION.md`](docs/PILOT_EVALUATION.md) — comparative pilot and operating-cost measures
+- [`docs/INTEROPERABILITY.md`](docs/INTEROPERABILITY.md) — conceptual mappings to the cited foundations
+- [`schemas/`](schemas/) — JSON Schemas for proposed uses, policy rules, decisions, evidence and bundles
 - [`examples/`](examples/) — machine-readable example assessments
 
 The existing website prototype remains in `dist/` as design history. It is not the normative definition of SCOPE. The documents and schemas above are the source of truth for future implementations.
 
 ## Status
 
-This is a working specification, version **0.1.0**. It is suitable for structured prototyping, stakeholder review and testing against real contract patterns. It does not provide legal advice or create permission. An organisation adopting SCOPE must configure its own policies, authorities, jurisdictions and review process with qualified legal, privacy, security, production and workforce representatives.
+This is a working specification, version **0.2.0**. It is suitable for structured prototyping, stakeholder review and testing against real contract patterns. It does not provide legal advice or create permission. An organisation adopting SCOPE must configure its own policies, authorities, jurisdictions and review process with qualified legal, privacy, security, production and workforce representatives.
 
 ## Design foundations
 
@@ -45,12 +49,18 @@ SCOPE draws on established work without depending on a particular vendor or soft
 
 SCOPE extends these ideas with production-specific concepts such as show boundaries, contributor-level rights, client-funded work, source-to-model lineage, synthetic performance and cross-production reuse.
 
-## Prototype validation
+## Specification validation
 
-The schemas can be syntax-checked without installing dependencies:
+Install the locked development dependencies with `npm ci`, then run:
 
 ```sh
 npm run validate:spec
+npm test
+npm run check
 ```
 
-The earlier website prototype can still be checked with `npm run check` and `npm test`.
+Validation checks all five machine-readable examples, their schema structure and selected semantic invariants. The complete [cross-show assessment bundle](examples/cross-show-lipsync.bundle.json) freezes the profile, rules, evidence and verified human gate findings. Manual replay reconstructs its decision core. Tests also exercise adverse inputs and the historical prototype.
+
+The reference helpers are a specification harness; they do not implement a complete automated rights evaluator. Domain review, authority coverage and live execution controls remain implementation responsibilities. See [conformance and validation](docs/CONFORMANCE.md).
+
+Version 0.2 separates production relationship, business purpose, reuse and distribution; defines three-valued selector matching and gate-specific bases; and specifies obligation applicability, execution state and comparative pilot evaluation. Existing 0.1 decisions retain their historical meaning and require explicit migration or reassessment.

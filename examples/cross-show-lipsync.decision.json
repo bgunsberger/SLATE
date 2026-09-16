@@ -1,8 +1,8 @@
 {
   "id": "DECISION-HH-MM-001",
-  "version": "1.0",
+  "version": "2.0",
   "proposedUseId": "USE-HH-MM-001",
-  "proposedUseVersion": "1.0",
+  "proposedUseVersion": "2.0",
   "outcome": "hold_approval_required",
   "answer": "Hold the training. Business and Legal Affairs must resolve the client and performer permissions before the recordings enter the training environment.",
   "scopeSummary": "Twelve Harbor Heroes dialogue takes from Ava Lin and Mateo Ruiz, used to train and retain a mouth-shape prediction model for Moss & Moon in MotionMap Lab's Australian private tenant.",
@@ -11,65 +11,138 @@
       "gate": "inventory",
       "result": "satisfied",
       "explanation": "The exact recordings and both represented performers are identified in manifest version 3.0.",
-      "ruleIds": ["RULE-EXACT-INVENTORY"],
-      "evidenceIds": ["COLLECTION-HH-VOICE-204"],
-      "responsibleRole": "Production data steward"
+      "ruleIds": [
+        "RULE-EXACT-INVENTORY"
+      ],
+      "evidenceIds": [
+        "COLLECTION-HH-VOICE-204"
+      ],
+      "responsibleRole": "Production data steward",
+      "basis": [
+        {
+          "kind": "inventory_verification",
+          "evidenceIds": [
+            "COLLECTION-HH-VOICE-204"
+          ],
+          "verifiedBy": "ROLE-DATA-STEWARD",
+          "scopeReferences": [
+            "USE-HH-MM-001"
+          ],
+          "explanation": "The exact recordings and both represented performers are identified in manifest version 3.0."
+        }
+      ]
     },
     {
       "gate": "source_authority",
       "result": "approval_required",
       "explanation": "No verified client permission covers training a retained model for a different production.",
-      "ruleIds": ["RULE-HH-CROSS-PRODUCTION-APPROVAL"],
-      "evidenceIds": ["AGREEMENT-HH-PRODUCTION"],
-      "responsibleRole": "Business and Legal Affairs"
+      "ruleIds": [
+        "RULE-HH-CROSS-PRODUCTION-APPROVAL"
+      ],
+      "evidenceIds": [
+        "AGREEMENT-HH-PRODUCTION"
+      ],
+      "responsibleRole": "Business and Legal Affairs",
+      "basis": []
     },
     {
       "gate": "contributor_rights",
       "result": "approval_required",
       "explanation": "Ava requires purpose-specific agreement and Mateo's restriction requires an authorised technical and legal interpretation. Collective terms apply separately.",
-      "ruleIds": ["RULE-AVA-AI-CONSENT", "RULE-MATEO-SYNTHETIC-PERFORMANCE"],
-      "evidenceIds": ["AGREEMENT-AVA-12", "AGREEMENT-MATEO-08", "COLLECTIVE-AVPC-24", "COLLECTIVE-USV-23"],
-      "responsibleRole": "Business and Legal Affairs"
+      "ruleIds": [
+        "RULE-AVA-AI-CONSENT",
+        "RULE-MATEO-SYNTHETIC-PERFORMANCE"
+      ],
+      "evidenceIds": [
+        "AGREEMENT-AVA-12",
+        "AGREEMENT-MATEO-08",
+        "COLLECTIVE-AVPC-24",
+        "COLLECTIVE-USV-23"
+      ],
+      "responsibleRole": "Business and Legal Affairs",
+      "basis": []
     },
     {
       "gate": "privacy_and_people_impact",
       "result": "approval_required",
       "explanation": "The secondary use of identifiable voice recordings requires a verified purpose-specific privacy basis and contributor process.",
-      "ruleIds": ["RULE-PERSONAL-DATA-SECONDARY-USE"],
-      "evidenceIds": ["COLLECTION-HH-VOICE-204"],
-      "responsibleRole": "Privacy owner"
+      "ruleIds": [
+        "RULE-PERSONAL-DATA-SECONDARY-USE"
+      ],
+      "evidenceIds": [
+        "COLLECTION-HH-VOICE-204"
+      ],
+      "responsibleRole": "Privacy owner",
+      "basis": []
     },
     {
       "gate": "operation",
-      "result": "approval_required",
-      "explanation": "The retained learned capability requires a final technical description and model-deletion plan.",
-      "ruleIds": ["RULE-PERSISTENT-MODEL-DESCRIPTION"],
-      "evidenceIds": ["ENV-MOTIONMAP-AU-LAB"],
-      "responsibleRole": "ML lead"
+      "result": "missing_information",
+      "explanation": "The learned capability, model retention duration and deletion plan require technical verification before approval can be assessed.",
+      "ruleIds": [
+        "RULE-PERSISTENT-MODEL-DESCRIPTION"
+      ],
+      "evidenceIds": [
+        "ENV-MOTIONMAP-AU-LAB"
+      ],
+      "responsibleRole": "ML lead",
+      "basis": []
     },
     {
       "gate": "purpose_and_destination",
       "result": "approval_required",
       "explanation": "The destination is company-owned IP and differs from the client production that created the recordings.",
-      "ruleIds": ["RULE-HH-CROSS-PRODUCTION-APPROVAL"],
-      "evidenceIds": ["AGREEMENT-HH-PRODUCTION", "PRODUCTION-MOSS-AND-MOON"],
-      "responsibleRole": "Business and Legal Affairs"
+      "ruleIds": [
+        "RULE-HH-CROSS-PRODUCTION-APPROVAL"
+      ],
+      "evidenceIds": [
+        "AGREEMENT-HH-PRODUCTION",
+        "PRODUCTION-MOSS-AND-MOON"
+      ],
+      "responsibleRole": "Business and Legal Affairs",
+      "basis": []
     },
     {
       "gate": "environment",
-      "result": "conditional",
-      "explanation": "The approved Australian private tenant disables provider training, but its approval must be bound to any final rights scope and model expiry.",
-      "ruleIds": ["RULE-MOTIONMAP-AU-ENVIRONMENT"],
-      "evidenceIds": ["ENV-MOTIONMAP-AU-LAB", "APPROVAL-MOTIONMAP-SECURITY"],
-      "responsibleRole": "IT and security"
+      "result": "satisfied",
+      "explanation": "The current Australian private tenant configuration is technically approved; source rights and final model retention remain separate unresolved gates.",
+      "ruleIds": [
+        "RULE-MOTIONMAP-AU-ENVIRONMENT"
+      ],
+      "evidenceIds": [
+        "ENV-MOTIONMAP-AU-LAB",
+        "APPROVAL-MOTIONMAP-SECURITY"
+      ],
+      "responsibleRole": "IT and security",
+      "basis": [
+        {
+          "kind": "technical_verification",
+          "evidenceIds": [
+            "ENV-MOTIONMAP-AU-LAB",
+            "APPROVAL-MOTIONMAP-SECURITY"
+          ],
+          "verifiedBy": "ROLE-IT-SECURITY",
+          "scopeReferences": [
+            "USE-HH-MM-001"
+          ],
+          "explanation": "The current Australian private tenant configuration is technically approved; source rights and final model retention remain separate unresolved gates."
+        }
+      ]
     },
     {
       "gate": "obligations",
       "result": "approval_required",
       "explanation": "Compensation, consent, collective minimums, model expiry and withdrawal response remain unresolved.",
-      "ruleIds": ["RULE-AVA-AI-CONSENT", "RULE-PERSISTENT-MODEL-DESCRIPTION"],
-      "evidenceIds": ["AGREEMENT-AVA-12", "AGREEMENT-MATEO-08"],
-      "responsibleRole": "Decision owner"
+      "ruleIds": [
+        "RULE-AVA-AI-CONSENT",
+        "RULE-PERSISTENT-MODEL-DESCRIPTION"
+      ],
+      "evidenceIds": [
+        "AGREEMENT-AVA-12",
+        "AGREEMENT-MATEO-08"
+      ],
+      "responsibleRole": "Decision owner",
+      "basis": []
     }
   ],
   "blockers": [
@@ -96,7 +169,13 @@
     }
   ],
   "conditions": [],
-  "requiredApproverIds": ["ROLE-BUSINESS-LEGAL", "ORG-STREAMWAVE-KIDS", "PERSON-AVA-LIN", "PERSON-MATEO-RUIZ"],
+  "requiredApproverIds": [
+    "ROLE-BUSINESS-LEGAL",
+    "ORG-STREAMWAVE-KIDS",
+    "PERSON-AVA-LIN",
+    "PERSON-MATEO-RUIZ",
+    "ROLE-PRIVACY"
+  ],
   "approvals": [],
   "applicableRuleIds": [
     "RULE-EXACT-INVENTORY",
@@ -109,41 +188,247 @@
   ],
   "evidenceSnapshot": [
     {
-      "recordId": "COLLECTION-HH-VOICE-204",
-      "version": "3.0",
+      "recordId": "ORG-NORTHSTAR-ANIMATION",
+      "version": "1.0",
       "status": "active",
-      "verifiedAt": "2026-09-14T00:00:00Z"
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:a742c4aa42a0abbc55662c381ce7a4f9dd3dbdac0fcc541152a3239aae4abbb5"
+    },
+    {
+      "recordId": "ORG-STREAMWAVE-KIDS",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:fcc396d931aead54d1646073f6e88d62ac18df2843d37d4b3857536c107a3532"
     },
     {
       "recordId": "AGREEMENT-HH-PRODUCTION",
       "version": "2.1",
       "status": "active",
-      "verifiedAt": "2026-09-14T00:00:00Z"
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:e5d76e0a487aeb5e5ad789f3e47c07fa7bcc3c3158fc98f6095928516677854f"
     },
     {
       "recordId": "AGREEMENT-AVA-12",
       "version": "1.0",
       "status": "active",
-      "verifiedAt": "2026-09-14T00:00:00Z"
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:4933e5bcef40748ce216523b49e323b05a64c8e2c41e7e8adab856adc3a522f3"
     },
     {
       "recordId": "AGREEMENT-MATEO-08",
       "version": "1.0",
       "status": "active",
-      "verifiedAt": "2026-09-14T00:00:00Z"
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:e5cea1fcb7dea8d268826efa8d0efa6b4bc12316dc532ece8384959c983b7b48"
+    },
+    {
+      "recordId": "COLLECTIVE-AVPC-24",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:539fa95586c2eae3fbf7f1201bb57272dbe8883c581f1cde4faabf0f3275c7a7"
+    },
+    {
+      "recordId": "COLLECTIVE-USV-23",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:4c5d9facc3d6fb9eb51d7b065b2c646ba6264f4fa3b9c572c560c75bc5eb5647"
+    },
+    {
+      "recordId": "PERSON-AVA-LIN",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:913892a9ae3806a9d769bd9612de0e6f50c83b2cb33e20476c2f4018ebf80fff"
+    },
+    {
+      "recordId": "PERSON-MATEO-RUIZ",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:d5a381188e46260d483d202b7eec075682c6e58e3153724aed7ae38b8c5dd27f"
+    },
+    {
+      "recordId": "PRODUCTION-HARBOR-HEROES",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:d98055baa6d0c4140dae10a5eaaeb54cb49d526312a5681644e99d18c5f675a4"
+    },
+    {
+      "recordId": "PRODUCTION-MOSS-AND-MOON",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:20e3d81a9711f25489fe3fc2992d6b0af083f02bf3c8faf070d493af1fdbdbb1"
+    },
+    {
+      "recordId": "MATERIAL-HH-204-AVA",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:857e466160d9c9789059a8391b90bba147026a4e7442bd28f18c18d34c52752b"
+    },
+    {
+      "recordId": "MATERIAL-HH-204-MATEO",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:5b4d7d11559ad9af12ae0e6a65515864734a3f1e6fcbdf2c8b380658847a5ed5"
+    },
+    {
+      "recordId": "COLLECTION-HH-VOICE-204",
+      "version": "3.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:b0c6995832ea15394e235994f48050bbd8241034b0e98fd46182335fcb4cafc7"
+    },
+    {
+      "recordId": "APPROVAL-MOTIONMAP-SECURITY",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:927aca08dbcf85ece43c0e80b1d8218cd734af1cdbdf100935a1380fd8835ac0"
     },
     {
       "recordId": "ENV-MOTIONMAP-AU-LAB",
       "version": "2.0",
       "status": "active",
-      "verifiedAt": "2026-09-14T00:00:00Z"
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:4ac9f6fea9901d38391e3fa5dcb97771a48e8d522f78f640f811d0229136af12"
+    },
+    {
+      "recordId": "PROFILE-NORTHSTAR-PILOT",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:bc67724a7597cd4de0fc619fd242dd1a3a1ec4e26ee508ccd2e671accaa650ee"
+    },
+    {
+      "recordId": "RULE-HH-CROSS-PRODUCTION-APPROVAL",
+      "version": "2.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:6a3302d534dd19e0a266392602f6bda791fbbe2ed5eaff77fbd98516617175e5"
+    },
+    {
+      "recordId": "RULE-EXACT-INVENTORY",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:10fa05d9100821e21cfbdc51a2ac347901ef20ab23dfd298118456f548594fca"
+    },
+    {
+      "recordId": "RULE-AVA-AI-CONSENT",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:b5c5ed413b777e332c2a8cfcc88d9fc87f8a744715801b48c5962fb7d6619763"
+    },
+    {
+      "recordId": "RULE-MATEO-SYNTHETIC-PERFORMANCE",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:93bd109d4edd4920739539c3829e4bbdb8b7965b1f70934a923aca1c000ee7e4"
+    },
+    {
+      "recordId": "RULE-PERSONAL-DATA-SECONDARY-USE",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:78122018ea3e4558134f35ca8b52b2e2148adb17b234808a48cdd856d3f144b2"
+    },
+    {
+      "recordId": "RULE-PERSISTENT-MODEL-DESCRIPTION",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:fae1da12ed7621f6483a15b1621c9135a0ae5953aa310783cda7e436ad33f7cd"
+    },
+    {
+      "recordId": "RULE-MOTIONMAP-AU-ENVIRONMENT",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:9955aa39b10fe5047aad3f08d7f022f3d964c41df6fecc64c8cbf9cb9a95d97f"
+    },
+    {
+      "recordId": "FINDING-INVENTORY",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "integrityValue": "sha256:2471e41dae8bbfc7e5003e26dd92d800eebdfacbaa9bc7944f950ff5c1207576"
+    },
+    {
+      "recordId": "FINDING-SOURCE-AUTHORITY",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "integrityValue": "sha256:dd41397511e57589d09cab3f5aab8b971617d5a825f29da374ca3f0a2daf79e4"
+    },
+    {
+      "recordId": "FINDING-CONTRIBUTOR-RIGHTS",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "integrityValue": "sha256:cc8f561851348a9610d51767eb265cf418ffeac4b675a7be9f27e3e3024c4a2b"
+    },
+    {
+      "recordId": "FINDING-PRIVACY-AND-PEOPLE-IMPACT",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "integrityValue": "sha256:39749072a8b23a91a93e80b2cc1ea71dbb851deef08b79a2085f600a24bc3317"
+    },
+    {
+      "recordId": "FINDING-OPERATION",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "integrityValue": "sha256:08158ebf84dc723bdaf9708643d2f44df9f49fa7df8fd857412e8cb1b83a61aa"
+    },
+    {
+      "recordId": "FINDING-PURPOSE-AND-DESTINATION",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "integrityValue": "sha256:b822acaba8d5f0b4cb207528c7b08f1f03e4ac3e91a3ba00cc832e95e3ddac0a"
+    },
+    {
+      "recordId": "FINDING-ENVIRONMENT",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "integrityValue": "sha256:51bc92ad8a10daf527a392173ee429e7bf74e48ca75d48b1a10f3ff34121ca7f"
+    },
+    {
+      "recordId": "FINDING-OBLIGATIONS",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-16T03:00:00Z",
+      "integrityValue": "sha256:54bd763ca20eea4d9dd34a379cae987566e0eb20c87a7c07ac2e10d18713538a"
     }
   ],
   "decisionOwnerId": "ROLE-BUSINESS-LEGAL",
   "evaluationMethod": {
     "type": "hybrid",
-    "version": "scope-method-0.1.0",
-    "evaluatorId": "ROLE-AI-GOVERNANCE"
+    "version": "scope-manual-0.2.0",
+    "evaluatorId": "ROLE-AI-GOVERNANCE",
+    "profileId": "PROFILE-NORTHSTAR-PILOT",
+    "profileVersion": "1.0",
+    "findingRecordIds": [
+      "FINDING-INVENTORY",
+      "FINDING-SOURCE-AUTHORITY",
+      "FINDING-CONTRIBUTOR-RIGHTS",
+      "FINDING-PRIVACY-AND-PEOPLE-IMPACT",
+      "FINDING-OPERATION",
+      "FINDING-PURPOSE-AND-DESTINATION",
+      "FINDING-ENVIRONMENT",
+      "FINDING-OBLIGATIONS"
+    ]
   },
   "decidedAt": "2026-09-16T03:00:00Z",
   "validity": {
@@ -157,5 +442,6 @@
     "The learned capability or destination changes",
     "The environment, region, access or retention changes"
   ],
-  "relatedDerivativeIds": []
+  "relatedDerivativeIds": [],
+  "evaluatedAt": "2026-09-16T03:00:00Z"
 }

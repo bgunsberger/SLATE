@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:scope:schema:policy-rule:0.1.0",
+  "$id": "urn:scope:schema:policy-rule:0.2.0",
   "title": "SCOPE Policy Rule",
   "description": "An atomic, versioned interpretation used to evaluate a proposed use.",
   "type": "object",
@@ -17,26 +17,65 @@
     "ownerId",
     "verifiedBy",
     "verifiedAt",
-    "effectiveFrom"
+    "effectiveFrom",
+    "recordType",
+    "sourceSystem",
+    "sourceReference",
+    "classification",
+    "createdAt",
+    "updatedAt",
+    "changeTriggers",
+    "testCaseIds",
+    "interpretationConfidence",
+    "gates"
   ],
   "properties": {
-    "id": { "$ref": "#/$defs/id" },
-    "version": { "type": "string", "minLength": 1 },
-    "name": { "type": "string", "minLength": 1, "maxLength": 200 },
-    "status": { "enum": ["draft", "active", "superseded", "expired", "withdrawn"] },
+    "id": {
+      "$ref": "#/$defs/id"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "active",
+        "superseded",
+        "expired",
+        "withdrawn",
+        "deleted"
+      ]
+    },
     "effect": {
-      "enum": ["permit", "prohibit", "require_condition", "require_information", "require_approval"]
+      "enum": [
+        "permit",
+        "prohibit",
+        "require_condition",
+        "require_information",
+        "require_approval"
+      ]
     },
     "authority": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["recordIds", "authorityType"],
+      "required": [
+        "recordIds",
+        "authorityType"
+      ],
       "properties": {
         "recordIds": {
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
-          "items": { "$ref": "#/$defs/id" }
+          "items": {
+            "$ref": "#/$defs/id"
+          }
         },
         "authorityType": {
           "enum": [
@@ -54,34 +93,88 @@
             "other"
           ]
         },
-        "sourceReference": { "type": "string", "minLength": 1 }
+        "sourceReference": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
     "selectors": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "organisationIds": { "$ref": "#/$defs/idList" },
-        "sourceProductionIds": { "$ref": "#/$defs/idList" },
-        "destinationProductionIds": { "$ref": "#/$defs/idList" },
-        "productionTypes": { "$ref": "#/$defs/stringList" },
-        "materialIds": { "$ref": "#/$defs/idList" },
-        "materialCategories": { "$ref": "#/$defs/stringList" },
-        "classificationValues": { "$ref": "#/$defs/stringList" },
-        "agreementIds": { "$ref": "#/$defs/idList" },
-        "personIds": { "$ref": "#/$defs/idList" },
-        "contributorRoles": { "$ref": "#/$defs/stringList" },
-        "collectiveInstrumentIds": { "$ref": "#/$defs/idList" },
-        "jurisdictions": { "$ref": "#/$defs/stringList" },
-        "operationTypes": { "$ref": "#/$defs/stringList" },
-        "persistenceTypes": { "$ref": "#/$defs/stringList" },
-        "purposeRelationships": { "$ref": "#/$defs/stringList" },
-        "audiences": { "$ref": "#/$defs/stringList" },
-        "toolEnvironmentIds": { "$ref": "#/$defs/idList" },
-        "deploymentTypes": { "$ref": "#/$defs/stringList" },
-        "providerTrainingValues": { "$ref": "#/$defs/stringList" },
-        "processingRegions": { "$ref": "#/$defs/stringList" },
-        "accessGroupIds": { "$ref": "#/$defs/idList" }
+        "organisationIds": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "sourceProductionIds": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "destinationProductionIds": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "productionTypes": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "materialIds": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "materialCategories": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "classificationValues": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "agreementIds": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "personIds": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "contributorRoles": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "collectiveInstrumentIds": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "jurisdictions": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "operationTypes": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "persistenceTypes": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "audiences": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "toolEnvironmentIds": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "deploymentTypes": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "providerTrainingValues": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "processingRegions": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "accessGroupIds": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "productionRelationships": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "businessPurposes": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "reuseIntents": {
+          "$ref": "#/$defs/setPredicate"
+        },
+        "distribution": {
+          "$ref": "#/$defs/setPredicate"
+        }
       }
     },
     "requirements": {
@@ -89,44 +182,349 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["type", "description", "ownerRole"],
+        "required": [
+          "type",
+          "description",
+          "ownerRole",
+          "due",
+          "evidenceRequired"
+        ],
         "properties": {
           "type": {
-            "enum": ["condition", "information", "approval", "notice", "payment", "consultation", "human_review", "access", "retention", "deletion", "attribution", "other"]
+            "enum": [
+              "condition",
+              "information",
+              "approval",
+              "notice",
+              "payment",
+              "consultation",
+              "human_review",
+              "access",
+              "retention",
+              "deletion",
+              "attribution",
+              "other"
+            ]
           },
-          "description": { "type": "string", "minLength": 1, "maxLength": 2000 },
-          "ownerRole": { "type": "string", "minLength": 1 },
-          "due": { "enum": ["before_processing", "during_processing", "before_release", "at_expiry", "on_trigger"] },
-          "evidenceRequired": { "type": "boolean", "default": true }
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "ownerRole": {
+            "type": "string",
+            "minLength": 1
+          },
+          "due": {
+            "enum": [
+              "before_processing",
+              "during_processing",
+              "before_release",
+              "at_expiry",
+              "on_trigger"
+            ]
+          },
+          "evidenceRequired": {
+            "type": "boolean",
+            "default": true
+          }
         }
       }
     },
-    "approvalAuthorityIds": { "$ref": "#/$defs/idList" },
-    "explanation": { "type": "string", "minLength": 1, "maxLength": 4000 },
-    "ownerId": { "$ref": "#/$defs/id" },
-    "verifiedBy": { "$ref": "#/$defs/id" },
-    "verifiedAt": { "$ref": "#/$defs/dateTime" },
-    "effectiveFrom": { "$ref": "#/$defs/dateTime" },
-    "effectiveUntil": { "$ref": "#/$defs/dateTime" },
-    "reviewAt": { "$ref": "#/$defs/dateTime" },
-    "supersedesRuleIds": { "$ref": "#/$defs/idList" },
-    "exceptionToRuleIds": { "$ref": "#/$defs/idList" },
-    "changeTriggers": { "$ref": "#/$defs/stringList" },
-    "testCaseIds": { "$ref": "#/$defs/idList" },
-    "interpretationConfidence": { "enum": ["confirmed", "qualified", "uncertain"] }
+    "approvalAuthorityIds": {
+      "$ref": "#/$defs/idList"
+    },
+    "explanation": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "ownerId": {
+      "$ref": "#/$defs/id"
+    },
+    "verifiedBy": {
+      "$ref": "#/$defs/id"
+    },
+    "verifiedAt": {
+      "$ref": "#/$defs/dateTime"
+    },
+    "effectiveFrom": {
+      "$ref": "#/$defs/dateTime"
+    },
+    "effectiveUntil": {
+      "$ref": "#/$defs/dateTime"
+    },
+    "reviewAt": {
+      "$ref": "#/$defs/dateTime"
+    },
+    "supersedesRuleIds": {
+      "$ref": "#/$defs/idList"
+    },
+    "exceptionToRuleIds": {
+      "$ref": "#/$defs/idList"
+    },
+    "changeTriggers": {
+      "$ref": "#/$defs/stringList"
+    },
+    "testCaseIds": {
+      "$ref": "#/$defs/idList"
+    },
+    "interpretationConfidence": {
+      "enum": [
+        "confirmed",
+        "qualified",
+        "uncertain"
+      ]
+    },
+    "recordType": {
+      "const": "policy_rule"
+    },
+    "sourceSystem": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceReference": {
+      "type": "string",
+      "minLength": 1
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "gates": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "inventory",
+          "source_authority",
+          "contributor_rights",
+          "privacy_and_people_impact",
+          "operation",
+          "purpose_and_destination",
+          "environment",
+          "obligations"
+        ]
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field",
+          "operator",
+          "days"
+        ],
+        "properties": {
+          "field": {
+            "enum": [
+              "retention.source",
+              "retention.output",
+              "retention.logs",
+              "retention.backups",
+              "derivatives.retention"
+            ]
+          },
+          "operator": {
+            "const": "lte_days"
+          },
+          "days": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
   },
   "$defs": {
-    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9._:-]{2,127}$" },
-    "dateTime": { "type": "string", "format": "date-time" },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9._:-]{2,127}$"
+    },
+    "dateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
     "idList": {
       "type": "array",
       "uniqueItems": true,
-      "items": { "$ref": "#/$defs/id" }
+      "items": {
+        "$ref": "#/$defs/id"
+      }
     },
     "stringList": {
       "type": "array",
       "uniqueItems": true,
-      "items": { "type": "string", "minLength": 1 }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "setPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operator",
+        "values"
+      ],
+      "properties": {
+        "operator": {
+          "enum": [
+            "any_of",
+            "all_in",
+            "contains_all",
+            "equals_set"
+          ]
+        },
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "effect": {
+            "const": "require_approval"
+          }
+        },
+        "required": [
+          "effect"
+        ]
+      },
+      "then": {
+        "required": [
+          "requirements",
+          "approvalAuthorityIds"
+        ],
+        "properties": {
+          "requirements": {
+            "type": "array",
+            "minItems": 1,
+            "contains": {
+              "type": "object",
+              "required": [
+                "type"
+              ],
+              "properties": {
+                "type": {
+                  "const": "approval"
+                }
+              }
+            }
+          },
+          "approvalAuthorityIds": {
+            "type": "array",
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "effect": {
+            "const": "require_information"
+          }
+        },
+        "required": [
+          "effect"
+        ]
+      },
+      "then": {
+        "required": [
+          "requirements"
+        ],
+        "properties": {
+          "requirements": {
+            "type": "array",
+            "minItems": 1,
+            "contains": {
+              "type": "object",
+              "required": [
+                "type"
+              ],
+              "properties": {
+                "type": {
+                  "const": "information"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "effect": {
+            "const": "require_condition"
+          }
+        },
+        "required": [
+          "effect"
+        ]
+      },
+      "then": {
+        "required": [
+          "requirements"
+        ],
+        "properties": {
+          "requirements": {
+            "type": "array",
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "active"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "testCaseIds": {
+            "type": "array",
+            "minItems": 2
+          },
+          "interpretationConfidence": {
+            "enum": [
+              "confirmed",
+              "qualified"
+            ]
+          }
+        }
+      }
+    }
+  ]
 }

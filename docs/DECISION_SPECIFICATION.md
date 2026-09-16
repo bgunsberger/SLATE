@@ -1,6 +1,6 @@
 # SCOPE Decision Specification
 
-Version 0.1.0
+Version 0.2.0
 
 ## 1. Objective
 
@@ -68,7 +68,7 @@ Expired, superseded or withdrawn records remain in the audit trail and do not pr
 
 ### Step 4 — Match rules
 
-A rule applies when every populated selector matches the proposal or an expanded source record. Empty selector groups act as unrestricted within the rule's stated authority. Free text is explanatory and cannot satisfy a selector.
+Rules use the set predicates and relationship binding in §12. All populated predicates and retention constraints are combined with AND. Omitted selectors are unrestricted within the rule's verified authority; an empty `values` list is invalid. Free text explains a rule and cannot satisfy a selector. A matched rule is a candidate for the gates named in its `gates` field. Its effect applies only within its authority and matched scope.
 
 Rule matching MUST consider:
 
@@ -83,7 +83,7 @@ Rule matching MUST consider:
 
 For each gate:
 
-1. identify an applicable positive basis;
+1. establish the gate-specific basis and the complete set of applicable authorities described in §13;
 2. apply prohibitions and mandatory requirements from all applicable authorities;
 3. determine whether evidence is current and internally consistent;
 4. identify conditions that can be completed operationally;
@@ -133,7 +133,7 @@ function assess(proposedUse, evaluationTime):
     return decision
 ```
 
-`evaluateGate` MUST require a positive basis when the gate is applicable. Silence resolves to `approval_required` when the relevant facts are known and an authority must interpret or grant rights. Missing, stale or contradictory facts resolve to `missing_information`.
+`evaluateGate` MUST require the gate-specific basis when the gate is applicable and an evidenced non-applicability finding otherwise. Silence resolves to `approval_required` when the relevant facts are known and an authority must interpret or grant rights. Missing, stale or contradictory facts resolve to `missing_information`.
 
 ## 6. Rules and conflict handling
 
@@ -232,7 +232,7 @@ It MUST NOT expose confidential contract text or personal information to unautho
 
 ## 11. Required evaluator tests
 
-A conforming evaluator SHOULD include automated tests for:
+A conforming implementation MUST document positive and boundary cases. A Level 3 evaluator MUST automate tests for:
 
 1. same-show summarisation with a standing approval;
 2. cross-show reuse where client permission is absent;
@@ -248,3 +248,55 @@ A conforming evaluator SHOULD include automated tests for:
 12. a rule update that invalidates a previously permitted decision.
 
 Tests MUST assert the outcome, gate results, evidence set, conditions and responsible owner.
+
+## 12. Selector and normalisation semantics
+
+A selector is `{ "operator": "all_in", "values": ["AU"] }`, with a non-empty, unique controlled value set. Actual facts are sets. The operators mean:
+
+| Operator | True when |
+|---|---|
+| `any_of` | At least one known actual value is in the selector set. |
+| `all_in` | Every actual value is known and belongs to the selector set. |
+| `contains_all` | Every selector value occurs among the known actual values. |
+| `equals_set` | Both known sets have exactly the same members. |
+
+A confirmed empty actual set matches none of these operators. Missing facts, null and `unknown` are unknown. With partial knowledge, a known intersection establishes `any_of`; all required known members establish `contains_all`; a known disallowed member disproves `all_in` and `equals_set`. Other unresolved comparisons remain unknown. In an AND expression, false dominates unknown, and unknown dominates true. Unknown never supplies a positive basis. An unknown potentially applicable requirement is retained as an information blocker.
+
+Whole-proposal selectors on a `permit` rule MUST use `all_in` or `equals_set`: operations, persistence, destination productions, production relationships, business purposes, reuse intent, distribution, audiences, environment IDs, deployments, provider training, processing regions, access groups and jurisdictions. This prevents an Australia-only permission from covering an Australia-and-US environment. `any_of` can detect a prohibited member or trigger an approval requirement. An omitted whole-proposal selector is unrestricted only within the verified source authority; rule authors must substantiate that breadth.
+
+Source selectors bind to a single material/person relationship. Each expanded row contains one material, its production, one relevant person (or an explicitly verified absence), and agreements linked to that material/person. A rule requiring Show A and Person B matches only where both belong to that row. Values from unrelated assets MUST NOT be joined to manufacture a match. Contributor-specific agreement, role and collective selectors use that person's linked records. Jurisdictions are the full applicable set for the proposal and are not inferred from a person's location alone.
+
+A collection-wide prohibition is established by any verified matching row. Positive coverage is evaluated for every required material/person/authority combination; one permitted row cannot clear the collection. Verified cohort records can supply individual coverage only with a current membership manifest and exception check.
+
+`constraints` contains typed `lte_days` predicates for source, output, log, backup and derivative retention. Numeric durations are non-negative days; `session_only` is zero for comparison, `indefinite` exceeds every finite limit, and `unknown` or unevidenced `not_applicable` is unresolved. `derivatives.retention` evaluates all retained derivatives. A verified absence of retained derivatives satisfies that constraint. Retention requirements also need an operational duty and evidence mechanism.
+
+Production relationships are derived from all source/destination pairs. Equal IDs yield `same_production`; different IDs yield `different_production`; a mixed set retains both. A verified absence of a source or destination production yields `no_production`; unknown IDs yield `unknown`. Business purpose, reuse intent and distribution never replace this derivation. Unknown vocabulary values and contradictory declared/derived facts are validation errors or explicit information holds; implementations MUST NOT silently coerce them into permission.
+
+Effective intervals are start-inclusive and end-exclusive in UTC. At a review deadline, a record needs reverification before supplying a positive basis. Every evaluator records its evaluation time and policy-profile version. Inactive rules are excluded from active matching; uncertain applicability of potentially governing evidence remains a blocker and must not disappear during filtering.
+
+## 13. Gate bases and authority coverage
+
+| Gate | Required basis | Accountable verifier |
+|---|---|---|
+| Inventory | Verified manifest, contributor mapping, exclusions and relevant lineage | Data steward |
+| Source authority | Bounded ownership/licence/contract/legal conclusion for each relevant source authority | Authorised rights reviewer |
+| Contributor rights | Individual and collective coverage, including an evidenced determination where a permission is unnecessary | Authorised rights and labour reviewer |
+| Privacy and people impact | Purpose-specific processing basis and required impact/people controls | Privacy owner |
+| Operation | Rights coverage plus verified technical account of processing and persistence | Rights reviewer and technical owner |
+| Purpose and destination | Rights coverage for beneficiaries, production boundaries, reuse and distribution | Authorised rights reviewer |
+| Environment | Current verified configuration and approval for the data/operation classes | IT/security and relevant privacy authority |
+| Obligations | Assigned, feasible, testable duties, prerequisites and consequences | Operational owner and duty authority |
+
+Each satisfied or conditional gate records `basis` entries with kind, evidence, verifier and scope. A `not_applicable` gate records a `non_applicability` basis with equivalent evidence. Examples include a verified non-personal source or a qualified conclusion that a specific rights permission is unnecessary. A model's quality or an internal risk acceptance cannot supply a missing external right.
+
+Before claiming complete coverage, the reviewer MUST attest that the applicable authority set is complete for the declared jurisdictional and source scope. Missing authority records create an information hold. For each rights question, preserve the material, person where relevant, operation, authority, supporting evidence and finding. Independent authority requirements accumulate; permission from one authority can cover multiple items only within its scope. In automated evaluation, these tuples form an explicit coverage proof, and unresolved tuples prevent permission.
+
+An unresolved conflict in meaning is routed to the appropriate authority. A verified independent prohibition still determines the headline outcome; a conflict about whether that prohibition governs must first be resolved as an approval hold. Rule specificity alone supplies no override authority.
+
+## 14. Validation and replay boundaries
+
+Structural validation checks the JSON shapes, core gate cardinality and effect-specific fields. Semantic validation checks outcome aggregation, evidence closure, versions, time, basis kinds, approvals, conditions and purpose consistency. Domain validation establishes whether facts, rights interpretations, authority coverage and operational controls are substantively adequate. All three are required before operational reliance.
+
+The repository's reference helpers implement set/retention matching, bound source rows, aggregation, preflight readiness and selected semantic invariants. They are a specification test harness. They do not implement a complete Level 3 evaluator.
+
+`cross-show-lipsync.bundle.json` freezes the manual/hybrid assessment. Replay reconstructs gate results, the primary outcome and the applicable rule set from independently stored, verified gate findings. Those findings are human interpretation inputs. The replay validates their consistency with the exported decision and frozen evidence. It does not independently derive legal interpretations from contract text or certify authority completeness.

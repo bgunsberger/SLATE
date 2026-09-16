@@ -1,6 +1,6 @@
 # SCOPE Governance Model
 
-Version 0.1.0
+Version 0.2.0
 
 ## 1. Governance objective
 
@@ -161,7 +161,7 @@ Evidence owners publish changes as new versions. The system identifies linked ac
 - revoked;
 - expired and closed.
 
-Consent withdrawal or a rights dispute triggers immediate stop-use review for the relevant source and derivatives. A security or privacy incident follows the organisation's incident process and also triggers SCOPE impact analysis.
+Consent withdrawal or a rights dispute immediately suspends affected active uses while the decision owner performs stop-use review. The suspension also covers affected derivatives whose obligation applicability is uncertain. A security or privacy incident follows the organisation's incident process and also triggers SCOPE impact analysis.
 
 ## 8. Information security and privacy
 
@@ -216,3 +216,25 @@ Targets and service levels are configured locally. Speed never substitutes for t
 A public SCOPE specification can publish the framework, vocabulary, schemas, fictional scenarios and conformance tests. Implementations protect client names, contract terms, contributor identities, security architecture and decision records.
 
 Research using operational data requires its own SCOPE assessment, ethics and privacy review where applicable, a publication plan and a method for de-identification. Contributors and affected workers should have a route to challenge inaccurate characterisation of their rights or views.
+
+## 12. Execution state and preflight
+
+The current execution state is separate from the immutable decision outcome:
+
+| State | Meaning and next action |
+|---|---|
+| `awaiting_prerequisites` | The decision allows a conditional use; pre-processing duties remain open. |
+| `ready` | A fresh preflight confirms scope, evidence, authority and prerequisite completion. |
+| `active` | The operational owner has started the verified use. |
+| `suspended` | A hold, changed material fact, expired basis, dispute, withdrawal, missed duty or relevant incident prevents continuation. |
+| `closed` | Processing ended and remaining retention/deletion duties are recorded and tracked. |
+
+Immediately before each job or bounded batch, a named operator MUST verify the decision ID/version, actual manifest and environment, current evidence, open triggers, prerequisite evidence and expiry. A ready check applies only to that job/batch and scope. Recurring workflows declare batch boundaries and a maximum recheck interval in their standing approval; any intervening trigger suspends the affected work immediately. Human preflight is supported at every level; Level 3 can enforce it through integrations.
+
+Condition evidence or a waiver must be verified by the duty's authority. An operational owner cannot waive an external party's right. Failed or expired conditions suspend processing; future deletion duties can remain open until due. Resume requires a new documented preflight and a successor decision whenever assessed facts or scope changed. The owner records suspension, restart and closeout events without altering the historical decision.
+
+## 13. Standing approvals, cohorts and operating cost
+
+Standing approvals define source classes, verified cohorts, operations, environment configurations, purposes, distribution boundaries, exclusions, expiry and recheck cadence. New items or people enter only after the steward verifies membership and individual exceptions. Uncertain membership routes to a hold. Cohort membership and exception checks are versioned evidence.
+
+The governance owner assigns response service levels and escalation owners for each hold type. The pilot measures specialist minutes per decision, initial record preparation, ongoing maintenance, repeated-use savings, unnecessary holds, bypass attempts and user abandonment alongside missed restrictions. Record exclusions and declined uses so the evaluation includes work that never reaches a permitted outcome. The comparative pilot protocol in [PILOT_EVALUATION.md](PILOT_EVALUATION.md) defines the evidence needed before broader rollout.

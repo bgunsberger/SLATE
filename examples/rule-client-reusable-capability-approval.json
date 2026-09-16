@@ -1,7 +1,7 @@
 {
-  "id": "RULE-HH-CROSS-PRODUCTION-APPROVAL",
+  "id": "RULE-HH-REUSABLE-CAPABILITY-APPROVAL",
   "version": "2.0",
-  "name": "Harbor Heroes cross-production AI use requires client approval",
+  "name": "Harbor Heroes reusable studio capability requires client approval",
   "status": "active",
   "effect": "require_approval",
   "authority": {
@@ -18,10 +18,10 @@
         "PRODUCTION-HARBOR-HEROES"
       ]
     },
-    "productionRelationships": {
+    "reuseIntents": {
       "operator": "any_of",
       "values": [
-        "different_production"
+        "reusable_studio_capability"
       ]
     }
   },
@@ -52,8 +52,8 @@
     "Agreement expiry"
   ],
   "testCaseIds": [
-    "TEST-HH-CROSS-SHOW-TRAINING",
-    "TEST-HH-SAME-SHOW-SUMMARY"
+    "TEST-HH-REUSABLE",
+    "TEST-HH-PRODUCTION-ONLY"
   ],
   "interpretationConfidence": "confirmed",
   "recordType": "policy_rule",

@@ -1,6 +1,6 @@
 # SCOPE Data Model
 
-Version 0.1.0
+Version 0.2.0
 
 ## 1. Model shape
 
@@ -15,11 +15,13 @@ Transaction layer    proposed uses and requested approvals
 Audit layer          decisions, evidence snapshots, conditions and lifecycle events
 ```
 
-Every record has a stable ID, version, owner, status and timestamps. Relationships use IDs so the storage system can change without breaking the model.
+Every record has a stable ID, version, responsible owner and timestamps; registry records also carry lifecycle status. Relationships use IDs so the storage system can change without breaking the model.
 
 ## 2. Common record envelope
 
-Every controlled SCOPE record MUST contain:
+Registry records, including policy rules, MUST contain the following envelope. `effectiveUntil` and `reviewAt` are optional when no such date applies. Proposed uses and immutable decisions are transaction records with their own explicit metadata in the published schemas; the registry envelope does not apply to them. `recordType` is `policy_rule` for a rule.
+
+Every registry record MUST contain:
 
 | Field | Meaning |
 |---|---|
@@ -294,3 +296,21 @@ A useful pilot does not require every historic asset. It requires enough connect
 8. lineage for at least one dataset, one generated output and one model artefact.
 
 The pilot SHOULD measure how often answers are blocked by missing facts. That reveals which records need operational ownership before further automation.
+
+## 10. Obligation applicability and execution records
+
+An obligation applicability record MUST identify the source obligation and its version, source authority, parent and child versions, transformation, affected artefact category, triggering event, disposition (`retained`, `released_by_interpretation`, `uncertain`), verifier and evidence. It MUST state the downstream consequence: restrict access, stop use, delete, quarantine, retire or retrain. A release cites a qualified interpretation covering the exact transformation and scope. Uncertainty remains actionable and visible.
+
+Source-file deletion, output deletion, index removal and model retirement are distinct obligations. Removing a file from a training directory does not evidence removal of its influence from model weights. Where isolation is unverified, record quarantine, retirement or retraining as the pending response, with an owner and deadline.
+
+An execution event records the decision ID/version, operator, time, actual manifest and environment versions, validity check, trigger check, prerequisite evidence and resulting execution state. Events append to history; they do not change issued decisions. Obligation completion and waivers similarly append evidence-backed events.
+
+## 11. Frozen evidence bundles
+
+The assessment-bundle schema packages a proposed use, decision, rules and controlled evidence records. Every referenced evidence and rule version MUST resolve to frozen content, including the evaluation profile, authority dependencies, collective terms and technical approvals. Records may point to restricted documents, but the archived snapshot must retain the verified facts and interpretations actually used. A hash alone cannot reconstruct unavailable content.
+
+The evidence-record schema validates registry metadata and dependency references. Its `facts` object carries the record-family content described in this document. Each implementation MUST validate that domain content against its declared profile; passing the envelope schema alone establishes no rights.
+
+The example bundle uses fictional controlled facts and verified gate findings. Its evidence records are projections of the facts used in the assessment, rather than complete operational registry exports; omitted domain facts remain outside the example's claims. It supports replay of a manual decision's gate aggregation. Automated implementations additionally preserve expanded source/person bindings, rule-match results and authority coverage proofs.
+
+Bundle snapshots include a `sha256:` digest of each archived record, computed over UTF-8 JSON with recursively sorted object keys using JavaScript UTF-16 lexicographic order and preserved array order, as implemented by `recordDigest`. Readers verify both exact versions and content digests. Digests detect content drift; verifier identity, authority and archive access controls establish provenance.

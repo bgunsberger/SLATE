@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:scope:schema:assessment-bundle:0.2.0",
+  "title": "SCOPE frozen assessment bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "specVersion",
+    "proposedUse",
+    "decision",
+    "records"
+  ],
+  "properties": {
+    "specVersion": {
+      "const": "0.2.0"
+    },
+    "proposedUse": {
+      "$ref": "urn:scope:schema:proposed-use:0.2.0"
+    },
+    "decision": {
+      "$ref": "urn:scope:schema:decision:0.2.0"
+    },
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "urn:scope:schema:evidence-record:0.2.0"
+          },
+          {
+            "$ref": "urn:scope:schema:policy-rule:0.2.0"
+          }
+        ]
+      }
+    }
+  }
+}
