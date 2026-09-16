@@ -18,9 +18,9 @@ unverified.
 | Dimension | Supplied or assumed fact | State |
 |---|---|---|
 | Source | One season's recordings and matching approved facial animation | Supplied, unverified |
-| Contracts and contributors | The company holds the same IP and distribution rights for both seasons | Supplied, unverified |
-| Operation | Training maps audio to facial animation and retains a model | Partly supplied; retained artefacts assumed |
-| Purpose | Assist production on a later season of the same IP | Supplied, unverified |
+| Legal authority and contributors | The company holds the same IP and distribution rights for both seasons | Supplied, unverified |
+| AI operation | Training maps audio to facial animation and retains a model | Partly supplied; retained artefacts assumed |
+| Target use | Assist production on a later season of the same IP | Supplied, unverified |
 | Environment | Internal use | Supplied but insufficiently specific |
 
 Separate production IDs, season-specific agreements, contributor terms,

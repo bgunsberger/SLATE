@@ -1,4 +1,4 @@
-# SCOPE Worked Scenarios
+# SlateCheck Worked Scenarios
 
 Version 0.2.0
 
@@ -28,9 +28,9 @@ The [assessment checklist example](ASSESSMENT_CHECKLIST.md#5-worked-example-clie
 ### Confirmed proposal
 
 - **Source:** Session HH-204 from the completed client service production *Harbor Heroes*. The manifest contains 12 WAV takes from Ava Lin and Mateo Ruiz.
-- **Contracts and contributors:** StreamWave Kids controls archived production material. Ava's rider requires a purpose-specific training agreement. Mateo's rider prohibits synthetic voice substitution and does not expressly address mouth-shape training. Different fictional collective terms apply to each performer.
-- **Operation:** Train and retain a model that predicts mouth shapes from dialogue audio. The technical description says the model does not generate audio, but its learned representation and deletion behaviour still require confirmation.
-- **Purpose:** Use the model on *Moss & Moon*, a different production owned by Northstar.
+- **Legal authority and contributors:** StreamWave Kids controls archived production material. Ava's rider requires a purpose-specific training agreement. Mateo's rider prohibits synthetic voice substitution and does not expressly address mouth-shape training. Different fictional collective terms apply to each performer.
+- **AI operation:** Train and retain a model that predicts mouth shapes from dialogue audio. The technical description says the model does not generate audio, but its learned representation and deletion behaviour still require confirmation.
+- **Target use:** Use the model on *Moss & Moon*, a different production owned by Northstar.
 - **Environment:** MotionMap Lab, an Australia-hosted private tenant with provider training disabled and 30-day service-output retention. The exported model is retained in the studio research registry, where its retention duration remains unresolved.
 
 ### Gate result
@@ -65,9 +65,9 @@ Client approval alone would leave the contributor gates unresolved. Performer co
 ### Confirmed proposal
 
 - **Source:** Transcript TT-0912 containing delivery and scheduling discussion for *Tiny Titans*. Personal discussion and performance commentary were removed. Participants received notice.
-- **Contracts and contributors:** The client agreement permits same-show workflow assistance. A standing privacy and information-governance approval covers production-only meetings.
-- **Operation:** Create a summary and action list. No embeddings or model training.
-- **Purpose:** Share with the authorised *Tiny Titans* production team.
+- **Legal authority and contributors:** The client agreement permits same-show workflow assistance. A standing privacy and information-governance approval covers production-only meetings.
+- **AI operation:** Create a summary and action list. No embeddings or model training.
+- **Target use:** Share with the authorised *Tiny Titans* production team.
 - **Environment:** NotePilot Enterprise in the show's tenant; provider training disabled; source deleted within 90 days.
 
 ### Decision

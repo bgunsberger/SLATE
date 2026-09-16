@@ -1,11 +1,11 @@
-# SCOPE Five-Case Usability Smoke Pilot
+# SlateCheck Five-Case Usability Smoke Pilot
 
 Run this smoke pilot before the larger comparative protocol in
 [`docs/PILOT_EVALUATION.md`](../docs/PILOT_EVALUATION.md). It tests whether a
 requester can submit a real AI-use question, understand the answer and move a
 held request toward resolution at reasonable cost.
 
-SCOPE is being evaluated. Existing authorised processes continue to control
+SlateCheck is being evaluated. Existing authorised processes continue to control
 real work, and no pilot result grants permission.
 
 ## Working rule: specification soft freeze
@@ -60,7 +60,7 @@ Allow 30–45 minutes and use the case template in `RESULTS.md`.
 
 Give the requester the prototype and this prompt:
 
-> Use SCOPE to ask whether you can carry out this proposed AI use. Stop when you
+> Use SlateCheck to ask whether you can carry out this proposed AI use. Stop when you
 > receive a decision brief.
 
 Record time, uncertainty, guessed fields, terminology problems, sensitive-data

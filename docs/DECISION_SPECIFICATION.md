@@ -1,4 +1,4 @@
-# SCOPE Decision Specification
+# SlateCheck Decision Specification
 
 Version 0.2.0
 
@@ -123,7 +123,7 @@ Each gate evaluation MUST require the gate-specific basis when the gate is appli
 
 ### 6.1 Rule effects
 
-SCOPE supports five effects:
+SlateCheck supports five effects:
 
 - `permit` — supplies a positive basis for a bounded use;
 - `prohibit` — expressly disallows a bounded use;

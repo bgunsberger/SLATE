@@ -11,7 +11,7 @@ export async function createValidators() {
   for (const file of (await readdir(directory)).filter(name => name.endsWith('.json'))) {
     ajv.addSchema(JSON.parse(await readFile(new URL(file, directory), 'utf8')));
   }
-  return Object.fromEntries(['proposed-use', 'policy-rule', 'decision', 'evidence-record', 'assessment-bundle'].map(type => [type, ajv.getSchema(`urn:scope:schema:${type}:0.2.0`)]));
+  return Object.fromEntries(['proposed-use', 'policy-rule', 'decision', 'evidence-record', 'assessment-bundle'].map(type => [type, ajv.getSchema(`urn:slatecheck:schema:${type}:0.2.0`)]));
 }
 
 const canonical = value => JSON.stringify(value, function (key, item) {

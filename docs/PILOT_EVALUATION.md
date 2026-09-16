@@ -1,19 +1,19 @@
-# SCOPE Comparative Pilot Protocol
+# SlateCheck Comparative Pilot Protocol
 
 Version 0.2.0
 
 ## Question and scope
 
-Test whether SCOPE improves decision consistency and obligation discovery while keeping preparation and maintenance effort sustainable. Begin with 15–20 controlled real cases and fictional or de-identified publication versions. Include routine approvals, mixed contributors, ordinary licensed material, missing inventory, ambiguous rights, cross-production research, public distribution, retained models and changed evidence.
+Test whether SlateCheck improves decision consistency and obligation discovery while keeping preparation and maintenance effort sustainable. Begin with 15–20 controlled real cases and fictional or de-identified publication versions. Include routine approvals, mixed contributors, ordinary licensed material, missing inventory, ambiguous rights, cross-production research, public distribution, retained models and changed evidence.
 
 Keep the pilot's jurisdiction, operations, source classes and excluded high-impact uses explicit. Existing authorised processes continue to control actual processing during evaluation. Pilot comparison decisions do not grant new permission.
 
 ## Method
 
 1. Record the existing process's outcome, reasoning, missed facts, elapsed time and specialist effort for each case. Include held, declined and abandoned cases.
-2. Freeze the evidence set and record unresolved facts. Two qualified reviewers independently encode and assess each case using SCOPE. Preserve their initial findings before discussion.
+2. Freeze the evidence set and record unresolved facts. Two qualified reviewers independently encode and assess each case using SlateCheck. Preserve their initial findings before discussion.
 3. Compare outcomes, gate findings, obligations, next owner and explanations. A third qualified reviewer adjudicates disagreements where possible. Preserve residual uncertainty; reviewer consensus alone establishes no legal ground truth.
-4. Counterbalance case order or use matched cases to limit learning effects when comparing the existing process and SCOPE. Record reviewers' expertise and prior exposure.
+4. Counterbalance case order or use matched cases to limit learning effects when comparing the existing process and SlateCheck. Record reviewers' expertise and prior exposure.
 5. Repeat representative uses under a bounded standing approval. Account for the initial rule-authoring and record-preparation work separately from marginal repeat-use effort.
 6. Change one fact per replay: add a contributor, change a region, expire evidence, withdraw consent, change the destination, add public distribution or miss a prerequisite. Confirm the correct hold/suspension and affected derivative set.
 7. Ask a reviewer outside the original pair to reconstruct a sample decision from its frozen bundle and perform a simulated preflight and closeout.

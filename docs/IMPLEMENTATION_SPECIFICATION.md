@@ -1,10 +1,10 @@
-# SCOPE Implementation Specification
+# SlateCheck Implementation Specification
 
 Version 0.2.0
 
 ## 1. Purpose and system boundary
 
-This document defines what a SCOPE implementation must do without prescribing an interface or technology stack. A conforming implementation can be a controlled spreadsheet workflow, database-backed service, production-management integration or another system that satisfies the framework and audit requirements.
+This document defines what a SlateCheck implementation must do without prescribing an interface or technology stack. A conforming implementation can be a controlled spreadsheet workflow, database-backed service, production-management integration or another system that satisfies the framework and audit requirements.
 
 The implementation receives a proposed use, retrieves controlled facts and rules, produces an explainable result, routes unresolved work and preserves an immutable record. Source contracts, media and identity records can remain in their existing repositories.
 
@@ -16,7 +16,7 @@ The implementation supports the requester, data steward, rights editor, verifier
 
 ### FR-01 — Capture a proposed use
 
-The system MUST capture and version all five SCOPE dimensions. It MUST preserve unknown values and MUST require confirmation before evaluation.
+The system MUST capture and version all five SLATE dimensions. It MUST preserve unknown values and MUST require confirmation before evaluation.
 
 ### FR-02 — Identify exact material
 
@@ -86,14 +86,14 @@ The system MUST support a use-case-specific [assessment checklist](ASSESSMENT_CH
 - Authentication uses the organisation's managed identity service.
 - Administrative and approval actions require strong authentication.
 - Changes, reads of restricted records and exports are logged.
-- Secrets and vendor credentials remain outside SCOPE records.
+- Secrets and vendor credentials remain outside SlateCheck records.
 
 ### Privacy
 
 - Interfaces expose the minimum identity and contract data required for each role.
 - Broad interfaces use contributor IDs or approved display names.
 - Search and analytics respect record-level permissions.
-- Retention and deletion rules cover SCOPE's own logs, requests and snapshots.
+- Retention and deletion rules cover SlateCheck's own logs, requests and snapshots.
 - Production use receives a privacy impact assessment appropriate to its jurisdictions and data classes.
 
 ### Reliability and integrity

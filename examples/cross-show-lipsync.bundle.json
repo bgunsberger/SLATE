@@ -466,7 +466,7 @@
         "version": "1.0",
         "status": "active",
         "verifiedAt": "2026-09-14T00:00:00Z",
-        "integrityValue": "sha256:bc67724a7597cd4de0fc619fd242dd1a3a1ec4e26ee508ccd2e671accaa650ee"
+        "integrityValue": "sha256:148f05201e00f5c94acec7539b85ba98a1697ca5487a4100f6ad329b3b968675"
       },
       {
         "recordId": "RULE-HH-CROSS-PRODUCTION-APPROVAL",
@@ -577,7 +577,7 @@
     "decisionOwnerId": "ROLE-BUSINESS-LEGAL",
     "evaluationMethod": {
       "type": "hybrid",
-      "version": "scope-manual-0.2.0",
+      "version": "slatecheck-manual-0.2.0",
       "evaluatorId": "ROLE-AI-GOVERNANCE",
       "profileId": "PROFILE-NORTHSTAR-PILOT",
       "profileVersion": "1.0",
@@ -1266,7 +1266,7 @@
       "dependsOn": [],
       "facts": {
         "specVersion": "0.2.0",
-        "methodVersion": "scope-manual-0.2.0",
+        "methodVersion": "slatecheck-manual-0.2.0",
         "jurisdictions": [
           "AU-NSW",
           "US-CA"

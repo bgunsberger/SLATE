@@ -1,4 +1,4 @@
-# SCOPE Usability Smoke Pilot Results
+# SlateCheck Usability Smoke Pilot Results
 
 Status: **Not started**
 
@@ -74,14 +74,14 @@ Copy this section once for each case.
 
 #### Decision and effort
 
-- SCOPE outcome:
+- SlateCheck outcome:
 - Current-process outcome:
 - Material difference and adjudicated significance:
 - Requester active minutes:
 - Existing-record location/checking minutes:
 - Missing evidence preparation minutes:
 - Interpretation/approval minutes:
-- SCOPE data-entry minutes:
+- SlateCheck data-entry minutes:
 - Decision review/issue minutes:
 - Elapsed waiting time:
 - Relevant fact, obligation or inconsistency discovered:

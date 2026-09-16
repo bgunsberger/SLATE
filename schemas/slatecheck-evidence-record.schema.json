@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:scope:schema:evidence-record:0.2.0",
-  "title": "SCOPE controlled evidence record",
+  "$id": "urn:slatecheck:schema:evidence-record:0.2.0",
+  "title": "SlateCheck controlled evidence record",
   "type": "object",
   "additionalProperties": false,
   "required": [

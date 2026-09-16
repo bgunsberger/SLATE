@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:scope:schema:decision:0.2.0",
-  "title": "SCOPE Decision",
+  "$id": "urn:slatecheck:schema:decision:0.2.0",
+  "title": "SlateCheck Decision",
   "description": "An immutable decision and evidence snapshot for one proposed-use version.",
   "type": "object",
   "additionalProperties": false,

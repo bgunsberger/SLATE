@@ -1,10 +1,10 @@
-# SCOPE Data Model
+# SlateCheck Data Model
 
 Version 0.2.0
 
 ## 1. Model shape
 
-SCOPE is a linked record system. It avoids one giant permission matrix and avoids precomputing every possible combination. Specialist teams maintain authoritative facts and reusable rules; an assessment joins the relevant records for one proposed use.
+SlateCheck is a linked record system. It avoids one giant permission matrix and avoids precomputing every possible combination. Specialist teams maintain authoritative facts and reusable rules; an assessment joins the relevant records for one proposed use.
 
 The model has four layers:
 
@@ -168,7 +168,7 @@ Required domain fields:
 
 ### 3.9 Proposed use
 
-Represents the request being assessed. It contains the five SCOPE dimensions and references controlled records wherever possible. The normative machine shape is defined in [`../schemas/scope-proposed-use.schema.json`](../schemas/scope-proposed-use.schema.json).
+Represents the request being assessed. It contains the five SLATE dimensions and references controlled records wherever possible. The normative machine shape is defined in [`../schemas/slatecheck-proposed-use.schema.json`](../schemas/slatecheck-proposed-use.schema.json).
 
 The request MUST preserve unknown values explicitly. A user-friendly front end can collect plain language first, then require confirmation of the structured proposal.
 
@@ -188,7 +188,7 @@ Represents the immutable result for one proposed-use version. It includes:
 - responsible owner;
 - evaluation method and version.
 
-The normative machine shape is defined in [`../schemas/scope-decision.schema.json`](../schemas/scope-decision.schema.json).
+The normative machine shape is defined in [`../schemas/slatecheck-decision.schema.json`](../schemas/slatecheck-decision.schema.json).
 
 ### 3.11 Obligation and event
 
@@ -200,7 +200,7 @@ The [assessment checklist](ASSESSMENT_CHECKLIST.md) is a working view over these
 
 ## 4. Required relationships
 
-At minimum, a SCOPE implementation MUST support these relationships:
+At minimum, a SlateCheck implementation MUST support these relationships:
 
 ```text
 Production  --governed by--> Agreement
@@ -212,7 +212,7 @@ Material    --governed by---> Agreement
 Collection  --contains------> Material
 Derivative  --derived from--> Material or Collection
 Rule        --supported by--> Agreement or Policy
-Rule        --applies to----> SCOPE selectors
+Rule        --applies to----> SlateCheck selectors
 Proposed use--uses----------> Material or Collection
 Proposed use--runs in-------> Tool environment
 Decision    --assesses------> Proposed use version
@@ -249,9 +249,9 @@ Policy rules are modular because they match facts across standard selector group
 | Selector group | Examples |
 |---|---|
 | Source | production, material category, supplier, classification, lifecycle state |
-| Contract/contributor | agreement, party, contributor role, collective instrument, consent state, jurisdiction |
-| Operation | summarisation, embeddings, generation, training, synthetic performance, automated decision |
-| Purpose | same production, cross-production, reusable capability, public release, audience |
+| Legal authority/contributor | agreement, party, contributor role, collective instrument, consent state, jurisdiction |
+| AI operation | summarisation, embeddings, generation, training, synthetic performance, automated decision |
+| Target use | same production, cross-production, reusable capability, public release, audience |
 | Environment | tool, tenant, deployment, region, access group, provider training, retention |
 | Time | effective period, expiry, production stage |
 

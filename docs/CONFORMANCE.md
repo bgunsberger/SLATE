@@ -1,4 +1,4 @@
-# SCOPE Conformance and Validation
+# SlateCheck Conformance and Validation
 
 Version 0.2.0
 

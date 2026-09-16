@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:scope:schema:policy-rule:0.2.0",
-  "title": "SCOPE Policy Rule",
+  "$id": "urn:slatecheck:schema:policy-rule:0.2.0",
+  "title": "SlateCheck Policy Rule",
   "description": "An atomic, versioned interpretation used to evaluate a proposed use.",
   "type": "object",
   "additionalProperties": false,

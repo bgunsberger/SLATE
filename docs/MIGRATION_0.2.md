@@ -1,4 +1,4 @@
-# Migrating SCOPE 0.1 to 0.2
+# Migrating SlateCheck 0.1 to 0.2
 
 Version 0.2 introduces incompatible schema and semantic changes. Preserve historic 0.1 decisions and schemas with their original version identifiers. Reassessment produces new 0.2 records and successor links where the old decision was operationally issued.
 

@@ -1,4 +1,4 @@
-# SCOPE Publication Review
+# SlateCheck Publication Review
 
 Review date: 16 September 2026
 

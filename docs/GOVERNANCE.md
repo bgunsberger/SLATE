@@ -1,10 +1,10 @@
-# SCOPE Governance Model
+# SlateCheck Governance Model
 
 Version 0.2.0
 
 ## 1. Governance objective
 
-SCOPE creates a shared operational system across creative, production, technology, security, privacy, People and Culture, labour relations and Legal. Its governance model assigns each fact and decision to the people best placed to own it.
+SlateCheck creates a shared operational system across creative, production, technology, security, privacy, People and Culture, labour relations and Legal. Its governance model assigns each fact and decision to the people best placed to own it.
 
 The governing principle is simple: staff receive a useful answer, specialists retain authority over their domain, and every decision remains traceable to verified evidence.
 
@@ -36,7 +36,7 @@ Own the technical truth about tool environments, accounts, data regions, access,
 
 ### AI governance owner
 
-Owns the SCOPE vocabulary, decision method, policy lifecycle, conformance, metrics and cross-functional forum. This role cannot grant rights held by another party.
+Owns the SlateCheck vocabulary, decision method, policy lifecycle, conformance, metrics and cross-functional forum. This role cannot grant rights held by another party.
 
 ### Decision owner
 
@@ -112,7 +112,7 @@ Before an environment can satisfy a decision gate:
 
 ### 4.5 Proposed-use assessment
 
-The requester describes the use in plain language and confirms all five SCOPE dimensions. Automated evaluation matches standing rules. The decision owner routes unresolved gates to the correct specialist or external party. Processing begins only when the outcome permits it and prerequisite conditions are complete.
+The requester describes the use in plain language and confirms all five SLATE dimensions. Automated evaluation matches standing rules. The decision owner routes unresolved gates to the correct specialist or external party. Processing begins only when the outcome permits it and prerequisite conditions are complete.
 
 ### 4.6 Operation and closeout
 
@@ -161,11 +161,11 @@ Evidence owners publish changes as new versions. The system identifies linked ac
 - revoked;
 - expired and closed.
 
-Consent withdrawal or a rights dispute immediately suspends affected active uses while the decision owner performs stop-use review. The suspension also covers affected derivatives whose obligation applicability is uncertain. A security or privacy incident follows the organisation's incident process and also triggers SCOPE impact analysis.
+Consent withdrawal or a rights dispute immediately suspends affected active uses while the decision owner performs stop-use review. The suspension also covers affected derivatives whose obligation applicability is uncertain. A security or privacy incident follows the organisation's incident process and also triggers SlateCheck impact analysis.
 
 ## 8. Information security and privacy
 
-A SCOPE implementation SHOULD apply:
+A SlateCheck implementation SHOULD apply:
 
 - least-privilege and role-based access;
 - separate storage for identity, contract text and general metadata;
@@ -184,7 +184,7 @@ The organisation MUST set retention periods for decisions, evidence and audit ev
 
 ## 9. Oversight forum
 
-A cross-functional SCOPE forum SHOULD meet on a defined cadence and after significant incidents. It reviews:
+A cross-functional SlateCheck forum SHOULD meet on a defined cadence and after significant incidents. It reviews:
 
 - new high-impact uses;
 - recurring unresolved questions;
@@ -215,9 +215,9 @@ Targets and service levels are configured locally. Speed never substitutes for t
 
 ## 11. Publication and research governance
 
-A public SCOPE specification can publish the framework, vocabulary, schemas, fictional scenarios and conformance tests. Implementations protect client names, contract terms, contributor identities, security architecture and decision records.
+A public SlateCheck specification can publish the framework, vocabulary, schemas, fictional scenarios and conformance tests. Implementations protect client names, contract terms, contributor identities, security architecture and decision records.
 
-Research using operational data requires its own SCOPE assessment, ethics and privacy review where applicable, a publication plan and a method for de-identification. Contributors and affected workers should have a route to challenge inaccurate characterisation of their rights or views.
+Research using operational data requires its own SlateCheck assessment, ethics and privacy review where applicable, a publication plan and a method for de-identification. Contributors and affected workers should have a route to challenge inaccurate characterisation of their rights or views.
 
 ## 12. Execution state and preflight
 

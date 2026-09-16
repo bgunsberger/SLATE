@@ -1,4 +1,4 @@
-# SCOPE Glossary
+# SlateCheck Glossary
 
 Version 0.2.0
 
@@ -30,21 +30,23 @@ Version 0.2.0
 
 **Lineage** — The recorded relationship between source material and its derivatives.
 
+**Legal authority and contributors** — The agreements, rights, people, collective terms and jurisdictions that may govern a proposed use.
+
 **Manifest** — A versioned inventory of the exact items in a material collection.
 
 **Non-applicability finding** — A scoped, evidenced determination by a qualified authority that a particular requirement does not apply.
 
 **Obligation applicability** — A verified finding that a source duty is retained, released by authorised interpretation or uncertain for a particular derivative and transformation.
 
-**Operation** — The technical activity performed on source material and the persistent artefacts it creates.
+**AI operation** — The technical activity performed on source material and the persistent artefacts it creates. Stored as the `operation` domain in machine-readable records.
 
 **Policy rule** — A structured, queryable interpretation with an effect, applicability scope, authority and evidence.
 
 **Positive basis** — Verified evidence sufficient for the specific gate and proposed use, including rights authority, technical verification or operational controls as appropriate.
 
-**Proposed use** — The versioned combination of Source, Contracts and contributors, Operation, Purpose and Environment submitted for assessment.
+**Proposed use** — The versioned combination of Source, Legal authority and contributors, AI operation, Target use and Environment submitted for assessment.
 
-**Purpose** — The intended outcome, beneficiary, destination production, audience and business context.
+**Target use** — The intended outcome, beneficiary, destination production, audience and business context. Stored across the `purpose`, production-relationship and distribution domains in machine-readable records.
 
 **Represented person** — An identifiable person appearing in, speaking in, creating or otherwise linked to material in a way relevant to rights or privacy.
 

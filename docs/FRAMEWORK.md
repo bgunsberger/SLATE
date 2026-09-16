@@ -1,4 +1,4 @@
-# SCOPE Framework
+# SlateCheck Framework
 
 Version 0.2.0 — working specification
 
@@ -8,7 +8,7 @@ Author: Ben Gunsberger
 
 Creative studios hold material whose permitted use depends on several overlapping sources of authority: production agreements, ownership, licences, individual engagements, consent, collective agreements, privacy obligations, workplace policy and tool terms. AI adds operations that can extract, transform, reproduce or persist characteristics of that material in new forms.
 
-SCOPE provides a consistent way to describe a proposed AI use, assemble the applicable evidence and return a bounded, explainable outcome. It supports human decision-making and organisational governance. It does not replace legal interpretation, consultation or approval.
+SlateCheck provides a consistent way to describe a proposed AI use, assemble the applicable evidence and return a bounded, explainable outcome. It supports human decision-making and organisational governance. It does not replace legal interpretation, consultation or approval.
 
 The framework has four goals:
 
@@ -21,7 +21,7 @@ The framework has four goals:
 
 The words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT** and **MAY** express requirement levels in this specification.
 
-- **MUST / MUST NOT**: required for SCOPE conformance.
+- **MUST / MUST NOT**: required for SlateCheck conformance.
 - **SHOULD / SHOULD NOT**: expected unless a documented reason supports a different implementation.
 - **MAY**: optional.
 
@@ -35,13 +35,13 @@ Every assessment concerns one versioned **Proposed Use**:
 
 > A defined set of source material, governed by identified rights and people, submitted to a stated AI operation for a stated purpose in a stated environment.
 
-A proposed use is represented as:
+A proposed use is represented through the five-part **SLATE** model:
 
-`Source + Contracts and contributors + Operation + Purpose + Environment`
+`Source + Legal authority and contributors + AI operation + Target use + Environment`
 
 Changing any material fact creates a new version and triggers reassessment. Material changes include adding files or people, changing the operation, moving from one production to another, retaining a model, changing provider settings, adding an access region or distributing an output to a new audience.
 
-## 4. The five SCOPE dimensions
+## 4. The five SLATE dimensions
 
 ### 4.1 Source
 
@@ -71,9 +71,9 @@ Common source categories include:
 
 Possession, access, payment and production completion are recorded as facts. They do not independently establish permission.
 
-### 4.2 Contracts and contributors
+### 4.2 Legal authority and contributors
 
-Contracts and contributors describes every authority and person whose terms may govern the proposed use.
+Legal authority and contributors describes every authority and person whose terms may govern the proposed use.
 
 It MUST support:
 
@@ -92,9 +92,9 @@ Rights are evaluated at the most granular level required by the evidence. A data
 
 An agreement summary MUST link to its controlled source or custodian. The summary is a queryable interpretation, not a replacement for the executed document.
 
-### 4.3 Operation
+### 4.3 AI operation
 
-Operation describes what the system does to the source and which durable artefacts it creates.
+AI operation describes what the system does to the source and which durable artefacts it creates.
 
 The minimum operation vocabulary is:
 
@@ -126,9 +126,9 @@ An operation MUST also state persistence:
 
 Technical descriptions SHOULD explain what the system learns or retains in production language. Labels such as “analysis” or “internal AI” are too broad for a permission decision.
 
-### 4.4 Purpose
+### 4.4 Target use
 
-Purpose describes the intended outcome, beneficiary, destination and audience.
+Target use describes the intended outcome, beneficiary, destination and audience.
 
 It MUST distinguish:
 
@@ -164,7 +164,7 @@ It MUST identify:
 - security classification and approved data classes;
 - export, monitoring and incident-response controls.
 
-A product-level approval is insufficient when settings vary by account, region or feature. SCOPE evaluates the actual environment used for the proposed activity.
+A product-level approval is insufficient when settings vary by account, region or feature. SlateCheck evaluates the actual environment used for the proposed activity.
 
 ## 5. Cross-cutting concepts
 
@@ -172,7 +172,7 @@ A product-level approval is insufficient when settings vary by account, region o
 
 A positive basis is verified evidence sufficient for the particular gate. Rights gates require a bounded rights conclusion; inventory requires verified completeness; environment requires technical verification and approval; obligations require an executable control plan. An internal approval exercises only the authority delegated to its issuer.
 
-SCOPE's default is an organisational processing hold until the applicable bases are established. An authorised reviewer can record an applicable licence, ownership-based authority, legal exception or a reasoned determination that a particular permission is unnecessary. The reviewer records the jurisdiction, exact scope, evidence and authority exercised. Consent is required where the applicable authority requires it. A non-applicability finding requires equivalent evidence and verification; silence cannot establish it.
+SlateCheck's default is an organisational processing hold until the applicable bases are established. An authorised reviewer can record an applicable licence, ownership-based authority, legal exception or a reasoned determination that a particular permission is unnecessary. The reviewer records the jurisdiction, exact scope, evidence and authority exercised. Consent is required where the applicable authority requires it. A non-applicability finding requires equivalent evidence and verification; silence cannot establish it.
 
 The per-gate evidence requirements are defined in the Decision Specification. Missing facts create an information hold; known facts requiring an authorised interpretation or grant create an approval hold.
 
@@ -196,11 +196,11 @@ Evidence and decisions are time-bound. Each record MUST state its effective stat
 
 ### 5.6 Human authority
 
-SCOPE distinguishes an engine result from an authorised decision. Automated evaluation can confirm that a proposal matches a standing approval. It cannot create a new permission, waive a restriction or resolve an ambiguous contract.
+SlateCheck distinguishes an engine result from an authorised decision. Automated evaluation can confirm that a proposal matches a standing approval. It cannot create a new permission, waive a restriction or resolve an ambiguous contract.
 
 ## 6. Decision outcomes
 
-SCOPE uses five plain-language outcomes:
+SlateCheck uses five plain-language outcomes:
 
 | Outcome | Meaning | Staff action |
 |---|---|---|
@@ -223,7 +223,7 @@ Every outcome MUST include:
 
 ## 7. The decision record
 
-SCOPE can present an [assessment checklist](ASSESSMENT_CHECKLIST.md) for intake and unresolved work. After formal assessment, it is a derived view; the decision and its execution prerequisites retain processing authority.
+SlateCheck can present an [assessment checklist](ASSESSMENT_CHECKLIST.md) for intake and unresolved work. After formal assessment, it is a derived view; the decision and its execution prerequisites retain processing authority.
 
 The output is a versioned evidence snapshot, not a free-floating answer. A conforming decision record MUST allow a reviewer to reconstruct:
 
@@ -239,7 +239,7 @@ Previous decisions MAY be used as evidence of a standing approval. Precedent nev
 
 ## 8. Framework architecture
 
-SCOPE separates five services. They can begin as controlled spreadsheets and document repositories, then move to a database without changing the conceptual model.
+SlateCheck separates five services. They can begin as controlled spreadsheets and document repositories, then move to a database without changing the conceptual model.
 
 1. **Source and lineage register** — productions, materials, collections, contributors and derivatives.
 2. **Rights and policy register** — agreements, interpreted terms, consent, collective terms and internal rules.
@@ -247,7 +247,7 @@ SCOPE separates five services. They can begin as controlled spreadsheets and doc
 4. **Assessment service** — structured proposed uses, rule matching and unresolved questions.
 5. **Decision and obligation register** — outcomes, approvals, conditions, expiry, deletion and audit events.
 
-Controlled source documents remain in their systems of record. SCOPE stores stable references, structured interpretations and verification metadata.
+Controlled source documents remain in their systems of record. SlateCheck stores stable references, structured interpretations and verification metadata.
 
 ## 9. Conformance levels
 
@@ -257,6 +257,6 @@ The levels are cumulative: **Recorded** establishes controlled manual assessment
 
 ## 10. Scope boundaries
 
-SCOPE is a governance and decision-record framework. It does not determine ownership, interpret law by itself, guarantee that source records are accurate, assess model quality or replace consultation with affected workers and contributors. Its value depends on verified records, clear authority and a working process for uncertainty.
+SlateCheck is a governance and decision-record framework. It does not determine ownership, interpret law by itself, guarantee that source records are accurate, assess model quality or replace consultation with affected workers and contributors. Its value depends on verified records, clear authority and a working process for uncertainty.
 
 An implementation MUST describe its jurisdictional coverage and limitations. Public examples SHOULD use fictional organisations, productions, people and agreements unless publication rights and privacy have been confirmed.

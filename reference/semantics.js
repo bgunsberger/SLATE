@@ -1,4 +1,4 @@
-/** Reference primitives for SCOPE 0.2. These do not interpret contracts or grant rights. */
+/** Reference primitives for SlateCheck 0.2. These do not interpret contracts or grant rights. */
 export const CORE_GATES = ['inventory', 'source_authority', 'contributor_rights', 'privacy_and_people_impact', 'operation', 'purpose_and_destination', 'environment', 'obligations'];
 const OUTCOMES = [
   ['prohibited', 'prohibited_under_current_rules'],
