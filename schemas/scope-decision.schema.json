@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:scope:schema:decision:0.1.0",
+  "title": "SCOPE Decision",
+  "description": "An immutable decision and evidence snapshot for one proposed-use version.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "version",
+    "proposedUseId",
+    "proposedUseVersion",
+    "outcome",
+    "answer",
+    "scopeSummary",
+    "gateResults",
+    "applicableRuleIds",
+    "evidenceSnapshot",
+    "conditions",
+    "decisionOwnerId",
+    "evaluationMethod",
+    "decidedAt",
+    "validity",
+    "reassessmentTriggers"
+  ],
+  "properties": {
+    "id": { "$ref": "#/$defs/id" },
+    "version": { "type": "string", "minLength": 1 },
+    "proposedUseId": { "$ref": "#/$defs/id" },
+    "proposedUseVersion": { "type": "string", "minLength": 1 },
+    "outcome": {
+      "enum": [
+        "permitted",
+        "permitted_with_conditions",
+        "hold_information_required",
+        "hold_approval_required",
+        "prohibited_under_current_rules"
+      ]
+    },
+    "answer": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "scopeSummary": { "type": "string", "minLength": 1, "maxLength": 4000 },
+    "gateResults": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["gate", "result", "explanation", "ruleIds", "evidenceIds"],
+        "properties": {
+          "gate": {
+            "enum": [
+              "inventory",
+              "source_authority",
+              "contributor_rights",
+              "privacy_and_people_impact",
+              "operation",
+              "purpose_and_destination",
+              "environment",
+              "obligations",
+              "organisation_defined"
+            ]
+          },
+          "organisationGateName": { "type": "string", "minLength": 1 },
+          "result": {
+            "enum": ["satisfied", "conditional", "missing_information", "approval_required", "prohibited", "not_applicable"]
+          },
+          "explanation": { "type": "string", "minLength": 1, "maxLength": 4000 },
+          "ruleIds": { "$ref": "#/$defs/idList" },
+          "evidenceIds": { "$ref": "#/$defs/idList" },
+          "responsibleRole": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/actionItem" }
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "#/$defs/actionItem" },
+          {
+            "type": "object",
+            "required": ["status"],
+            "properties": {
+              "status": { "enum": ["open", "satisfied", "waived_by_authority", "failed", "expired"] },
+              "dueAt": { "$ref": "#/$defs/dateTime" },
+              "completionEvidenceIds": { "$ref": "#/$defs/idList" }
+            }
+          }
+        ]
+      }
+    },
+    "requiredApproverIds": { "$ref": "#/$defs/idList" },
+    "approvals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["approverId", "authorityExercised", "status"],
+        "properties": {
+          "approverId": { "$ref": "#/$defs/id" },
+          "authorityExercised": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["requested", "approved", "declined", "withdrawn", "expired"] },
+          "recordedAt": { "$ref": "#/$defs/dateTime" },
+          "evidenceId": { "$ref": "#/$defs/id" }
+        }
+      }
+    },
+    "applicableRuleIds": { "$ref": "#/$defs/idList" },
+    "evidenceSnapshot": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["recordId", "version", "status", "verifiedAt"],
+        "properties": {
+          "recordId": { "$ref": "#/$defs/id" },
+          "version": { "type": "string", "minLength": 1 },
+          "status": { "type": "string", "minLength": 1 },
+          "verifiedAt": { "$ref": "#/$defs/dateTime" },
+          "integrityValue": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "decisionOwnerId": { "$ref": "#/$defs/id" },
+    "evaluationMethod": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "version"],
+      "properties": {
+        "type": { "enum": ["manual", "rules_engine", "hybrid"] },
+        "version": { "type": "string", "minLength": 1 },
+        "evaluatorId": { "$ref": "#/$defs/id" }
+      }
+    },
+    "decidedAt": { "$ref": "#/$defs/dateTime" },
+    "validity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["validFrom"],
+      "properties": {
+        "validFrom": { "$ref": "#/$defs/dateTime" },
+        "validUntil": { "$ref": "#/$defs/dateTime" },
+        "reviewAt": { "$ref": "#/$defs/dateTime" }
+      }
+    },
+    "reassessmentTriggers": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "supersedesDecisionId": { "$ref": "#/$defs/id" },
+    "relatedDerivativeIds": { "$ref": "#/$defs/idList" }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9._:-]{2,127}$" },
+    "dateTime": { "type": "string", "format": "date-time" },
+    "idList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/id" }
+    },
+    "actionItem": {
+      "type": "object",
+      "required": ["id", "description", "ownerId", "timing"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "description": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "ownerId": { "$ref": "#/$defs/id" },
+        "timing": { "enum": ["before_processing", "during_processing", "before_release", "at_expiry", "on_trigger"] },
+        "evidenceRequired": { "type": "boolean" }
+      }
+    }
+  }
+}

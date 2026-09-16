@@ -1,0 +1,161 @@
+{
+  "id": "DECISION-HH-MM-001",
+  "version": "1.0",
+  "proposedUseId": "USE-HH-MM-001",
+  "proposedUseVersion": "1.0",
+  "outcome": "hold_approval_required",
+  "answer": "Hold the training. Business and Legal Affairs must resolve the client and performer permissions before the recordings enter the training environment.",
+  "scopeSummary": "Twelve Harbor Heroes dialogue takes from Ava Lin and Mateo Ruiz, used to train and retain a mouth-shape prediction model for Moss & Moon in MotionMap Lab's Australian private tenant.",
+  "gateResults": [
+    {
+      "gate": "inventory",
+      "result": "satisfied",
+      "explanation": "The exact recordings and both represented performers are identified in manifest version 3.0.",
+      "ruleIds": ["RULE-EXACT-INVENTORY"],
+      "evidenceIds": ["COLLECTION-HH-VOICE-204"],
+      "responsibleRole": "Production data steward"
+    },
+    {
+      "gate": "source_authority",
+      "result": "approval_required",
+      "explanation": "No verified client permission covers training a retained model for a different production.",
+      "ruleIds": ["RULE-HH-CROSS-PRODUCTION-APPROVAL"],
+      "evidenceIds": ["AGREEMENT-HH-PRODUCTION"],
+      "responsibleRole": "Business and Legal Affairs"
+    },
+    {
+      "gate": "contributor_rights",
+      "result": "approval_required",
+      "explanation": "Ava requires purpose-specific agreement and Mateo's restriction requires an authorised technical and legal interpretation. Collective terms apply separately.",
+      "ruleIds": ["RULE-AVA-AI-CONSENT", "RULE-MATEO-SYNTHETIC-PERFORMANCE"],
+      "evidenceIds": ["AGREEMENT-AVA-12", "AGREEMENT-MATEO-08", "COLLECTIVE-AVPC-24", "COLLECTIVE-USV-23"],
+      "responsibleRole": "Business and Legal Affairs"
+    },
+    {
+      "gate": "privacy_and_people_impact",
+      "result": "approval_required",
+      "explanation": "The secondary use of identifiable voice recordings requires a verified purpose-specific privacy basis and contributor process.",
+      "ruleIds": ["RULE-PERSONAL-DATA-SECONDARY-USE"],
+      "evidenceIds": ["COLLECTION-HH-VOICE-204"],
+      "responsibleRole": "Privacy owner"
+    },
+    {
+      "gate": "operation",
+      "result": "approval_required",
+      "explanation": "The retained learned capability requires a final technical description and model-deletion plan.",
+      "ruleIds": ["RULE-PERSISTENT-MODEL-DESCRIPTION"],
+      "evidenceIds": ["ENV-MOTIONMAP-AU-LAB"],
+      "responsibleRole": "ML lead"
+    },
+    {
+      "gate": "purpose_and_destination",
+      "result": "approval_required",
+      "explanation": "The destination is company-owned IP and differs from the client production that created the recordings.",
+      "ruleIds": ["RULE-HH-CROSS-PRODUCTION-APPROVAL"],
+      "evidenceIds": ["AGREEMENT-HH-PRODUCTION", "PRODUCTION-MOSS-AND-MOON"],
+      "responsibleRole": "Business and Legal Affairs"
+    },
+    {
+      "gate": "environment",
+      "result": "conditional",
+      "explanation": "The approved Australian private tenant disables provider training, but its approval must be bound to any final rights scope and model expiry.",
+      "ruleIds": ["RULE-MOTIONMAP-AU-ENVIRONMENT"],
+      "evidenceIds": ["ENV-MOTIONMAP-AU-LAB", "APPROVAL-MOTIONMAP-SECURITY"],
+      "responsibleRole": "IT and security"
+    },
+    {
+      "gate": "obligations",
+      "result": "approval_required",
+      "explanation": "Compensation, consent, collective minimums, model expiry and withdrawal response remain unresolved.",
+      "ruleIds": ["RULE-AVA-AI-CONSENT", "RULE-PERSISTENT-MODEL-DESCRIPTION"],
+      "evidenceIds": ["AGREEMENT-AVA-12", "AGREEMENT-MATEO-08"],
+      "responsibleRole": "Decision owner"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "BLOCKER-CLIENT-PERMISSION",
+      "description": "Obtain and verify client authority for the exact dataset, learned artefact, destination and retention.",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "timing": "before_processing",
+      "evidenceRequired": true
+    },
+    {
+      "id": "BLOCKER-PERFORMER-RIGHTS",
+      "description": "Resolve each performer's agreement, consent, compensation and collective requirements.",
+      "ownerId": "ROLE-BUSINESS-LEGAL",
+      "timing": "before_processing",
+      "evidenceRequired": true
+    },
+    {
+      "id": "BLOCKER-TECHNICAL-DESCRIPTION",
+      "description": "Approve a technical description of learned capability, memorisation risk, access, retention and deletion.",
+      "ownerId": "ROLE-ML-LEAD",
+      "timing": "before_processing",
+      "evidenceRequired": true
+    }
+  ],
+  "conditions": [],
+  "requiredApproverIds": ["ROLE-BUSINESS-LEGAL", "ORG-STREAMWAVE-KIDS", "PERSON-AVA-LIN", "PERSON-MATEO-RUIZ"],
+  "approvals": [],
+  "applicableRuleIds": [
+    "RULE-EXACT-INVENTORY",
+    "RULE-HH-CROSS-PRODUCTION-APPROVAL",
+    "RULE-AVA-AI-CONSENT",
+    "RULE-MATEO-SYNTHETIC-PERFORMANCE",
+    "RULE-PERSONAL-DATA-SECONDARY-USE",
+    "RULE-PERSISTENT-MODEL-DESCRIPTION",
+    "RULE-MOTIONMAP-AU-ENVIRONMENT"
+  ],
+  "evidenceSnapshot": [
+    {
+      "recordId": "COLLECTION-HH-VOICE-204",
+      "version": "3.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z"
+    },
+    {
+      "recordId": "AGREEMENT-HH-PRODUCTION",
+      "version": "2.1",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z"
+    },
+    {
+      "recordId": "AGREEMENT-AVA-12",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z"
+    },
+    {
+      "recordId": "AGREEMENT-MATEO-08",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z"
+    },
+    {
+      "recordId": "ENV-MOTIONMAP-AU-LAB",
+      "version": "2.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z"
+    }
+  ],
+  "decisionOwnerId": "ROLE-BUSINESS-LEGAL",
+  "evaluationMethod": {
+    "type": "hybrid",
+    "version": "scope-method-0.1.0",
+    "evaluatorId": "ROLE-AI-GOVERNANCE"
+  },
+  "decidedAt": "2026-09-16T03:00:00Z",
+  "validity": {
+    "validFrom": "2026-09-16T03:00:00Z",
+    "reviewAt": "2026-10-16T03:00:00Z"
+  },
+  "reassessmentTriggers": [
+    "Client authority is added or amended",
+    "A performer agreement, consent or collective term changes",
+    "The material collection changes",
+    "The learned capability or destination changes",
+    "The environment, region, access or retention changes"
+  ],
+  "relatedDerivativeIds": []
+}

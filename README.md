@@ -1,35 +1,56 @@
 # SCOPE
 
-Rights-Aware AI Governance for Creative Production.
+**Rights-Aware AI Governance for Creative Production**
 
-A question-first, fictional creative-production decision-support prototype. Open `dist/index.html` through a local HTTP server; all assets are authored static files. The existing Sites identity is preserved in `.openai/hosting.json`.
+SCOPE is an implementation-neutral framework for answering a practical question:
 
-## Experience
+> Given this material, these contributors, these agreements, this AI activity, this destination and this tool, are we permitted to proceed?
 
-- Ask in plain language or choose one of six realistic questions.
-- Confirm material, source, operation, destination, environment, location and exact inventory. Unknowns remain explicit.
-- Read an approved, conditional, review-required or restricted decision brief, with an accountable person, supporting evidence, next actions and audit details.
-- Follow linked records, search evidence and inspect who supplies and verifies each kind of information.
-- Save briefs and review drafts within the current page session, or download a text brief containing the evidence snapshot. No messages are sent.
+The name describes the five dimensions of a proposed use:
 
-## Boundaries
+- **Source** — what material is involved, where it came from and what it contains
+- **Contracts and contributors** — which agreements, people and collective terms govern it
+- **Operation** — what the AI system will do and what it will retain
+- **Purpose** — why the work is being done, for whom and where the result will be used
+- **Environment** — which tool, account, provider, locations, users and retention settings are involved
 
-All studio data, people, contracts, collective agreements, consents, prior decisions and policies are invented. The records represent a fixed 14 September 2026 demonstration snapshot. They are curated extracts, with no underlying contract attachments. They do not represent actual guild, union or legal requirements.
+SCOPE turns fragmented production, contractual, contributor and technical information into a versioned decision record. It is designed for animation, VFX, games, film and other creative-production environments with a mix of client work, original IP, co-productions, employees, contractors and performers.
 
-Question recognition uses limited keyword suggestions, not a language model. Users confirm the structured proposal. Rules live in `dist/engine.js`; unsupported combinations require review. The application creates no new legal permission. Approval means the confirmed scope matches a recorded fictional permission. Restrictions take precedence over unresolved information. Contributor selection and team access can change the outcome.
+## Specification set
 
-The reference records are read-only. Saved briefs and review notes are in memory and disappear on refresh. There is no shared database, live approval service, email delivery or real contract integration. Do not enter actual production or personal data. A future live implementation needs authenticated roles, controlled source files, independently verified rights records, versioned policy evaluation, durable audit history, expiry/withdrawal handling and review assignment.
+- [`docs/FRAMEWORK.md`](docs/FRAMEWORK.md) — conceptual model, principles, decision outcomes and conformance
+- [`docs/DATA_MODEL.md`](docs/DATA_MODEL.md) — records, relationships, required fields and data ownership
+- [`docs/DECISION_SPECIFICATION.md`](docs/DECISION_SPECIFICATION.md) — deterministic assessment and conflict-resolution rules
+- [`docs/GOVERNANCE.md`](docs/GOVERNANCE.md) — operating model, responsibilities and lifecycle controls
+- [`docs/IMPLEMENTATION_SPECIFICATION.md`](docs/IMPLEMENTATION_SPECIFICATION.md) — system requirements, pilot structure and acceptance criteria
+- [`docs/SCENARIOS.md`](docs/SCENARIOS.md) — worked examples for a fictional multi-location studio
+- [`docs/GLOSSARY.md`](docs/GLOSSARY.md) — shared terminology
+- [`schemas/`](schemas/) — JSON Schemas for proposed uses, policy rules and decisions
+- [`examples/`](examples/) — machine-readable example assessments
 
-## Structure
+The existing website prototype remains in `dist/` as design history. It is not the normative definition of SCOPE. The documents and schemas above are the source of truth for future implementations.
 
-- `dist/app.js`: question and confirmation flow, decision briefs, record explorer, dialogs, review drafts and downloads.
-- `dist/data.js`: connected fictional records and scenarios.
-- `dist/engine.js`: deterministic assessment rules.
-- `dist/styles.css`: responsive dark workspace and readable paper-style briefs.
-- `tests/engine.test.js`: outcomes, unknowns, contributor selection, restrictions, scope boundaries and evidence integrity.
+## Status
 
-## Validation
+This is a working specification, version **0.1.0**. It is suitable for structured prototyping, stakeholder review and testing against real contract patterns. It does not provide legal advice or create permission. An organisation adopting SCOPE must configure its own policies, authorities, jurisdictions and review process with qualified legal, privacy, security, production and workforce representatives.
 
-Run `npm run check` and `npm test` (no dependencies required).
+## Design foundations
 
-Browser-verified on 16 September 2026: all six scenarios; modified Nia experiment with US access becoming restricted; unrecognised question remaining under review; connected record navigation; search; stewardship view; saved brief; review draft; downloaded text file including evidence; desktop and 390px mobile views with no horizontal overflow. No browser errors or warnings were observed.
+SCOPE draws on established work without depending on a particular vendor or software stack:
+
+- [W3C ODRL Information Model 2.2](https://www.w3.org/TR/odrl-model/) for permissions, prohibitions, duties, constraints and policy conflict
+- [W3C Community Group Data Privacy Vocabulary 2.0](https://www.w3.org/community/reports/dpvcg/CG-FINAL-dpv-20240801/) for machine-readable descriptions of personal-data processing
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) for governed, documented risk management across the AI lifecycle
+- [OAIC guidance on commercially available AI products](https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/guidance-on-privacy-and-the-use-of-commercially-available-ai-products) and [model development and training](https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/guidance-on-privacy-and-developing-and-training-generative-ai-models) for Australian privacy considerations
+
+SCOPE extends these ideas with production-specific concepts such as show boundaries, contributor-level rights, client-funded work, source-to-model lineage, synthetic performance and cross-production reuse.
+
+## Prototype validation
+
+The schemas can be syntax-checked without installing dependencies:
+
+```sh
+npm run validate:spec
+```
+
+The earlier website prototype can still be checked with `npm run check` and `npm test`.

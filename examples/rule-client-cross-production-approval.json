@@ -1,0 +1,37 @@
+{
+  "id": "RULE-HH-CROSS-PRODUCTION-APPROVAL",
+  "version": "1.0",
+  "name": "Harbor Heroes cross-production AI use requires client approval",
+  "status": "active",
+  "effect": "require_approval",
+  "authority": {
+    "recordIds": ["AGREEMENT-HH-PRODUCTION"],
+    "authorityType": "production_agreement",
+    "sourceReference": "Controlled legal repository: PSA-017 section 11.4"
+  },
+  "selectors": {
+    "sourceProductionIds": ["PRODUCTION-HARBOR-HEROES"],
+    "purposeRelationships": ["different_production", "reusable_studio_capability"]
+  },
+  "requirements": [
+    {
+      "type": "approval",
+      "description": "Obtain written client approval for the exact source collection, AI operation, retained artefact, destination and duration.",
+      "ownerRole": "Business and Legal Affairs",
+      "due": "before_processing",
+      "evidenceRequired": true
+    }
+  ],
+  "approvalAuthorityIds": ["ORG-STREAMWAVE-KIDS"],
+  "explanation": "The verified agreement does not provide a standing basis for using Harbor Heroes material to create AI capabilities for another production.",
+  "ownerId": "ROLE-BUSINESS-LEGAL",
+  "verifiedBy": "PERSON-LEGAL-COUNSEL-01",
+  "verifiedAt": "2026-09-14T00:00:00Z",
+  "effectiveFrom": "2025-01-01T00:00:00Z",
+  "reviewAt": "2027-01-01T00:00:00Z",
+  "supersedesRuleIds": [],
+  "exceptionToRuleIds": [],
+  "changeTriggers": ["Client amendment", "New destination", "New operation", "Agreement expiry"],
+  "testCaseIds": ["TEST-HH-CROSS-SHOW-TRAINING", "TEST-HH-SAME-SHOW-SUMMARY"],
+  "interpretationConfidence": "confirmed"
+}

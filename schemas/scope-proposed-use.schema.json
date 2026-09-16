@@ -1,0 +1,392 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:scope:schema:proposed-use:0.1.0",
+  "title": "SCOPE Proposed Use",
+  "description": "A versioned proposal covering Source, Contracts and contributors, Operation, Purpose and Environment.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "version",
+    "title",
+    "requestedBy",
+    "requestedAt",
+    "source",
+    "contractsAndContributors",
+    "operation",
+    "purpose",
+    "environment"
+  ],
+  "properties": {
+    "id": { "$ref": "#/$defs/id" },
+    "version": { "$ref": "#/$defs/version" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "plainLanguageQuestion": { "type": "string", "maxLength": 2000 },
+    "requestedBy": { "$ref": "#/$defs/id" },
+    "requestedAt": { "$ref": "#/$defs/dateTime" },
+    "businessOwnerId": { "$ref": "#/$defs/id" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inventoryStatus", "materials"],
+      "properties": {
+        "inventoryStatus": {
+          "enum": ["verified", "provisional", "unknown"]
+        },
+        "collectionId": { "$ref": "#/$defs/id" },
+        "collectionVersion": { "$ref": "#/$defs/version" },
+        "manifestReference": { "type": "string", "minLength": 1 },
+        "materials": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/materialReference" }
+        },
+        "sourceProductionIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "lineageComplete": { "type": ["boolean", "null"] },
+        "notes": { "type": "string", "maxLength": 4000 }
+      }
+    },
+    "contractsAndContributors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contributorInventoryStatus", "representedPersonIds", "agreementIds"],
+      "properties": {
+        "contributorInventoryStatus": {
+          "enum": ["verified", "provisional", "unknown"]
+        },
+        "representedPersonIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "representedCohortIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "agreementIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "individualAgreementIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "collectiveInstrumentIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "consentRecordIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "privacyBasisIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "applicableJurisdictions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 2 }
+        },
+        "unknowns": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["types", "description", "persistence", "expectedDerivatives"],
+      "properties": {
+        "types": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/operationType" }
+        },
+        "description": { "type": "string", "minLength": 1, "maxLength": 4000 },
+        "humanRole": {
+          "enum": ["assistive", "recommendation", "human_approval_required", "automated_action", "research_only", "unknown"]
+        },
+        "persistence": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "ephemeral",
+              "saved_output",
+              "transcript_or_labels",
+              "embeddings_or_index",
+              "dataset",
+              "evaluation_set",
+              "model_weights",
+              "adapter_or_lora",
+              "logs",
+              "unknown",
+              "other"
+            ]
+          }
+        },
+        "expectedDerivatives": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/derivative" }
+        },
+        "learnedCapability": { "type": "string", "maxLength": 4000 },
+        "technicalOwnerId": { "$ref": "#/$defs/id" }
+      }
+    },
+    "purpose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relationship", "description", "audiences"],
+      "properties": {
+        "relationship": {
+          "enum": [
+            "same_task",
+            "same_production",
+            "different_production",
+            "reusable_studio_capability",
+            "client_delivery",
+            "internal_operations",
+            "internal_communications",
+            "research_or_evaluation",
+            "public_release",
+            "external_distribution",
+            "other",
+            "unknown"
+          ]
+        },
+        "description": { "type": "string", "minLength": 1, "maxLength": 4000 },
+        "destinationProductionIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "beneficiaryOrganisationIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "audiences": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "named_individuals",
+              "production_team",
+              "studio_staff",
+              "client",
+              "partners",
+              "customers",
+              "public",
+              "system_only",
+              "unknown",
+              "other"
+            ]
+          }
+        },
+        "affectedGroups": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "commercialUse": { "type": ["boolean", "null"] },
+        "impactIfWrong": {
+          "enum": ["low", "moderate", "high", "critical", "unknown"]
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "deploymentType",
+        "providerTraining",
+        "processingRegions",
+        "storageRegions",
+        "accessGroupIds",
+        "retention"
+      ],
+      "properties": {
+        "status": { "enum": ["verified", "provisional", "unknown"] },
+        "toolEnvironmentId": { "$ref": "#/$defs/id" },
+        "product": { "type": "string", "minLength": 1 },
+        "provider": { "type": "string", "minLength": 1 },
+        "model": { "type": "string", "minLength": 1 },
+        "modelVersion": { "type": "string", "minLength": 1 },
+        "tenantOrAccountId": { "type": "string", "minLength": 1 },
+        "deploymentType": {
+          "enum": ["local", "studio_hosted", "private_tenant", "managed_enterprise", "public_service", "unknown", "other"]
+        },
+        "providerTraining": {
+          "enum": ["disabled_by_contract", "disabled_by_setting", "enabled", "unknown", "not_applicable"]
+        },
+        "providerHumanAccess": {
+          "enum": ["prohibited", "support_only", "quality_review", "allowed", "unknown", "not_applicable"]
+        },
+        "processingRegions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 2 }
+        },
+        "storageRegions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 2 }
+        },
+        "supportAccessRegions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 2 }
+        },
+        "accessGroupIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "subprocessorIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "connectedServiceIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "retention": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source", "output", "logs", "backups"],
+          "properties": {
+            "source": { "$ref": "#/$defs/retentionValue" },
+            "output": { "$ref": "#/$defs/retentionValue" },
+            "logs": { "$ref": "#/$defs/retentionValue" },
+            "backups": { "$ref": "#/$defs/retentionValue" }
+          }
+        },
+        "deletionSupported": { "type": ["boolean", "null"] },
+        "securityApprovalId": { "$ref": "#/$defs/id" }
+      }
+    },
+    "requestedControls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["control", "ownerId"],
+        "properties": {
+          "control": { "type": "string", "minLength": 1 },
+          "ownerId": { "$ref": "#/$defs/id" },
+          "dueBeforeProcessing": { "type": "boolean", "default": true }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9._:-]{2,127}$"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "dateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "operationType": {
+      "enum": [
+        "transcribe",
+        "summarise",
+        "translate",
+        "classify_tag_extract",
+        "analyse_or_infer",
+        "search_retrieve_embed",
+        "generate",
+        "transform",
+        "evaluate_model",
+        "automate_or_support_decision",
+        "train_base_model",
+        "fine_tune",
+        "lora_or_adapter",
+        "reinforcement_or_preference_optimisation",
+        "distil_or_transfer",
+        "synthetic_voice_likeness_or_performance",
+        "other",
+        "unknown"
+      ]
+    },
+    "materialReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["materialId", "version", "category"],
+      "properties": {
+        "materialId": { "$ref": "#/$defs/id" },
+        "version": { "$ref": "#/$defs/version" },
+        "category": {
+          "enum": [
+            "communications",
+            "meeting_recording",
+            "transcript",
+            "production_note",
+            "client_note",
+            "script_or_story",
+            "art_or_design",
+            "image_or_video",
+            "voice_or_audio",
+            "performance_capture",
+            "rig_or_asset",
+            "code_or_tool",
+            "business_record",
+            "people_record",
+            "dataset",
+            "embedding_or_index",
+            "model_or_adapter",
+            "generated_output",
+            "external_reference",
+            "other"
+          ]
+        },
+        "productionId": { "$ref": "#/$defs/id" },
+        "containsPersonalData": { "type": ["boolean", "null"] },
+        "containsSensitiveData": { "type": ["boolean", "null"] }
+      }
+    },
+    "derivative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["category", "retained"],
+      "properties": {
+        "category": { "type": "string", "minLength": 1 },
+        "retained": { "type": ["boolean", "null"] },
+        "retention": { "$ref": "#/$defs/retentionValue" },
+        "destinationReference": { "type": "string", "minLength": 1 }
+      }
+    },
+    "retentionValue": {
+      "oneOf": [
+        { "type": "integer", "minimum": 0, "description": "Retention in days." },
+        { "enum": ["session_only", "indefinite", "unknown", "not_applicable"] }
+      ]
+    }
+  }
+}

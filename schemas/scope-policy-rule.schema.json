@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:scope:schema:policy-rule:0.1.0",
+  "title": "SCOPE Policy Rule",
+  "description": "An atomic, versioned interpretation used to evaluate a proposed use.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "version",
+    "name",
+    "status",
+    "effect",
+    "authority",
+    "selectors",
+    "explanation",
+    "ownerId",
+    "verifiedBy",
+    "verifiedAt",
+    "effectiveFrom"
+  ],
+  "properties": {
+    "id": { "$ref": "#/$defs/id" },
+    "version": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "status": { "enum": ["draft", "active", "superseded", "expired", "withdrawn"] },
+    "effect": {
+      "enum": ["permit", "prohibit", "require_condition", "require_information", "require_approval"]
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recordIds", "authorityType"],
+      "properties": {
+        "recordIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "authorityType": {
+          "enum": [
+            "production_agreement",
+            "licence",
+            "individual_agreement",
+            "consent_or_rider",
+            "collective_instrument",
+            "law_or_regulation",
+            "privacy_basis_or_notice",
+            "organisation_policy",
+            "environment_approval",
+            "standing_decision",
+            "exception",
+            "other"
+          ]
+        },
+        "sourceReference": { "type": "string", "minLength": 1 }
+      }
+    },
+    "selectors": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "organisationIds": { "$ref": "#/$defs/idList" },
+        "sourceProductionIds": { "$ref": "#/$defs/idList" },
+        "destinationProductionIds": { "$ref": "#/$defs/idList" },
+        "productionTypes": { "$ref": "#/$defs/stringList" },
+        "materialIds": { "$ref": "#/$defs/idList" },
+        "materialCategories": { "$ref": "#/$defs/stringList" },
+        "classificationValues": { "$ref": "#/$defs/stringList" },
+        "agreementIds": { "$ref": "#/$defs/idList" },
+        "personIds": { "$ref": "#/$defs/idList" },
+        "contributorRoles": { "$ref": "#/$defs/stringList" },
+        "collectiveInstrumentIds": { "$ref": "#/$defs/idList" },
+        "jurisdictions": { "$ref": "#/$defs/stringList" },
+        "operationTypes": { "$ref": "#/$defs/stringList" },
+        "persistenceTypes": { "$ref": "#/$defs/stringList" },
+        "purposeRelationships": { "$ref": "#/$defs/stringList" },
+        "audiences": { "$ref": "#/$defs/stringList" },
+        "toolEnvironmentIds": { "$ref": "#/$defs/idList" },
+        "deploymentTypes": { "$ref": "#/$defs/stringList" },
+        "providerTrainingValues": { "$ref": "#/$defs/stringList" },
+        "processingRegions": { "$ref": "#/$defs/stringList" },
+        "accessGroupIds": { "$ref": "#/$defs/idList" }
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "description", "ownerRole"],
+        "properties": {
+          "type": {
+            "enum": ["condition", "information", "approval", "notice", "payment", "consultation", "human_review", "access", "retention", "deletion", "attribution", "other"]
+          },
+          "description": { "type": "string", "minLength": 1, "maxLength": 2000 },
+          "ownerRole": { "type": "string", "minLength": 1 },
+          "due": { "enum": ["before_processing", "during_processing", "before_release", "at_expiry", "on_trigger"] },
+          "evidenceRequired": { "type": "boolean", "default": true }
+        }
+      }
+    },
+    "approvalAuthorityIds": { "$ref": "#/$defs/idList" },
+    "explanation": { "type": "string", "minLength": 1, "maxLength": 4000 },
+    "ownerId": { "$ref": "#/$defs/id" },
+    "verifiedBy": { "$ref": "#/$defs/id" },
+    "verifiedAt": { "$ref": "#/$defs/dateTime" },
+    "effectiveFrom": { "$ref": "#/$defs/dateTime" },
+    "effectiveUntil": { "$ref": "#/$defs/dateTime" },
+    "reviewAt": { "$ref": "#/$defs/dateTime" },
+    "supersedesRuleIds": { "$ref": "#/$defs/idList" },
+    "exceptionToRuleIds": { "$ref": "#/$defs/idList" },
+    "changeTriggers": { "$ref": "#/$defs/stringList" },
+    "testCaseIds": { "$ref": "#/$defs/idList" },
+    "interpretationConfidence": { "enum": ["confirmed", "qualified", "uncertain"] }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9._:-]{2,127}$" },
+    "dateTime": { "type": "string", "format": "date-time" },
+    "idList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/id" }
+    },
+    "stringList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}
