@@ -2,65 +2,63 @@
 
 **Rights-Aware AI Governance for Creative Production**
 
+Author: **Ben Gunsberger**
+
 SCOPE is an implementation-neutral framework for answering a practical question:
 
 > Given this material, these contributors, these agreements, this AI activity, this destination and this tool, are we permitted to proceed?
 
-The name describes the five dimensions of a proposed use:
+The name describes five dimensions of a proposed use:
 
-- **Source** — what material is involved, where it came from and what it contains
-- **Contracts and contributors** — which agreements, people and collective terms govern it
-- **Operation** — what the AI system will do and what it will retain
-- **Purpose** — why the work is being done, for whom and where the result will be used
-- **Environment** — which tool, account, provider, locations, users and retention settings are involved
+- **Source** — the material, its provenance and contents
+- **Contracts and contributors** — the agreements, people and collective terms governing it
+- **Operation** — what the AI system will do and retain
+- **Purpose** — the intended use, beneficiary, destination and audience
+- **Environment** — the tool, account, provider, regions, access and retention settings
 
-SCOPE turns fragmented production, contractual, contributor and technical information into a versioned decision record. It is designed for animation, VFX, games, film and other creative-production environments with a mix of client work, original IP, co-productions, employees, contractors and performers.
+SCOPE records the evidence, authority, conditions and review triggers behind a bounded decision. It is designed for animation, VFX, games, film and other creative-production environments spanning client work, original IP, co-productions, employees, contractors and performers.
+
+## Status and intended use
+
+**Version 0.2.0 — working draft for review and controlled pilot evaluation.** The [five-case usability pilot](pilot/README.md) has [not yet started](pilot/RESULTS.md). Effectiveness and operating cost remain untested in that pilot. The reference code validates examples and selected semantics; it is a specification harness.
+
+SCOPE supports organisational decisions. It provides no legal advice or permission by itself. Adopters configure their own policies, authorities, jurisdictions and review process with qualified legal, privacy, security, production and workforce representatives.
+
+The canonical publication location and reuse terms remain unresolved; see the [publication review](docs/PUBLICATION_REVIEW.md). This draft makes no open-licence grant. During the pilot, changes follow its evidence-led soft freeze.
+
+## Reading guide
+
+| Reader or task | Start here |
+|---|---|
+| Understand the framework | [Framework](docs/FRAMEWORK.md), then [worked scenarios](docs/SCENARIOS.md) |
+| Ask what must be answered or approved | [Assessment checklist](docs/ASSESSMENT_CHECKLIST.md) |
+| Set up governance and responsibilities | [Governance](docs/GOVERNANCE.md), then [conformance](docs/CONFORMANCE.md) |
+| Implement or exchange records | [Data model](docs/DATA_MODEL.md), [decision rules](docs/DECISION_SPECIFICATION.md), [implementation requirements](docs/IMPLEMENTATION_SPECIFICATION.md) and [schemas](schemas/) |
+| Evaluate usefulness and cost | [Five-case smoke pilot](pilot/README.md), then [comparative pilot](docs/PILOT_EVALUATION.md) |
 
 ## Specification set
 
-- [`docs/FRAMEWORK.md`](docs/FRAMEWORK.md) — conceptual model, principles, decision outcomes and conformance
-- [`docs/DATA_MODEL.md`](docs/DATA_MODEL.md) — records, relationships, required fields and data ownership
-- [`docs/DECISION_SPECIFICATION.md`](docs/DECISION_SPECIFICATION.md) — deterministic assessment and conflict-resolution rules
-- [`docs/GOVERNANCE.md`](docs/GOVERNANCE.md) — operating model, responsibilities and lifecycle controls
-- [`docs/IMPLEMENTATION_SPECIFICATION.md`](docs/IMPLEMENTATION_SPECIFICATION.md) — system requirements, pilot structure and acceptance criteria
-- [`docs/SCENARIOS.md`](docs/SCENARIOS.md) — worked examples for a fictional multi-location studio
-- [`docs/GLOSSARY.md`](docs/GLOSSARY.md) — shared terminology
-- [`docs/CONFORMANCE.md`](docs/CONFORMANCE.md) — level requirements and validation boundaries
-- [`docs/MIGRATION_0.2.md`](docs/MIGRATION_0.2.md) — incompatible changes from 0.1
-- [`docs/PILOT_EVALUATION.md`](docs/PILOT_EVALUATION.md) — comparative pilot and operating-cost measures
-- [`docs/INTEROPERABILITY.md`](docs/INTEROPERABILITY.md) — conceptual mappings to the cited foundations
-- [`schemas/`](schemas/) — JSON Schemas for proposed uses, policy rules, decisions, evidence and bundles
-- [`examples/`](examples/) — machine-readable example assessments
+The normative core comprises the Framework, Data Model, Decision Specification, Assessment Checklist, Governance, Implementation Specification, [Glossary](docs/GLOSSARY.md), Conformance and the five JSON Schemas. [Framework §2](docs/FRAMEWORK.md#2-normative-language) defines requirement language and document authority.
 
-The existing website prototype remains in `dist/` as design history. It is not the normative definition of SCOPE. The documents and schemas above are the source of truth for future implementations.
+Supporting material is informative:
 
-## Status
+- [Scenarios](docs/SCENARIOS.md) — fictional worked assessments and boundary cases
+- [Examples](examples/) — five JSON examples and a preliminary checklist; the [frozen bundle](examples/cross-show-lipsync.bundle.json) supports manual decision replay
+- [Migration from 0.1](docs/MIGRATION_0.2.md) — incompatible purpose, selector and evidence changes
+- [Interoperability and references](docs/INTEROPERABILITY.md) — conceptual relationships to ODRL 2.2, DPV 2.0, NIST AI RMF 1.0 and OAIC guidance
+- [Pilot materials](pilot/README.md) and [comparative protocol](docs/PILOT_EVALUATION.md) — evaluation methods and unfilled results template
+- [Publication review](docs/PUBLICATION_REVIEW.md) — editorial findings and remaining release decisions
 
-This is a working specification, version **0.2.0**. It is suitable for structured prototyping, stakeholder review and testing against real contract patterns. It does not provide legal advice or create permission. An organisation adopting SCOPE must configure its own policies, authorities, jurisdictions and review process with qualified legal, privacy, security, production and workforce representatives.
+## Validation
 
-## Design foundations
-
-SCOPE draws on established work without depending on a particular vendor or software stack:
-
-- [W3C ODRL Information Model 2.2](https://www.w3.org/TR/odrl-model/) for permissions, prohibitions, duties, constraints and policy conflict
-- [W3C Community Group Data Privacy Vocabulary 2.0](https://www.w3.org/community/reports/dpvcg/CG-FINAL-dpv-20240801/) for machine-readable descriptions of personal-data processing
-- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) for governed, documented risk management across the AI lifecycle
-- [OAIC guidance on commercially available AI products](https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/guidance-on-privacy-and-the-use-of-commercially-available-ai-products) and [model development and training](https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/guidance-on-privacy-and-developing-and-training-generative-ai-models) for Australian privacy considerations
-
-SCOPE extends these ideas with production-specific concepts such as show boundaries, contributor-level rights, client-funded work, source-to-model lineage, synthetic performance and cross-production reuse.
-
-## Specification validation
-
-Install the locked development dependencies with `npm ci`, then run:
+With Node.js and npm, install the locked dependencies and run:
 
 ```sh
+npm ci
 npm run validate:spec
-npm test
 npm run check
 ```
 
-Validation checks all five machine-readable examples, their schema structure and selected semantic invariants. The complete [cross-show assessment bundle](examples/cross-show-lipsync.bundle.json) freezes the profile, rules, evidence and verified human gate findings. Manual replay reconstructs its decision core. Tests also exercise adverse inputs and the historical prototype.
+`validate:spec` validates all five JSON examples and runs the test suite, also available separately as `npm test`. The bundle checks frozen evidence and verified human gate findings; replay reconstructs its decision core. Domain review, authority completeness and execution controls require separate validation. [Conformance](docs/CONFORMANCE.md) states the harness's coverage and limitations.
 
-The reference helpers are a specification harness; they do not implement a complete automated rights evaluator. Domain review, authority coverage and live execution controls remain implementation responsibilities. See [conformance and validation](docs/CONFORMANCE.md).
-
-Version 0.2 separates production relationship, business purpose, reuse and distribution; defines three-valued selector matching and gate-specific bases; and specifies obligation applicability, execution state and comparative pilot evaluation. Existing 0.1 decisions retain their historical meaning and require explicit migration or reassessment.
+A distribution should retain this README, `docs/`, `schemas/`, `examples/`, `reference/`, `scripts/`, `tests/`, blank pilot templates and both package manifests so readers can follow links and repeat validation. Exclude local dependencies, credentials and live pilot or client records. Archive an identified release snapshot with its date, publisher, licence and canonical location before public distribution.

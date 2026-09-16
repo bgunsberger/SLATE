@@ -7,6 +7,7 @@ All unqualified MUST requirements apply at every level. Manual controls can meet
 | Capability | Level 1 — Recorded | Level 2 — Governed | Level 3 — Connected | Level 4 — Assured |
 |---|---|---|---|---|
 | Five dimensions, eight gates, five outcomes and gate-specific bases | Required | Required | Required | Required |
+| Preliminary intake and decision-derived action checklist | Manual preparation allowed | Managed assignments and authoritative resolution links | Integrated assessment workflow | Independently tested |
 | Current evidence, full authority review and prerequisite checks | Human controls allowed | Human controls allowed | Automated checks plus reserved human decisions | Independently tested |
 | Immutable decision and reconstructable evidence versions | Controlled archive allowed | Controlled archive and standard exports | Automated snapshots and replay | Independently tested |
 | Access control, audit history and source/derivative references | Manual controlled registers allowed | Maintained programme | Integrated registers | Independently tested |
@@ -32,6 +33,6 @@ The first two layers cannot establish the last two. A valid export can faithfull
 
 `reference/semantics.js` contains executable primitives for three-valued set and retention matching, bound source rows, production-relationship derivation, gate aggregation and preflight readiness. `reference/validation.js` validates structural schemas and selected cross-record invariants and replays frozen manual findings. The CLI validates every published JSON example.
 
-The helpers do not implement automated legal interpretation, a registry service, full authority-set discovery, exhaustive coverage proof checking, exception authorisation, identity verification, live environment monitoring or operational enforcement. The bundle demonstrates a manual/hybrid decision core. The repository makes no Level 3 or Level 4 implementation claim.
+The helpers do not implement automated legal interpretation, a registry service, full authority-set discovery, exhaustive coverage proof checking, exception authorisation, identity verification, live environment monitoring, release-duty checks or operational enforcement. The bundle demonstrates a manual/hybrid decision core. The repository itself claims no operational conformance level. A complete implementation demonstrates its selected level through the controls above.
 
-The website in `dist/` continues to be historical design material and uses its earlier outcome vocabulary. It is excluded from version 0.2 conformance claims.
+The [assessment checklist](ASSESSMENT_CHECKLIST.md) defines a derived output format, generation rules, acceptance cases and a worked example. Automated generation remains unimplemented. Existing tests cover the published schemas and reference helpers; checklist acceptance cases still require implementation validation.

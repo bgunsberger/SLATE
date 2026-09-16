@@ -2,6 +2,8 @@
 
 Version 0.2.0 — working specification
 
+Author: Ben Gunsberger
+
 ## 1. Purpose
 
 Creative studios hold material whose permitted use depends on several overlapping sources of authority: production agreements, ownership, licences, individual engagements, consent, collective agreements, privacy obligations, workplace policy and tool terms. AI adds operations that can extract, transform, reproduce or persist characteristics of that material in new forms.
@@ -22,6 +24,10 @@ The words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT** and **MAY** express
 - **MUST / MUST NOT**: required for SCOPE conformance.
 - **SHOULD / SHOULD NOT**: expected unless a documented reason supports a different implementation.
 - **MAY**: optional.
+
+Core documents and schemas listed in the README are normative; worked examples, pseudocode, implementation suggestions and supporting material are informative. Uppercase requirement words define conformance obligations. The Data Model's required domain fields define record content; unknown or inapplicable values follow its completeness rules.
+
+JSON Schemas define exchange structure, the Decision Specification defines assessment semantics, and Conformance defines level applicability. These requirements apply together. An inconsistency requires a documented resolution before relying on the affected permission; examples and reference code cannot override a requirement.
 
 ## 3. Unit of assessment: the proposed use
 
@@ -199,7 +205,7 @@ SCOPE uses five plain-language outcomes:
 | Outcome | Meaning | Staff action |
 |---|---|---|
 | **Permitted** | Current verified records positively cover the exact proposed use. | Proceed within the recorded scope. |
-| **Permitted with conditions** | Positive permission exists and listed controls must be satisfied. | Complete and monitor every condition. |
+| **Permitted with conditions** | Positive permission exists and listed controls must be satisfied. | Verify prerequisites before processing; complete later duties at their stated time. |
 | **Hold — information required** | A material fact or valid evidence record is missing, stale or inconsistent. | Supply or verify the requested information. |
 | **Hold — approval required** | The facts are known and an authorised person or external party must decide. | Keep material out of the workflow until approval is recorded. |
 | **Prohibited under current rules** | An applicable, verified rule expressly disallows the proposed use. | Change the proposal or obtain a valid amendment through the authorised process. |
@@ -216,6 +222,8 @@ Every outcome MUST include:
 - creation time and immutable decision ID.
 
 ## 7. The decision record
+
+SCOPE can present an [assessment checklist](ASSESSMENT_CHECKLIST.md) for intake and unresolved work. After formal assessment, it is a derived view; the decision and its execution prerequisites retain processing authority.
 
 The output is a versioned evidence snapshot, not a free-floating answer. A conforming decision record MUST allow a reviewer to reconstruct:
 
@@ -245,21 +253,7 @@ Controlled source documents remain in their systems of record. SCOPE stores stab
 
 All unqualified MUST requirements in the specification set apply at every level. A level describes how those controls are operated. Manual evidence checking, controlled registers and signed records can implement the baseline. Requirements explicitly marked Level 3 apply to automated evaluators. The normative capability matrix is in [CONFORMANCE.md](CONFORMANCE.md).
 
-### Level 1 — Recorded
-
-An implementation captures all five dimensions, evaluates all eight gates, preserves the basis and authority of each finding, uses the five outcomes and issues an immutable, reconstructable decision. It checks current validity and prerequisites before processing, retains source and derivative links, controls access to sensitive evidence and records changes and stop-use actions. These controls may be manual.
-
-### Level 2 — Governed
-
-An implementation also operates a maintained programme of record stewardship, reusable standing approvals, cohort exception checks, rule review, condition tracking, appeals, service levels and periodic access review. It exports the published record formats and validates their semantics. Manual operation remains supported.
-
-### Level 3 — Connected
-
-An implementation also automates manifest and relationship expansion, deterministic rule evaluation, coverage checking, downstream applicability tracking and change-impact discovery. Integrations bind actual processing to current decisions and evidence. Published conformance cases must pass before automated permission is enabled.
-
-### Level 4 — Assured
-
-An implementation also undergoes independent control testing, measures decision quality and operating cost, exercises incident and appeal procedures and publishes its configured vocabulary, limitations and conformance statement.
+The levels are cumulative: **Recorded** establishes controlled manual assessment and execution; **Governed** adds maintained workflows and standard exports; **Connected** adds automated evaluation and enforcement; **Assured** adds independent control testing and periodic measurement. The matrix specifies the required capabilities without prescribing a software stack.
 
 ## 10. Scope boundaries
 

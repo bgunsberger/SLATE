@@ -107,33 +107,17 @@ All discovered blockers and missing facts remain visible even when a higher-seve
 
 Write an immutable decision containing the confirmed proposal, gate results, explanation, applicable rule IDs, evidence versions, conditions, owner, validity and reevaluation triggers.
 
+When presenting an [assessment checklist](ASSESSMENT_CHECKLIST.md), derive its evidence-backed items from this snapshot and include every unresolved gate finding. Satisfied and non-applicable findings remain in the decision. Preliminary questions may precede Step 1; verified answers feed a new assessment and successor decision.
+
 ### Step 8 — Register downstream artefacts
 
 When processing proceeds, create material and lineage records for durable outputs. Attach the decision ID and inherited controls. Conditions remain open until completion evidence is recorded.
 
-## 5. Reference pseudocode
+## 5. Evaluation contract
 
-```text
-function assess(proposedUse, evaluationTime):
-    assert schemaValid(proposedUse)
+Implementations follow §4 in order and preserve the evaluation time, expanded scope, evidence versions, matched rules and gate findings needed to reproduce the result.
 
-    scope = normalise(proposedUse)
-    sources = expandManifestAndLineage(scope.source)
-    people = enumerateRepresentedPeople(sources)
-    evidence = collectControlledRecords(scope, sources, people)
-    rules = matchActiveRules(scope, sources, people, evidence, evaluationTime)
-
-    gates = []
-    for gate in configuredGates:
-        gates.append(evaluateGate(gate, scope, evidence, rules))
-
-    outcome = highestSeverity(gates)
-    decision = snapshot(scope, evidence, rules, gates, outcome)
-    persistImmutable(decision)
-    return decision
-```
-
-`evaluateGate` MUST require the gate-specific basis when the gate is applicable and an evidenced non-applicability finding otherwise. Silence resolves to `approval_required` when the relevant facts are known and an authority must interpret or grant rights. Missing, stale or contradictory facts resolve to `missing_information`.
+Each gate evaluation MUST require the gate-specific basis when the gate is applicable and an evidenced non-applicability finding otherwise. Silence resolves to `approval_required` when the relevant facts are known and an authority must interpret or grant rights. Missing, stale or contradictory facts resolve to `missing_information`.
 
 ## 6. Rules and conflict handling
 

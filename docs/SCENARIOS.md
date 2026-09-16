@@ -4,9 +4,9 @@ Version 0.2.0
 
 ## Fictional studio
 
-Northstar Animation is a fictional studio with teams in Sydney, Brisbane, Los Angeles and Vancouver. It produces client-funded series, company-owned originals, co-productions and internal media. Every name, agreement and decision below is invented.
+Northstar Animation is a fictional studio with teams in Sydney, Brisbane, Los Angeles and Vancouver. It produces client-funded series, company-owned originals, co-productions and internal media. Studio, production, contributor, agreement and decision details below are fictional; references to existing products are illustrative.
 
-These scenarios demonstrate reasoning structure rather than real legal outcomes. The same facts can produce different decisions under another contract, jurisdiction or policy.
+These scenarios demonstrate reasoning structure rather than real legal outcomes. The same facts can produce different decisions under another contract, jurisdiction or policy. Scenario 1 has a complete machine-readable bundle; the other scenarios summarise selected facts and assume verified findings for every remaining gate. They are not complete decision records.
 
 ## Scenario map
 
@@ -22,6 +22,8 @@ These scenarios demonstrate reasoning structure rather than real legal outcomes.
 | 8. Internal-show performer experiment | Named performer recordings | Train mouth-shape predictor | Same production research | Australia-only research tenant | Permitted with conditions |
 
 ## 1. Can we use voice recordings from a completed client show to train a lip-sync model for our own IP show?
+
+The [assessment checklist example](ASSESSMENT_CHECKLIST.md#5-worked-example-client-show-voices-for-an-original-production) shows how this use case becomes an initial questionnaire and an evidence-backed list of assigned questions and approval requests.
 
 ### Confirmed proposal
 
@@ -96,7 +98,7 @@ The sources are employee email, chat and production metrics. The operation score
 
 ### Confirmed proposal
 
-The initial source selection points to “all ShotGrid notes” across five productions. It includes internal notes, client comments, review media links, personal names and unknown attachments. The operation creates embeddings and a persistent retrieval index for studio-wide use.
+The initial source selection points to “all production-tracking notes” across five productions. It includes internal notes, client comments, review media links, personal names and unknown attachments. The operation creates embeddings and a persistent retrieval index for studio-wide use.
 
 ### Decision
 
@@ -141,14 +143,12 @@ Nia Okafor signed a fictional rider permitting named *Moss & Moon* takes to trai
 
 **Permitted with conditions.** The decision lists the exact takes, team, environment, operation and dates. It requires payment evidence, source and model deletion records, lineage and immediate stop-use review if consent is withdrawn. US access, another performer, another show or a voice-generation feature creates a new assessment.
 
-## What these scenarios demonstrate
-
-The same data category can receive different outcomes because permission depends on the full proposal. Training is also not one category: a mouth-shape predictor, synthetic voice model, embedding index and reusable foundation model create different artefacts and risks. SCOPE makes those distinctions explicit and routes each unresolved issue to its actual owner.
-
 ## Additional boundary cases for version 0.2
 
 | Case | Expected finding | Evidence needed |
 |---|---|---|
+| All applicable gates are satisfied, remaining gates have verified non-applicability, and no duties are outstanding | `Permitted`; perform a fresh preflight before processing | Complete current evidence and bounded scope |
+| An approved internal output is proposed for public release | Reassess the distribution scope and complete release duties | Actual output, audience, channel and release-check evidence |
 | Qualified reviewer verifies public-domain source status | Source-rights basis may be satisfied; remaining gates are assessed separately | Jurisdiction, provenance, reviewer and bounded conclusion |
 | Licence covers the exact ordinary use | Use the licence as a rights basis; obtain extra consent only where independently required | Licence version, scope, contributor/privacy applicability findings |
 | Qualified reviewer records an applicable legal exception | Use the scoped legal interpretation as evidence | Jurisdiction, conditions, facts and authorised reviewer; internal policy still applies |

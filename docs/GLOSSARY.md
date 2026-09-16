@@ -1,10 +1,18 @@
 # SCOPE Glossary
 
+Version 0.2.0
+
 **Agreement** — An authoritative contract, licence, rider, consent, collective instrument, policy, notice or approved exception.
+
+**Assessment checklist** — A working view of use-case questions and actions. A preliminary checklist supports intake; an evidence-backed checklist is derived from a decision and links resolutions to authoritative records.
+
+**Basis kind** — The evidence category appropriate to a gate: inventory verification, rights authority, privacy basis, technical verification, operational control or non-applicability.
 
 **Condition** — A mandatory control attached to a permission, such as deletion, attribution, payment, restricted access or human review.
 
 **Contributor** — A person represented in material or whose work, performance, likeness, voice, information or rights are relevant to its use.
+
+**Coverage proof** — Evidence that every required material/person/operation/authority combination has an applicable basis within the assessed scope.
 
 **Decision** — An immutable result for one version of a proposed use, supported by a versioned evidence snapshot.
 
@@ -16,11 +24,17 @@
 
 **Evidence** — A controlled record supporting a fact or rule. Evidence has provenance, status, version, verification and access controls.
 
-**Hold** — A result that prevents processing until information or approval is obtained.
+**Execution state** — Current operational readiness or activity, maintained separately from the historical decision outcome.
+
+**Frozen assessment bundle** — Archived proposal, decision, profile, rules and controlled evidence versions sufficient to reconstruct the recorded assessment.
 
 **Lineage** — The recorded relationship between source material and its derivatives.
 
 **Manifest** — A versioned inventory of the exact items in a material collection.
+
+**Non-applicability finding** — A scoped, evidenced determination by a qualified authority that a particular requirement does not apply.
+
+**Obligation applicability** — A verified finding that a source duty is retained, released by authorised interpretation or uncertain for a particular derivative and transformation.
 
 **Operation** — The technical activity performed on source material and the persistent artefacts it creates.
 
@@ -41,15 +55,3 @@
 **Synthetic performance** — Generated or transformed audio, visual or behavioural material that depicts, imitates, substitutes for or materially derives from a person's performance or identity.
 
 **Verifier** — A qualified person who confirms that a structured record accurately represents its authoritative source for the stated purpose.
-
-**Basis kind** — The evidence category appropriate to a gate: inventory verification, rights authority, privacy basis, technical verification, operational control or non-applicability.
-
-**Non-applicability finding** — A scoped, evidenced determination by a qualified authority that a particular requirement does not apply.
-
-**Execution state** — Current operational readiness or activity, maintained separately from the historical decision outcome.
-
-**Coverage proof** — Evidence that every required material/person/operation/authority combination has an applicable basis within the assessed scope.
-
-**Obligation applicability** — A verified finding that a source duty is retained, released by authorised interpretation or uncertain for a particular derivative and transformation.
-
-**Frozen assessment bundle** — Archived proposal, decision, profile, rules and controlled evidence versions sufficient to reconstruct the recorded assessment.

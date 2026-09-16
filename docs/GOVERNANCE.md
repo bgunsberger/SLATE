@@ -180,6 +180,8 @@ A SCOPE implementation SHOULD apply:
 
 The system itself can contain sensitive contract and personal information. Its design requires a privacy and security assessment before live data is entered.
 
+The organisation MUST set retention periods for decisions, evidence and audit events, including any applicable preservation hold. Immutability protects records during that period. Authorised disposal records the scope, authority and date without retaining deleted sensitive content; the archive marks any resulting limit on reconstruction. Active uses that lose a necessary evidence basis require reassessment.
+
 ## 9. Oversight forum
 
 A cross-functional SCOPE forum SHOULD meet on a defined cadence and after significant incidents. It reviews:
@@ -230,6 +232,8 @@ The current execution state is separate from the immutable decision outcome:
 | `closed` | Processing ended and remaining retention/deletion duties are recorded and tracked. |
 
 Immediately before each job or bounded batch, a named operator MUST verify the decision ID/version, actual manifest and environment, current evidence, open triggers, prerequisite evidence and expiry. A ready check applies only to that job/batch and scope. Recurring workflows declare batch boundaries and a maximum recheck interval in their standing approval; any intervening trigger suspends the affected work immediately. Human preflight is supported at every level; Level 3 can enforce it through integrations.
+
+Before client delivery, external distribution or public release, the operator MUST verify that the actual artefacts, recipients and channel are within the decision's distribution scope and that every `before_release` duty is satisfied or validly waived. Record this release check as an execution event. A changed audience or artefact requires reassessment; a processing preflight alone cannot clear release duties.
 
 Condition evidence or a waiver must be verified by the duty's authority. An operational owner cannot waive an external party's right. Failed or expired conditions suspend processing; future deletion duties can remain open until due. Resume requires a new documented preflight and a successor decision whenever assessed facts or scope changed. The owner records suspension, restart and closeout events without altering the historical decision.
 

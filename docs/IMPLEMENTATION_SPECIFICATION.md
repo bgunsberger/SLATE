@@ -10,19 +10,7 @@ The implementation receives a proposed use, retrieves controlled facts and rules
 
 ## 2. Actors
 
-The minimum actor set is:
-
-- requester;
-- production data steward;
-- rights-record editor;
-- qualified verifier;
-- tool-environment owner;
-- decision owner;
-- approver;
-- auditor;
-- system administrator.
-
-One person may hold several roles. Permissions attach to roles and records rather than job titles displayed to users.
+The implementation supports the requester, data steward, rights editor, verifier, environment owner, decision owner, approver, auditor and administrator roles. [Governance §2–3](GOVERNANCE.md#2-roles) defines responsibilities and authority. One person may hold several roles; permissions attach to roles and records.
 
 ## 3. Functional requirements
 
@@ -72,7 +60,7 @@ The system MUST track conditions as open, satisfied, waived by an authorised per
 
 ### FR-12 — Maintain lineage
 
-The system MUST allow derivatives to reference all relevant sources and the decision that authorised creation. It SHOULD propagate source controls and identify affected derivatives when a source changes.
+The system MUST link derivatives to relevant sources and their creation decision, record obligation applicability and identify affected uses when a source changes. Levels 1 and 2 may operate these controls manually; Level 3 automates them.
 
 ### FR-13 — Manage validity
 
@@ -85,6 +73,10 @@ The system MUST provide a plain-language answer while respecting access controls
 ### FR-15 — Export and test
 
 Level 2 and above MUST support the published machine-readable exports. Every level MUST preserve reconstructable records and pass documented rule regression cases before activation. Level 3 MUST automate those cases.
+
+### FR-16 — Generate an assessment checklist
+
+The system MUST support a use-case-specific [assessment checklist](ASSESSMENT_CHECKLIST.md), manually or through software. Preliminary items distinguish facts, assumptions and potential requirements. Evidence-backed items are derived from the current decision, include every unresolved gate finding and link resolution to controlled records. The checklist MUST NOT become an independent permission or execution-readiness record.
 
 ## 4. Quality requirements
 
@@ -125,7 +117,7 @@ Level 2 and above MUST support the published machine-readable exports. Every lev
 - Records use documented controlled vocabularies and stable IDs.
 - Level 2 and above import and export JSON matching the published schemas and semantic invariants.
 - Source references can point to contract, production, identity and asset systems without copying protected contents.
-- Extensions identify their namespace and do not change the meaning of core fields.
+- Extensions follow the version and extension rules in [Data Model §12](DATA_MODEL.md#12-exchange-versions-and-extensions).
 
 ## 5. Reference service boundaries
 
@@ -144,7 +136,7 @@ Services may share one datastore in a pilot. Their responsibilities remain separ
 
 ## 6. Controlled-sheet pilot
 
-A Google Sheets pilot can test the model before software development. Use one protected workbook with these tabs:
+A controlled workbook can test the model before software development. One possible structure uses these tabs:
 
 | Tab | Key columns |
 |---|---|
@@ -167,6 +159,8 @@ The pilot succeeds when the team can answer representative questions consistentl
 
 ## 7. Minimum pilot workflow
 
+A requester may first receive a preliminary checklist to gather missing facts. After assessment, a decision-derived checklist routes the remaining work.
+
 1. Requester submits and confirms a Proposed Use.
 2. Data steward verifies the material collection and represented people.
 3. A simple evaluator matches active rules and creates gate results.
@@ -180,70 +174,27 @@ The pilot may calculate results manually. It still uses the same record structur
 
 ## 8. Acceptance criteria
 
-An initial implementation is ready for controlled internal use when it can demonstrate the following. Automated evaluation is required only at Level 3; lower levels demonstrate equivalent documented human controls. Machine-readable export criteria apply at Level 2 and above:
+An initial implementation is ready for controlled internal use when it can demonstrate the following. Automated evaluation is required only at Level 3; lower levels use documented human controls. Machine-readable export criteria apply at Level 2 and above:
 
-1. all example JSON documents validate against their schemas;
-2. every active rule has authority, verifier, effective status and tests;
-3. the same snapshot always returns the same gate results;
-4. mixed contributor terms are evaluated individually;
-5. an unknown manifest cannot produce permission;
-6. an explicit prohibition cannot be hidden by a general permission;
-7. an expired or withdrawn record cannot provide a current positive basis;
-8. a changed destination or environment triggers reassessment;
-9. users without contract access receive a safe, useful explanation;
-10. decision snapshots remain reconstructable after source records change;
-11. conditions have owners and completion evidence;
-12. reverse lineage identifies decisions and derivatives affected by a source change;
-13. access, export, backup and deletion controls pass security testing;
-14. Legal, Privacy, Security, Production and workforce representatives approve the pilot operating model;
-15. user testing shows that staff can distinguish permission, conditions, missing information, approval and prohibition.
+1. published examples validate, and every active rule has authority, verification, effective status and positive and boundary tests;
+2. the same frozen snapshot produces the same gate results and resolves every cited rule and evidence version;
+3. contributor and material relationships are evaluated without combining unrelated rows, and whole-scope selectors do not turn partial coverage into permission;
+4. unknown, stale, expired, withdrawn or changed facts cannot provide a positive basis and trigger reassessment or suspension as applicable;
+5. explicit prohibitions and every lower-severity blocker remain visible;
+6. every satisfied or non-applicable gate has the required evidence, scope and verifier;
+7. decisions, prerequisites, conditions and retained or released derivative obligations remain reconstructable, with owners and completion evidence;
+8. reverse lineage identifies decisions and derivatives affected by a source change;
+9. access, explanation, export, backup and deletion controls pass security and privacy testing;
+10. preliminary and evidence-backed checklists pass the acceptance cases in [ASSESSMENT_CHECKLIST.md](ASSESSMENT_CHECKLIST.md);
+11. Legal, Privacy, Security, Production and workforce representatives approve the pilot operating model, and users distinguish the five outcomes; and
+12. the conformance statement identifies the level, manual controls, automated capabilities and unimplemented extensions.
 
-## 9. Phased implementation
+## 9. Adoption sequence
 
-### Phase 1 — Vocabulary and evidence sample
+1. **Test the user task.** Run the [five-case smoke pilot](../pilot/README.md) with controlled evidence and manual assessment. Record whether users understand the answer and can resolve a hold.
+2. **Evaluate the operating model.** Run the [comparative pilot](PILOT_EVALUATION.md), including standing approvals, evidence changes, preflight, release and closeout. Measure preparation and maintenance effort alongside decision quality.
+3. **Connect validated controls.** Automate bounded approvals and integrations only after the required Level 3 tests pass. Independent assurance supports Level 4.
 
-Agree on terms, owners and five to ten real but safely controlled scenarios. Enter only the evidence needed to test them.
+Use restricted access for a controlled-sheet pilot. Protected editing ranges allocate stewardship; confidentiality requires file or record access boundaries. Archive issued decisions immutably outside mutable intake rows or through an equivalent controlled mechanism.
 
-### Phase 2 — Structured pilot
-
-Build the controlled workbook or small database, run decisions manually, refine schemas and measure missing information.
-
-### Phase 3 — Rules and workflow
-
-Automate deterministic matching for standing approvals, add assignments, condition tracking and regression tests.
-
-### Phase 4 — Production integration
-
-Connect identity, production tracking, contract references, asset manifests and tool inventory. Add lineage and change-impact notifications.
-
-### Phase 5 — Assurance and publication
-
-Test controls independently, publish conformance and methodology, and release fictional examples or open schemas suitable for external review.
-
-## 10. Explicitly deferred interface questions
-
-Visual design, conversational query, dashboards, notifications and integrations remain implementation choices. The framework first needs validation against real production agreements, contributor patterns, tool configurations and decision workflows. Interface work should begin from tested user tasks and the stable outcome vocabulary in this specification.
-
-## 11. Implementation priorities for version 0.2
-
-1. Agree on gate-specific authority and non-applicability decisions with domain owners.
-2. Migrate purpose fields and selectors using [MIGRATION_0.2.md](MIGRATION_0.2.md).
-3. Complete a frozen assessment bundle and run structural and semantic checks.
-4. Operate prerequisite checks, suspension and obligation events manually in a bounded pilot.
-5. Measure reviewer agreement, decision quality and maintenance cost using [PILOT_EVALUATION.md](PILOT_EVALUATION.md).
-6. Automate only validated standing approvals, with bound source relationships, full authority coverage and change-trigger enforcement.
-
-A controlled-sheet pilot must use a restricted audience and external controlled evidence storage. Protected editing ranges allocate stewardship; confidentiality needs appropriate file/record access boundaries. Issued decision snapshots must be retained immutably outside mutable intake rows or through an equivalent controlled archive.
-
-## 12. Additional acceptance criteria
-
-- Research labels preserve cross-production and public-distribution facts.
-- A rule requiring a production/person relationship cannot match unrelated material rows.
-- Australia-only permission fails an Australia-plus-US processing environment.
-- Unknown selector facts and retention never establish positive coverage.
-- Every satisfied or non-applicable gate has the right kind of evidence and verifier.
-- Every referenced rule/evidence version resolves in the frozen bundle.
-- A conditional decision remains blocked until prerequisite evidence is verified.
-- Withdrawal, stale evidence and missed duties suspend affected processing.
-- A retained derivative obligation and an authorised release are both reconstructable.
-- Conformance statements identify the level, manual controls, automated capabilities and unimplemented extensions.
+Visual design, conversational interfaces, dashboards and integrations remain implementation choices. Existing 0.1 implementations follow [MIGRATION_0.2.md](MIGRATION_0.2.md). Publication of a working draft can precede implementation assurance when its status and limitations are explicit.

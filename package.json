@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test tests/*.test.js",
-    "check": "node --check dist/app.js && node --check dist/data.js && node --check dist/engine.js && node --check reference/semantics.js && node --check reference/validation.js && node --check scripts/validate-spec.js",
+    "check": "node --check reference/semantics.js && node --check reference/validation.js && node --check scripts/validate-spec.js",
     "validate:spec": "node scripts/validate-spec.js && node --test tests/spec.test.js"
   },
   "devDependencies": {

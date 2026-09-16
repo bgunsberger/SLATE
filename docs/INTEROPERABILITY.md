@@ -18,7 +18,10 @@ A future formal ODRL profile or DPV-aligned export requires separate specificati
 
 ## Primary references
 
+These are the editions used as design foundations. They are informative references; implementations verify the current law and guidance applicable to their own use. Links checked 16 September 2026.
+
 - [W3C ODRL Information Model 2.2](https://www.w3.org/TR/odrl-model/)
 - [Data Privacy Vocabulary 2.0, W3C Community Group report](https://www.w3.org/community/reports/dpvcg/CG-FINAL-dpv-20240801/) — a Community Group specification
-- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [NIST AI Risk Management Framework 1.0](https://doi.org/10.6028/NIST.AI.100-1) (2023)
 - [OAIC guidance on commercially available AI products](https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/guidance-on-privacy-and-the-use-of-commercially-available-ai-products)
+- [OAIC guidance on developing and training generative AI models](https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/guidance-on-privacy-and-developing-and-training-generative-ai-models)

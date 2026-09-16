@@ -44,6 +44,8 @@ Every registry record MUST contain:
 
 Records containing contract interpretations or sensitive personal information MUST have access controls independent from the general staff query interface.
 
+Required domain fields in §3 MUST be accounted for, with a verified value, explicit unknown or evidenced non-applicability. Dates for future lifecycle events may remain unknown. Incomplete intake stays provisional; a record used as a positive basis MUST have verified facts for its assessed scope. Where the exchange schema has no suitable unknown representation, retain the request as preliminary intake rather than inventing an ID or a completed fact.
+
 ## 3. Core records
 
 ### 3.1 Organisation
@@ -170,6 +172,8 @@ Represents the request being assessed. It contains the five SCOPE dimensions and
 
 The request MUST preserve unknown values explicitly. A user-friendly front end can collect plain language first, then require confirmation of the structured proposal.
 
+Use the schema's `unknown` or nullable values where available. Omitted optional facts remain unknown unless verified evidence establishes non-applicability. Empty contributor lists establish absence only with a verified inventory; empty production-ID lists mean verified absence of a production, while omission means unknown. Normalisation MUST preserve this distinction before rule matching.
+
 ### 3.10 Decision
 
 Represents the immutable result for one proposed-use version. It includes:
@@ -191,6 +195,8 @@ The normative machine shape is defined in [`../schemas/scope-decision.schema.jso
 Represents a required action and evidence of its lifecycle. Examples include consultation, payment, source deletion, model deletion, notice, attribution, human review and access removal.
 
 An obligation has an owner, due date, status, evidence reference and consequence of non-completion. Completion does not alter the original decision; it adds a linked event.
+
+The [assessment checklist](ASSESSMENT_CHECKLIST.md) is a working view over these records. Core record and authority status remain with the applicable fact, approval, obligation and decision records. A saved evidence-backed checklist references the decision version from which it was generated.
 
 ## 4. Required relationships
 
@@ -284,16 +290,7 @@ A production implementation SHOULD provide:
 
 ## 9. Minimum viable dataset
 
-A useful pilot does not require every historic asset. It requires enough connected records to test real decisions:
-
-1. two service productions, one company-owned production and one co-production;
-2. representative materials across notes, artwork, voice, scripts, rigs and communications;
-3. several contributors with deliberately different terms;
-4. production, individual and collective agreement summaries verified by Legal;
-5. three tool environments with different data handling;
-6. ten to twenty policy rules;
-7. known decisions covering each outcome state;
-8. lineage for at least one dataset, one generated output and one model artefact.
+A useful pilot does not require every historic asset. It needs enough connected records to exercise the selected real cases: representative productions and materials, contributors with differing terms, verified agreement summaries, materially different tool environments, the rules needed for those cases, expected outcome states and at least one derivative lineage chain.
 
 The pilot SHOULD measure how often answers are blocked by missing facts. That reveals which records need operational ownership before further automation.
 
@@ -313,4 +310,10 @@ The evidence-record schema validates registry metadata and dependency references
 
 The example bundle uses fictional controlled facts and verified gate findings. Its evidence records are projections of the facts used in the assessment, rather than complete operational registry exports; omitted domain facts remain outside the example's claims. It supports replay of a manual decision's gate aggregation. Automated implementations additionally preserve expanded source/person bindings, rule-match results and authority coverage proofs.
 
-Bundle snapshots include a `sha256:` digest of each archived record, computed over UTF-8 JSON with recursively sorted object keys using JavaScript UTF-16 lexicographic order and preserved array order, as implemented by `recordDigest`. Readers verify both exact versions and content digests. Digests detect content drift; verifier identity, authority and archive access controls establish provenance.
+Bundle snapshots include a `sha256:` digest of each archived record using the `recordDigest` serialization: recursively sort object keys in UTF-16 lexicographic order, rebuild objects, then apply JavaScript `JSON.stringify` and hash the UTF-8 bytes. Integer-index keys follow JavaScript's numeric enumeration order; arrays retain their order, numbers use JavaScript serialization, and strings retain their Unicode form. Other runtimes MUST reproduce these bytes. Readers verify versions and digests; archive controls and verifier authority establish provenance.
+
+## 12. Exchange versions and extensions
+
+Version 0.2 uses JSON Schema Draft 2020-12 and versioned schema URNs. Load the five schemas together to resolve their references. A bundle declares `specVersion`; standalone records MUST travel with their schema URN in exchange metadata. A record's `version` identifies its content revision, independently of the specification version. Unsupported schema or profile versions require review before operational reliance.
+
+Most exchange objects reject undeclared fields. Extensions MUST use declared schema extension points. Profiles MAY define namespaced domain fields inside evidence `facts` and extension gates through `organisation_defined` and `organisationGateName`. A versioned policy profile MUST document its vocabularies, domain validation, added gates and basis requirements. Other extensions require separately identified schemas or linked records. Extensions MUST preserve core meanings; unknown values or unsupported extensions affecting permission remain unresolved.
