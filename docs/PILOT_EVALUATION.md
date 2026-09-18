@@ -29,6 +29,7 @@ Keep the pilot's jurisdiction, operations, source classes and excluded high-impa
 | Missed or incorrect obligations | Compare duties, scope, owner, timing and derivative applicability |
 | Preparation cost | Minutes spent inventorying, interpreting, authoring rules and verifying environments |
 | Decision and maintenance cost | Specialist minutes per case, repeat use, amendment and expiry cycle |
+| Routine-path effort | Proposer and operator minutes, specialist touches and number of records for an unchanged use under a standing approval |
 | Resolution delay | Time from intake to actionable answer, separated from active staff effort |
 | Usability and bypass | Observed comprehension, abandonment and self-reported/observed bypass attempts |
 | Reconstruction and change response | Successful replay, affected-record discovery and suspension latency |
@@ -38,5 +39,7 @@ Do not convert these measures into individual employee-performance scores. Publi
 ## Go/no-go review
 
 Before seeing results, Legal, Privacy, Security, Production and workforce representatives agree on acceptable handling of critical errors, response times and staff effort. Any unexplained permission in the presence of a verified prohibition or missing prerequisite blocks expansion until investigated. Lower error rates and operating cost must be assessed together; shorter turnaround alone is insufficient.
+
+For the minimum-overhead profile, set a routine-path target before the pilot. A useful starting target is five minutes or less of proposer and operator time, no new specialist review and one short confirmation record for an unchanged use under a standing approval.
 
 The review chooses a bounded expansion, another pilot iteration or suspension. Its record identifies unresolved risks, owners, evidence and the next review date. No pilot outcome may waive external rights.

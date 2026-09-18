@@ -259,6 +259,8 @@ Selectors may use controlled categories and explicit IDs. Free-text selectors MU
 
 ## 7. Data stewardship
 
+The following table is an illustrative mapping for a larger studio. Minimum-overhead adopters assign the same fact-supply and verification responsibilities within their existing team and create rows only for the bounded uses they assess.
+
 | Record family | Supplies facts | Verifies interpretation | Typical change event |
 |---|---|---|---|
 | Productions and ownership | Production operations | Business and legal affairs | Greenlight, amendment, delivery, wrap |
@@ -268,7 +270,7 @@ Selectors may use controlled categories and explicit IDs. Free-text selectors MU
 | Privacy basis and notices | Privacy owner | Privacy or legal adviser | New data class, purpose or notice |
 | Tool environment | IT / security / procurement | Security, privacy and AI governance | Vendor, feature, region, setting or contract change |
 | Policy rules | Domain owner | Named authority | Interpretation, policy or source change |
-| Proposed use | Requester and project owner | Relevant data steward | Any scope change |
+| Proposed use | Proposer and project owner | Relevant verifier | Any scope change |
 | Decision and conditions | Decision owner | Required approvers | Approval, expiry, appeal or evidence change |
 
 The person entering a fact and the person authorising its interpretation SHOULD be separately identified.

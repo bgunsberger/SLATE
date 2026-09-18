@@ -10,7 +10,7 @@ The implementation receives a proposed use, retrieves controlled facts and rules
 
 ## 2. Actors
 
-The implementation supports the requester, data steward, rights editor, verifier, environment owner, decision owner, approver, auditor and administrator roles. [Governance §2–3](GOVERNANCE.md#2-roles) defines responsibilities and authority. One person may hold several roles; permissions attach to roles and records.
+The implementation supports four responsibility functions: proposer, decision owner, authorised authority and operator. [Governance §2–3](GOVERNANCE.md#2-responsibilities-and-authority) defines their responsibilities and authority. One person may perform several functions; permissions attach to the authority exercised and the record. Data stewardship, policy administration, workflow administration and assurance are optional separations as scale and conformance level require.
 
 ## 3. Functional requirements
 
@@ -44,7 +44,7 @@ The system MUST use the five outcomes defined in the framework. It MUST show all
 
 ### FR-08 — Route unresolved work
 
-Every missing item, approval and condition MUST have a responsible role, timing and evidence requirement. The system SHOULD support assignment and reminders.
+Every missing item, approval and condition MUST have a responsible function or authority, timing and evidence requirement. The system SHOULD support assignment and reminders.
 
 ### FR-09 — Record human authority
 
@@ -90,7 +90,7 @@ The system MUST support a use-case-specific [assessment checklist](ASSESSMENT_CH
 
 ### Privacy
 
-- Interfaces expose the minimum identity and contract data required for each role.
+- Interfaces expose the minimum identity and contract data required for each responsibility function.
 - Broad interfaces use contributor IDs or approved display names.
 - Search and analytics respect record-level permissions.
 - Retention and deletion rules cover SlateCheck's own logs, requests and snapshots.
@@ -134,7 +134,13 @@ A mature implementation can expose these logical services:
 
 Services may share one datastore in a pilot. Their responsibilities remain separate.
 
-## 6. Controlled-sheet pilot
+## 6. Minimum-overhead implementation
+
+The [Minimum-Overhead Profile](MINIMUM_OVERHEAD_PROFILE.md) can use three protected tables or equivalent records: `Standing approvals`, `Uses` and `Events`. Existing contract, identity, asset and tool systems remain authoritative. The implementation stores stable references and the verified findings required to reconstruct each bounded decision.
+
+An unchanged routine use records one five-question confirmation and a ready event. A changed answer routes the affected gate to its authority while preserving unaffected findings. This is the default pilot starting point.
+
+## 7. Expanded controlled-sheet pilot
 
 A controlled workbook can test the model before software development. One possible structure uses these tabs:
 
@@ -157,7 +163,7 @@ Protected ranges assign editing rights by stewardship domain. The request experi
 
 The pilot succeeds when the team can answer representative questions consistently, discover missing source records and update a rule without rewriting every scenario.
 
-## 7. Minimum pilot workflow
+## 8. Expanded pilot workflow
 
 A requester may first receive a preliminary checklist to gather missing facts. After assessment, a decision-derived checklist routes the remaining work.
 
@@ -172,7 +178,7 @@ A requester may first receive a preliminary checklist to gather missing facts. A
 
 The pilot may calculate results manually. It still uses the same record structure and outcome rules.
 
-## 8. Acceptance criteria
+## 9. Acceptance criteria
 
 An initial implementation is ready for controlled internal use when it can demonstrate the following. Automated evaluation is required only at Level 3; lower levels use documented human controls. Machine-readable export criteria apply at Level 2 and above:
 
@@ -186,14 +192,15 @@ An initial implementation is ready for controlled internal use when it can demon
 8. reverse lineage identifies decisions and derivatives affected by a source change;
 9. access, explanation, export, backup and deletion controls pass security and privacy testing;
 10. preliminary and evidence-backed checklists pass the acceptance cases in [ASSESSMENT_CHECKLIST.md](ASSESSMENT_CHECKLIST.md);
-11. Legal, Privacy, Security, Production and workforce representatives approve the pilot operating model, and users distinguish the five outcomes; and
+11. the authorities applicable to the selected pilot scope approve the operating model, and users distinguish the five outcomes; and
 12. the conformance statement identifies the level, manual controls, automated capabilities and unimplemented extensions.
 
-## 9. Adoption sequence
+## 10. Adoption sequence
 
-1. **Test the user task.** Run the [five-case smoke pilot](../pilot/README.md) with controlled evidence and manual assessment. Record whether users understand the answer and can resolve a hold.
-2. **Evaluate the operating model.** Run the [comparative pilot](PILOT_EVALUATION.md), including standing approvals, evidence changes, preflight, release and closeout. Measure preparation and maintenance effort alongside decision quality.
-3. **Connect validated controls.** Automate bounded approvals and integrations only after the required Level 3 tests pass. Independent assurance supports Level 4.
+1. **Prove one routine path.** Select one common bounded use, establish one standing approval and test the five-question confirmation. Measure initial setup and repeat-use effort separately.
+2. **Test varied decisions.** Run the [five-case smoke pilot](../pilot/README.md) with controlled evidence and manual assessment. Record whether users understand the answer and can resolve a hold.
+3. **Evaluate the operating model.** Run the [comparative pilot](PILOT_EVALUATION.md), including standing approvals, evidence changes, preflight, release and closeout. Measure preparation and maintenance effort alongside decision quality.
+4. **Connect validated controls.** Automate bounded approvals and integrations only after the required Level 3 tests pass. Independent assurance supports Level 4.
 
 Use restricted access for a controlled-sheet pilot. Protected editing ranges allocate stewardship; confidentiality requires file or record access boundaries. Archive issued decisions immutably outside mutable intake rows or through an equivalent controlled mechanism.
 

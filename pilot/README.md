@@ -29,10 +29,11 @@ integrations, schemas, scenarios and general polish until the case-5 review.
 
 ## Participants
 
-Recruit at least two requesters from production, creative or technology who did
+Recruit at least two proposers from production, creative or technology who did
 not write the framework, the evidence owners or authorities needed for the
-cases, and one facilitator. One person may hold several organisational roles;
-record each role separately. Do not use results as employee-performance data.
+cases, and one facilitator. One person may perform several responsibility
+functions; record the function exercised in each decision. Do not use results
+as employee-performance data.
 
 ## Select five cases
 
@@ -47,6 +48,10 @@ controlled systems.
 | 3 | Contributor, client or licensed-material ambiguity | Whether a hold becomes a specific request |
 | 4 | Tool, account, region or retention mismatch | Whether environment controls stay independent and understandable |
 | 5 | High-impact, restricted or clearly unacceptable use | Whether the boundary and a safer alternative are understood |
+
+For case 1, establish a bounded standing approval and use the
+[minimum-overhead routine-use record](../examples/minimum-overhead-routine-use.md).
+Measure initial setup separately from the repeat confirmation.
 
 Include at least one case with an existing-process decision and one case the
 requester genuinely wants to progress. Register the five cases in `RESULTS.md`

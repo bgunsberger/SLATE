@@ -4,9 +4,12 @@ Version 0.2.0
 
 All unqualified MUST requirements apply at every level. Manual controls can meet a requirement unless automation or machine-readable exchange is explicitly assigned to a higher level. A conformance statement identifies the organisation, profile version, jurisdictions, level, responsible authority, evidence date and limitations.
 
+Conformance levels describe capability, not staff count or organisational structure. The [Minimum-Overhead Profile](MINIMUM_OVERHEAD_PROFILE.md) is a valid Level 1 pattern: one person can perform several responsibility functions, evidence can remain in existing repositories, and a current standing approval can reduce each unchanged routine use to one short confirmation.
+
 | Capability | Level 1 — Recorded | Level 2 — Governed | Level 3 — Connected | Level 4 — Assured |
 |---|---|---|---|---|
 | Five dimensions, eight gates, five outcomes and gate-specific bases | Required | Required | Required | Required |
+| Routine use within a bounded standing approval | Five-question manual confirmation | Managed confirmation and assignments | Automated bounded matching and preflight | Independently tested |
 | Preliminary intake and decision-derived action checklist | Manual preparation allowed | Managed assignments and authoritative resolution links | Integrated assessment workflow | Independently tested |
 | Current evidence, full authority review and prerequisite checks | Human controls allowed | Human controls allowed | Automated checks plus reserved human decisions | Independently tested |
 | Immutable decision and reconstructable evidence versions | Controlled archive allowed | Controlled archive and standard exports | Automated snapshots and replay | Independently tested |
@@ -18,7 +21,7 @@ All unqualified MUST requirements apply at every level. Manual controls can meet
 | Deterministic rule evaluation and tuple-level coverage proof | Human findings preserved | Human findings preserved | Required automation | Independently tested |
 | Independent control assurance and comparative performance measurement | Pilot encouraged | Pilot encouraged | Pilot required before production automation | Required periodically |
 
-An implementation claiming Level 1 still needs the rights, privacy, security, validity and stop-use controls. A spreadsheet format alone establishes no conformance.
+An implementation claiming Level 1 still needs the rights, privacy, security, validity and stop-use controls that apply to its bounded use. A verified standing approval supplies those findings until a recorded trigger, expiry or changed fact requires targeted review. A spreadsheet format alone establishes no conformance.
 
 ## Validation layers
 

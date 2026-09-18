@@ -4,49 +4,30 @@ Version 0.2.0
 
 ## 1. Governance objective
 
-SlateCheck creates a shared operational system across creative, production, technology, security, privacy, People and Culture, labour relations and Legal. Its governance model assigns each fact and decision to the people best placed to own it.
+SlateCheck creates a shared operational method for creative production. Its governance model assigns each fact and decision to a person with the relevant knowledge or authority while reusing existing organisational processes.
 
 The governing principle is simple: staff receive a useful answer, specialists retain authority over their domain, and every decision remains traceable to verified evidence.
 
-## 2. Roles
+## 2. Responsibilities and authority
 
-### Requester
+SlateCheck uses four responsibility functions. Adopters assign them within existing jobs and teams.
 
-Describes the intended use, confirms the structured proposal, follows conditions and reports changes. The requester does not interpret contracts.
+| Function | Responsibility |
+|---|---|
+| Proposer | Describes the intended use, confirms the proposal, follows conditions and reports changes. |
+| Decision owner | Accepts accountability for the recorded outcome, routes unresolved questions and keeps the next action clear. |
+| Authorised authority | Supplies the specific interpretation, verification, approval or external permission required by a gate. |
+| Operator | Confirms that the actual use remains within the decision scope and that prerequisites are complete. |
 
-### Production data steward
+One person may perform several functions. Existing producers, production staff and specialist contacts can perform them through current processes. Independence or separation applies where the governing authority, organisational policy or conformance level requires it.
 
-Maintains production, material, manifest, contributor and lineage records. Confirms the exact data proposed for use.
+The decision records which function a person performed and what authority they exercised. External clients, contributors and rights holders can supply decisions within their own authority. An internal title does not expand that authority.
 
-### Business and Legal Affairs
+The [Minimum-Overhead Profile](MINIMUM_OVERHEAD_PROFILE.md) defines the smallest operating pattern. Larger implementations can add data stewardship, policy administration, workflow administration and independent assurance as volume and risk justify them.
 
-Owns contract interpretation, structured rights rules, external approvals, legal conflicts and exceptions. Legal validates summaries rather than entering every operational fact.
+## 3. Illustrative authority mapping
 
-### Casting, People and Culture, and labour relations
-
-Maintain engagement, consent, collective-coverage and workforce-process facts. They route individual and collective changes to Legal for interpretation.
-
-### Privacy owner
-
-Evaluates personal-data purpose, necessity, notice, consent where required, access, retention, affected-person rights and high-impact processing.
-
-### IT and security
-
-Own the technical truth about tool environments, accounts, data regions, access, retention, logging, deletion, subprocessors and incidents.
-
-### AI governance owner
-
-Owns the SlateCheck vocabulary, decision method, policy lifecycle, conformance, metrics and cross-functional forum. This role cannot grant rights held by another party.
-
-### Decision owner
-
-Accepts accountability for an assessment and its next action. The owner ensures that required approvers act and conditions are tracked.
-
-### Independent assurance
-
-Periodically tests records, decisions, controls and access. Assurance reports findings to a governance body with authority to require remediation.
-
-## 3. Authority matrix
+The organisation maps each decision area to its actual authority. The following functions are examples rather than required departments.
 
 | Decision area | Accountable authority | Required inputs |
 |---|---|---|
@@ -59,9 +40,9 @@ Periodically tests records, decisions, controls and access. Assurance reports fi
 | New policy or standing approval | Named governance authority | Cross-functional review and test cases |
 | Exception | Authority named by the governing rule | Exact scope, rationale, evidence, expiry and conditions |
 
-One person may hold several roles in a small studio. The decision record still identifies which authority they exercised.
-
 ## 4. Operating workflows
+
+Sections 4.1–4.4 describe reusable setup for organisations that maintain shared records. A minimum-overhead adopter starts with one bounded use and records only the evidence needed for that use. Setup expands when another real use requires it.
 
 ### 4.1 Production onboarding
 
@@ -112,7 +93,7 @@ Before an environment can satisfy a decision gate:
 
 ### 4.5 Proposed-use assessment
 
-The requester describes the use in plain language and confirms all five SLATE dimensions. Automated evaluation matches standing rules. The decision owner routes unresolved gates to the correct specialist or external party. Processing begins only when the outcome permits it and prerequisite conditions are complete.
+The proposer describes the use in plain language and confirms all five SLATE dimensions. A routine use follows the five-question check in the Minimum-Overhead Profile. The decision owner routes changed or unresolved gates to the relevant authority. Processing begins only when the outcome permits it and prerequisite conditions are complete.
 
 ### 4.6 Operation and closeout
 
@@ -184,7 +165,7 @@ The organisation MUST set retention periods for decisions, evidence and audit ev
 
 ## 9. Oversight forum
 
-A cross-functional SlateCheck forum SHOULD meet on a defined cadence and after significant incidents. It reviews:
+A Level 2–4 implementation or an organisation with recurring high-impact uses SHOULD maintain a cross-functional SlateCheck forum on a defined cadence and after significant incidents. A minimum-overhead implementation can review its standing approval at expiry and convene the relevant authorities when a trigger occurs. The forum reviews:
 
 - new high-impact uses;
 - recurring unresolved questions;
@@ -231,7 +212,7 @@ The current execution state is separate from the immutable decision outcome:
 | `suspended` | A hold, changed material fact, expired basis, dispute, withdrawal, missed duty or relevant incident prevents continuation. |
 | `closed` | Processing ended and remaining retention/deletion duties are recorded and tracked. |
 
-Immediately before each job or bounded batch, a named operator MUST verify the decision ID/version, actual manifest and environment, current evidence, open triggers, prerequisite evidence and expiry. A ready check applies only to that job/batch and scope. Recurring workflows declare batch boundaries and a maximum recheck interval in their standing approval; any intervening trigger suspends the affected work immediately. Human preflight is supported at every level; Level 3 can enforce it through integrations.
+Immediately before each job or bounded batch, a named operator MUST verify the decision ID/version, actual manifest and environment, current evidence, open triggers, prerequisite evidence and expiry. For a routine use, the five answers in the Minimum-Overhead Profile form this ready check. A ready check applies only to that job/batch and scope. Recurring workflows declare batch boundaries and a maximum recheck interval in their standing approval; any intervening trigger suspends the affected work immediately. Human preflight is supported at every level; Level 3 can enforce it through integrations.
 
 Before client delivery, external distribution or public release, the operator MUST verify that the actual artefacts, recipients and channel are within the decision's distribution scope and that every `before_release` duty is satisfied or validly waived. Record this release check as an execution event. A changed audience or artefact requires reassessment; a processing preflight alone cannot clear release duties.
 

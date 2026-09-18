@@ -46,6 +46,8 @@ Version 0.2.0
 
 **Proposed use** — The versioned combination of Source, Legal authority and contributors, AI operation, Target use and Environment submitted for assessment.
 
+**Responsibility function** — An assignment within a SlateCheck decision: proposer, decision owner, authorised authority or operator. Adopters map functions to their existing jobs and departments, and one person may perform several functions when permitted by the governing authority.
+
 **Target use** — The intended outcome, beneficiary, destination production, audience and business context. Stored across the `purpose`, production-relationship and distribution domains in machine-readable records.
 
 **Represented person** — An identifiable person appearing in, speaking in, creating or otherwise linked to material in a way relevant to rights or privacy.

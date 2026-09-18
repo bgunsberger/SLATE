@@ -1,6 +1,6 @@
 # SlateCheck Publication Review
 
-Review date: 16 September 2026
+Review date: 17 September 2026
 
 Specification: 0.2.0 working draft
 
@@ -10,9 +10,9 @@ Scope: current specification, schemas, examples, reference harness and pilot mat
 
 ## Assessment
 
-The specification is sufficiently comprehensive for external working-draft review and controlled pilot evaluation. It covers intake, individual and collective authority, technical processing, purpose and distribution, conditions, lineage, change response, appeals, privacy, conformance and evaluation. Further general chapters would add maintenance cost; expansion should follow observed pilot findings. The revised README and existing specification files total about 16,900 words, within 1% of their pre-audit length; this review is separate supporting material.
+The specification is sufficiently comprehensive for external working-draft review and controlled pilot evaluation. It covers intake, individual and collective authority, technical processing, purpose and distribution, conditions, lineage, change response, appeals, privacy, conformance and evaluation. The minimum-overhead profile provides a bounded adoption path using existing jobs and repositories, a standing approval and one short repeat-use record. Further expansion should follow observed pilot findings.
 
-Public distribution still needs explicit reuse terms and an identified publication location and release snapshot. Operational effectiveness remains untested: the five-case pilot is not started. This review establishes editorial and technical consistency within the checks below; it supplies no legal validation or operational certification.
+Public distribution still needs an identified publication location and release snapshot. Explicit reuse terms now cover the human-readable framework and the technical implementation materials. Operational effectiveness remains untested: the five-case pilot is not started. This review establishes editorial and technical consistency within the checks below; it supplies no legal validation or operational certification.
 
 ## Findings addressed
 
@@ -29,12 +29,13 @@ Public distribution still needs explicit reuse terms and an identified publicati
 | Examples could be mistaken for complete decisions across all outcomes | Distinguished the single complete bundle from abbreviated scenarios and added unconditional-permission and release boundary cases. |
 | Digest description omitted JavaScript serialization behaviour | Documented integer-key ordering, number serialization and Unicode preservation for independent implementations. |
 | Pilot scoring assumed five different requesters despite requiring only two | Expressed comprehension targets and denominators per case session. |
+| The operating model implied a large role catalogue and an eight-step minimum workflow | Reduced the core to four responsibility functions, added a five-question routine path and moved the larger registry model to an expansion pattern. |
+| Reuse terms were unresolved | Applied CC BY 4.0 to human-readable framework materials and Apache 2.0 to technical implementation materials; added a repository licence map, notice and brand policy. |
 
 ## Remaining release decisions
 
 | Item | Required before public distribution |
 |---|---|
-| Reuse terms | Ben Gunsberger or the relevant rights holder selects terms for prose/examples and for schemas/reference code. Add the approved licence text; the current draft grants no open licence. |
 | Canonical location and feedback | Identify the repository or publication URL and a corrections/contact route. |
 | Release identity | Archive a dated, immutable snapshot with its tag or commit, version and change note. Keep historical releases available. |
 | Distribution contents | Include the linked specification, schemas, fictional examples and validation harness. Publish blank pilot templates; review and de-identify any future completed results separately. |
@@ -45,10 +46,10 @@ Editorial corrections can retain the working-draft version before release. After
 
 - All five JSON examples pass structural validation; the complete bundle passes selected semantic checks and manual decision replay.
 - All 43 existing tests pass, and reference JavaScript syntax checks pass.
-- All 50 local Markdown links and heading anchors resolve across 17 distribution documents.
+- All 67 local Markdown file links and all 6 local heading links resolve across 21 Markdown documents.
 - The five primary foundation links were retrieved from their publishers. [Interoperability](INTEROPERABILITY.md#primary-references) identifies the cited editions and guidance.
 - Validation environment: Node.js 25.8.1 and npm 11.11.0. Other runtime versions were not tested.
 
 The complete published bundle ends in an approval hold. Tests exercise individual matching and execution primitives; they do not constitute a full evaluator suite for every outcome, authority combination or lifecycle event. Before production automation, implement the required cases in [Decision Specification §11](DECISION_SPECIFICATION.md#11-required-evaluator-tests), including release enforcement, domain validation and authority coverage. Independent ports also need digest interoperability tests.
 
-The audit preserved existing uncommitted work and made no schema, evaluator, deployment or publication changes. Publisher decisions above remain open; no licence or external release was created.
+The audit preserved existing uncommitted work and made no schema, evaluator, deployment or external publication changes. The repository now includes the selected licence terms. The remaining publisher decisions above remain open, and no external release was created.

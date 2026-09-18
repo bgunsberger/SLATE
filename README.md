@@ -10,9 +10,9 @@ SlateCheck is a governance method for deciding whether a specific use of AI is p
 
 When someone proposes an AI activity, SlateCheck turns it into a structured case covering the exact material, the contracts and people connected to it, what the AI will do, why and where the result will be used, and the particular tool and account involved.
 
-SlateCheck brings together the relevant facts, organisational rules and specialist decisions from Legal, Privacy, Security, Production and other responsible teams. It produces one of five clear outcomes: proceed, proceed with conditions, supply more information, obtain approval, or stop under the current rules.
+SlateCheck brings together the relevant facts, organisational rules and authorised decisions. It produces one of five clear outcomes: proceed, proceed with conditions, supply more information, obtain approval, or stop under the current rules.
 
-Each answer applies only to the use that was assessed. It records the supporting evidence, required conditions, responsible people, validity period and changes that would require another review. Human specialists retain authority over contracts, privacy, security and approvals.
+Each answer applies only to the use that was assessed. It records the supporting evidence, required conditions, accountable person, validity period and changes that would require another review. Routine uses can reuse a standing approval through a five-question confirmation; changed or uncertain facts route only to the authority needed to resolve them.
 
 This repository currently contains a draft specification for the method: its governance model, decision rules, data structures, fictional examples, validation code and pilot plan. The planned pilot will test its usability, effectiveness and operating cost.
 
@@ -40,12 +40,19 @@ SlateCheck records the evidence, authority, conditions and review triggers behin
 
 SlateCheck supports organisational decisions. It provides no legal advice or permission by itself. Adopters configure their own policies, authorities, jurisdictions and review process with qualified legal, privacy, security, production and workforce representatives.
 
-The canonical publication location and reuse terms remain unresolved; see the [publication review](docs/PUBLICATION_REVIEW.md). This draft makes no open-licence grant. During the pilot, changes follow its evidence-led soft freeze.
+The canonical publication location and release snapshot remain unresolved; see the [publication review](docs/PUBLICATION_REVIEW.md). The repository now has explicit reuse terms. During the pilot, changes follow its evidence-led soft freeze.
+
+## Licensing
+
+SlateCheck's human-readable framework materials are licensed under [CC BY 4.0](LICENSES/CC-BY-4.0.txt). Its schemas, reference code, scripts, tests and JSON examples are licensed under the [Apache License 2.0](LICENSES/Apache-2.0.txt). [LICENSE.md](LICENSE.md) defines the file-by-file allocation, and [NOTICE](NOTICE) records the copyright notice.
+
+The SlateCheck name and branding remain reserved under the [brand policy](TRADEMARKS.md). Factual attribution and accurate implementation references are welcome.
 
 ## Reading guide
 
 | Reader or task | Start here |
 |---|---|
+| Adopt with the least process | [Minimum-overhead profile](docs/MINIMUM_OVERHEAD_PROFILE.md) |
 | Understand the framework | [Framework](docs/FRAMEWORK.md), then [worked scenarios](docs/SCENARIOS.md) |
 | Ask what must be answered or approved | [Assessment checklist](docs/ASSESSMENT_CHECKLIST.md) |
 | Set up governance and responsibilities | [Governance](docs/GOVERNANCE.md), then [conformance](docs/CONFORMANCE.md) |
@@ -54,12 +61,12 @@ The canonical publication location and reuse terms remain unresolved; see the [p
 
 ## Specification set
 
-The normative core comprises the Framework, Data Model, Decision Specification, Assessment Checklist, Governance, Implementation Specification, [Glossary](docs/GLOSSARY.md), Conformance and the five JSON Schemas. [Framework §2](docs/FRAMEWORK.md#2-normative-language) defines requirement language and document authority.
+The normative core comprises the Framework, Minimum-Overhead Profile, Data Model, Decision Specification, Assessment Checklist, Governance, Implementation Specification, [Glossary](docs/GLOSSARY.md), Conformance and the five JSON Schemas. [Framework §2](docs/FRAMEWORK.md#2-normative-language) defines requirement language and document authority.
 
 Supporting material is informative:
 
 - [Scenarios](docs/SCENARIOS.md) — fictional worked assessments and boundary cases
-- [Examples](examples/) — five JSON examples and a preliminary checklist; the [frozen bundle](examples/cross-show-lipsync.bundle.json) supports manual decision replay
+- [Examples](examples/) — five JSON examples, a preliminary checklist and a [minimum-overhead routine-use record](examples/minimum-overhead-routine-use.md); the [frozen bundle](examples/cross-show-lipsync.bundle.json) supports manual decision replay
 - [Migration from 0.1](docs/MIGRATION_0.2.md) — incompatible purpose, selector and evidence changes
 - [Interoperability and references](docs/INTEROPERABILITY.md) — conceptual relationships to ODRL 2.2, DPV 2.0, NIST AI RMF 1.0 and OAIC guidance
 - [Pilot materials](pilot/README.md) and [comparative protocol](docs/PILOT_EVALUATION.md) — evaluation methods and unfilled results template
@@ -77,4 +84,12 @@ npm run check
 
 `validate:spec` validates all five JSON examples and runs the test suite, also available separately as `npm test`. The bundle checks frozen evidence and verified human gate findings; replay reconstructs its decision core. Domain review, authority completeness and execution controls require separate validation. [Conformance](docs/CONFORMANCE.md) states the harness's coverage and limitations.
 
-A distribution should retain this README, `docs/`, `schemas/`, `examples/`, `reference/`, `scripts/`, `tests/`, blank pilot templates and both package manifests so readers can follow links and repeat validation. Exclude local dependencies, credentials and live pilot or client records. Archive an identified release snapshot with its date, publisher, licence and canonical location before public distribution.
+The project handbook is reproducible from the Markdown sources with ReportLab:
+
+```sh
+python3 scripts/generate-handbook-pdf.py
+```
+
+The generator writes `output/pdf/SlateCheck_Project_Handbook_v0.2.pdf` and places the minimum-overhead profile and routine-use record before the full specification.
+
+A distribution should retain this README, `LICENSE.md`, `LICENSES/`, `NOTICE`, `TRADEMARKS.md`, `docs/`, `schemas/`, `examples/`, `reference/`, `scripts/`, `tests/`, blank pilot templates and both package manifests so readers can follow links, understand the applicable terms and repeat validation. Exclude local dependencies, credentials and live pilot or client records. Archive an identified release snapshot with its date, publisher, licence and canonical location before public distribution.

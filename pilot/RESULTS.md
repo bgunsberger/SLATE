@@ -122,6 +122,8 @@ open.
 | Median requester active minutes |  | Baseline |  |
 | Median specialist active minutes |  | Baseline |  |
 | Median elapsed resolution time |  | Baseline |  |
+| Routine standing-approval confirmation time |  | <= 5 minutes |  |
+| New specialist touches for unchanged routine use |  | 0 |  |
 
 ## After-case-5 change review
 

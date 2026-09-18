@@ -17,6 +17,8 @@ The framework has four goals:
 3. Preserve the evidence, reasoning, conditions and accountability behind each answer.
 4. Carry source obligations forward into transcripts, embeddings, datasets, outputs and models.
 
+The [Minimum-Overhead Profile](MINIMUM_OVERHEAD_PROFILE.md) is the default adoption path. It begins with one bounded use, treats responsibilities as functions rather than job titles and reduces unchanged repeat uses to a short confirmation against a standing approval.
+
 ## 2. Normative language
 
 The words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT** and **MAY** express requirement levels in this specification.
@@ -239,7 +241,7 @@ Previous decisions MAY be used as evidence of a standing approval. Precedent nev
 
 ## 8. Framework architecture
 
-SlateCheck separates five services. They can begin as controlled spreadsheets and document repositories, then move to a database without changing the conceptual model.
+SlateCheck separates five logical responsibilities. They do not require five services, teams or new systems. A minimum-overhead implementation can use one controlled document plus references to existing repositories; larger implementations can separate the responsibilities into services without changing the conceptual model.
 
 1. **Source and lineage register** — productions, materials, collections, contributors and derivatives.
 2. **Rights and policy register** — agreements, interpreted terms, consent, collective terms and internal rules.
@@ -252,6 +254,8 @@ Controlled source documents remain in their systems of record. SlateCheck stores
 ## 9. Conformance levels
 
 All unqualified MUST requirements in the specification set apply at every level. A level describes how those controls are operated. Manual evidence checking, controlled registers and signed records can implement the baseline. Requirements explicitly marked Level 3 apply to automated evaluators. The normative capability matrix is in [CONFORMANCE.md](CONFORMANCE.md).
+
+At Level 1, a complete standing approval can supply the verified basis for many bounded uses. The live check confirms only scope, current validity, prerequisites and change triggers. Specialist work is concentrated in initial assessment and material changes.
 
 The levels are cumulative: **Recorded** establishes controlled manual assessment and execution; **Governed** adds maintained workflows and standard exports; **Connected** adds automated evaluation and enforcement; **Assured** adds independent control testing and periodic measurement. The matrix specifies the required capabilities without prescribing a software stack.
 

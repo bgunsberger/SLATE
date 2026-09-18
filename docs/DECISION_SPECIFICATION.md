@@ -207,7 +207,7 @@ The answer shown to a requester MUST:
 - lead with the outcome in plain language;
 - describe the exact bounded use;
 - distinguish known restrictions from missing information;
-- name the next responsible role;
+- name the next responsible function or authority;
 - state each condition as a testable action;
 - show validity and change triggers;
 - provide traceable evidence references appropriate to the requester's access.
