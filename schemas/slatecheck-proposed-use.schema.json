@@ -47,8 +47,7 @@
       "additionalProperties": false,
       "required": [
         "inventoryStatus",
-        "modelInventoryStatus",
-        "modelArtifacts"
+        "models"
       ],
       "properties": {
         "inventoryStatus": {
@@ -58,18 +57,11 @@
             "unknown"
           ]
         },
-        "modelInventoryStatus": {
-          "enum": [
-            "verified",
-            "provisional",
-            "unknown"
-          ]
-        },
-        "modelArtifacts": {
+        "models": {
           "type": "array",
           "uniqueItems": true,
           "items": {
-            "$ref": "#/$defs/modelArtifactReference"
+            "$ref": "#/$defs/modelReference"
           }
         },
         "collectionId": {
@@ -133,17 +125,17 @@
         {
           "if": {
             "properties": {
-              "modelInventoryStatus": {
+              "inventoryStatus": {
                 "const": "verified"
               }
             },
             "required": [
-              "modelInventoryStatus"
+              "inventoryStatus"
             ]
           },
           "then": {
             "properties": {
-              "modelArtifacts": {
+              "models": {
                 "type": "array",
                 "minItems": 1
               }
@@ -443,7 +435,7 @@
         "status",
         "deploymentType",
         "providerTraining",
-        "modelArtifactIds",
+        "modelIds",
         "processingRegions",
         "storageRegions",
         "accessGroupIds",
@@ -468,15 +460,7 @@
           "type": "string",
           "minLength": 1
         },
-        "model": {
-          "type": "string",
-          "minLength": 1
-        },
-        "modelVersion": {
-          "type": "string",
-          "minLength": 1
-        },
-        "modelArtifactIds": {
+        "modelIds": {
           "type": "array",
           "uniqueItems": true,
           "items": {
@@ -613,7 +597,7 @@
           },
           "then": {
             "properties": {
-              "modelArtifactIds": {
+              "modelIds": {
                 "type": "array",
                 "minItems": 1
               }
@@ -683,18 +667,13 @@
         "unknown"
       ]
     },
-    "modelArtifactReference": {
+    "modelReference": {
       "type": "object",
       "additionalProperties": false,
       "required": [
         "modelId",
         "version",
-        "artifactType",
-        "useRoles",
-        "accessMode",
-        "provenanceStatus",
-        "authorityStatus",
-        "authorityEvidenceIds"
+        "useRoles"
       ],
       "properties": {
         "modelId": {
@@ -702,21 +681,6 @@
         },
         "version": {
           "$ref": "#/$defs/version"
-        },
-        "artifactType": {
-          "enum": [
-            "foundation_model",
-            "pretrained_model",
-            "checkpoint",
-            "weights",
-            "adapter",
-            "lora",
-            "embedding_model",
-            "classifier",
-            "safety_model",
-            "other",
-            "unknown"
-          ]
         },
         "useRoles": {
           "type": "array",
@@ -737,77 +701,8 @@
               "unknown"
             ]
           }
-        },
-        "accessMode": {
-          "enum": [
-            "provider_service",
-            "managed_service",
-            "studio_hosted",
-            "on_premises",
-            "embedded",
-            "other",
-            "unknown"
-          ]
-        },
-        "provenanceStatus": {
-          "enum": [
-            "verified",
-            "provisional",
-            "unknown"
-          ]
-        },
-        "authorityStatus": {
-          "enum": [
-            "verified",
-            "provisional",
-            "unknown"
-          ]
-        },
-        "authorityEvidenceIds": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "$ref": "#/$defs/id"
-          }
-        },
-        "supplierOrganisationId": {
-          "$ref": "#/$defs/id"
-        },
-        "upstreamModelIds": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "$ref": "#/$defs/id"
-          }
-        },
-        "integrityIdentifier": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 500
         }
-      },
-      "allOf": [
-        {
-          "if": {
-            "properties": {
-              "authorityStatus": {
-                "const": "verified"
-              }
-            },
-            "required": [
-              "authorityStatus"
-            ]
-          },
-          "then": {
-            "properties": {
-              "authorityEvidenceIds": {
-                "type": "array",
-                "minItems": 1
-              }
-            }
-          }
-        }
-      ]
+      }
     },
     "materialReference": {
       "type": "object",

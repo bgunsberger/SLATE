@@ -63,12 +63,11 @@ An AI-assisted implementation MUST link generated requirements to their basis, r
 
 A preliminary checklist asks:
 
-1. Which recordings, performers and source and destination productions are involved?
-2. Which foundation model, pre-trained checkpoint, weights or adapters will be used, and what exact versions and upstream lineage apply?
-3. Which client, contributor, model-licence, provider-term and collective authorities govern the sources and operation?
-4. What will the model learn, generate and retain, including memorisation and deletion behaviour?
-5. Who will use the model and outputs, and will either leave the destination production?
-6. Which tool, deployed model artifacts, tenant, regions, access groups, provider-training settings and retention rules apply?
+1. Which recordings, performers, productions and models are involved?
+2. Which client, contributor, model and collective authorities govern them?
+3. What will the system learn, generate and retain?
+4. Who will use the model and outputs, and will either leave the destination production?
+5. Which approved tool, account and configuration will be used?
 
 Any approval routes remain potential until verified records establish that they apply.
 

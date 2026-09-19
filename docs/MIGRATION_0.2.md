@@ -15,9 +15,9 @@ A legacy value alone cannot establish the missing dimensions. Confirm them with 
 
 ## Model sources
 
-Add `source.modelInventoryStatus` and `source.modelArtifacts` to every Proposed Use. Each reference identifies the controlled model material record, exact version, artifact type, use roles, access mode, provenance status and authority evidence. Add `environment.modelArtifactIds` to bind the deployed or invoked models back to that Source inventory.
+Add `source.models` to every Proposed Use. Each reference contains a controlled model ID, exact record version and use roles. Put artifact type, access mode, supplier, provenance, lineage and authority evidence in the controlled model record. Add `environment.modelIds`; these IDs match the Source model set. The existing Source `inventoryStatus` covers both material and models.
 
-A verified model inventory contains at least one model artifact. Preliminary intake may preserve an unknown inventory and an empty model list, but it cannot produce permission. Register provider-hosted models as model artifacts even when the provider exposes only a service model name or version; register on-premises weights and checkpoints by exact revision and integrity identifier where available.
+A verified Source inventory contains at least one model. Preliminary intake may preserve an unknown inventory and an empty model list, but it cannot produce permission. Register provider-hosted models even when the provider exposes only a service model name or version; register on-premises weights and checkpoints by exact revision and integrity identifier where available.
 
 Existing 0.1 tool approvals do not establish model authority. Migrate model, weights, checkpoint, adapter, code and dependency licences or provider terms into controlled evidence, then reassess the intended inference, fine-tuning, derivative-retention and distribution scope.
 

@@ -79,7 +79,7 @@ Before an assessment:
 6. verify lineage and exclusions;
 7. assign a data steward.
 
-For every model artifact used by an operation, also:
+For every model used by an operation, also:
 
 1. create or resolve a controlled model material record, including provider-hosted models;
 2. record its exact available version, artifact type, use roles, access mode, supplier, provenance and upstream lineage;
@@ -91,7 +91,7 @@ For every model artifact used by an operation, also:
 
 Before an environment can satisfy a decision gate:
 
-1. identify the actual product, controlled model-artifact IDs, tenant and features;
+1. identify the actual product, controlled model IDs, tenant and features;
 2. bind deployed artifacts to the Source model inventory and review their licences, provider terms and acceptable-use restrictions;
 3. verify provider training and human-access settings;
 4. document regions, subprocessors and integrations;

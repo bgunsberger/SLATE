@@ -34,7 +34,7 @@ Version 0.2.0
 
 **Manifest** — A versioned inventory of the exact items in a material collection.
 
-**Model artifact** — A provider-hosted or locally accessible foundation model, pre-trained model, checkpoint, weights package, adapter, LoRA, embedding model, classifier or safety model used by an AI operation. It is recorded as an upstream Source and bound to the Environment in which it is deployed or invoked.
+**Model** — A provider-hosted or locally accessible foundation model, pre-trained model, checkpoint, weights package, adapter, LoRA, embedding model, classifier or safety model used by an AI operation. It has one controlled Source record and a matching Environment reference.
 
 **Non-applicability finding** — A scoped, evidenced determination by a qualified authority that a particular requirement does not apply.
 
@@ -54,7 +54,7 @@ Version 0.2.0
 
 **Represented person** — An identifiable person appearing in, speaking in, creating or otherwise linked to material in a way relevant to rights or privacy.
 
-**Source** — The exact material and model artifacts, provenance, upstream lineage, production context, contents and classifications involved in a proposed use.
+**Source** — The exact material and models, provenance, upstream lineage, production context, contents and classifications involved in a proposed use.
 
 **Standing approval** — A pre-authorised, bounded pattern that can be matched automatically while all facts and conditions remain valid.
 

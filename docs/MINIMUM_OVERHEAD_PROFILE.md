@@ -41,7 +41,7 @@ Additional productions, tools and source classes are added when there is a real 
 
 A use covered by a current standing approval asks:
 
-1. Are the material, represented people and model artifacts within the approved source class?
+1. Are the material, represented people and models within the approved source class?
 2. Is the AI operation, including anything retained, exactly within scope?
 3. Are the purpose, destination and audience within scope?
 4. Is the approved tool, account and configuration being used?

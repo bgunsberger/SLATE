@@ -24,11 +24,11 @@ SlateCheck answers a practical question:
 
 The **SLATE** model describes five dimensions of a proposed use:
 
-- **Source** — the material and upstream model artifacts, including their provenance and lineage
+- **Source** — the material and models being used
 - **Legal authority and contributors** — the agreements, licences, provider terms, rights, people and collective terms governing them
 - **AI operation** — what the AI system will do and retain
 - **Target use** — the intended purpose, beneficiary, destination and audience
-- **Environment** — the tool, deployed model artifacts, account, provider, regions, access and retention settings
+- **Environment** — the tool, deployed models, account, provider, regions, access and retention settings
 
 **Slate** names the complete proposed-use record; **Check** names the evidence-backed assessment applied to it.
 

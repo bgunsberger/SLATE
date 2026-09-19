@@ -20,7 +20,7 @@ These scenarios demonstrate reasoning structure rather than real legal outcomes.
 | 6. Client-funded improvements to a studio rig | Rig code with mixed lineage | Fine-tune rigging assistant | Reusable studio capability | Studio-hosted model | Hold — information required |
 | 7. Approved source in a provider-training account | Cleared original-show art | Generate | Same production | Vendor account with training enabled | Prohibited under current rules |
 | 8. Internal-show performer experiment | Named performer recordings | Train mouth-shape predictor | Same production research | Australia-only research tenant | Permitted with conditions |
-| 9. Firefly or on-premises generation | Cleared artwork plus selected model artifact | Generate | Same production | Provider service or on-premises deployment | Hold — information required until model authority is verified |
+| 9. Firefly or on-premises generation | Cleared artwork plus selected model | Generate | Same production | Provider service or on-premises deployment | Hold — information required until model authority is verified |
 
 ## 1. Can we use voice recordings from a completed client show to train a lip-sync model for our own IP show?
 

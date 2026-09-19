@@ -31,7 +31,7 @@ Public distribution still needs an identified publication location and release s
 | Pilot scoring assumed five different requesters despite requiring only two | Expressed comprehension targets and denominators per case session. |
 | The operating model implied a large role catalogue and an eight-step minimum workflow | Reduced the core to four responsibility functions, added a five-question routine path and moved the larger registry model to an expansion pattern. |
 | Reuse terms were unresolved | Applied CC BY 4.0 to human-readable framework materials and Apache 2.0 to technical implementation materials; added a repository licence map, notice and brand policy. |
-| Foundation and pre-trained models were implicit within the tool environment | Added an explicit model-artifact Source inventory, provenance and authority evidence, upstream lineage, Environment binding, rule selectors and permission tests for provider-hosted and on-premises models. |
+| Foundation and pre-trained models were implicit within the tool environment | Added a model Source inventory, controlled provenance and authority records, Environment binding, rule selectors and permission tests for provider-hosted and on-premises models. |
 
 ## Remaining release decisions
 

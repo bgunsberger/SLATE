@@ -18,7 +18,7 @@ Record `yes`, `changed` or `uncertain` for each question.
 
 | Question | Answer | Change or evidence note |
 |---|---|---|
-| Are the material, represented people and model artifacts within the approved source class? |  |  |
+| Are the material, represented people and models within the approved source class? |  |  |
 | Is the operation, including anything retained, exactly within scope? |  |  |
 | Are the purpose, destination and audience within scope? |  |  |
 | Is the approved tool, account and configuration being used? |  |  |

@@ -8,24 +8,13 @@
   "businessOwnerId": "ROLE-CREATIVE-TECH-DIRECTOR",
   "source": {
     "inventoryStatus": "verified",
-    "modelInventoryStatus": "verified",
-    "modelArtifacts": [
+    "models": [
       {
         "modelId": "MODEL-MOUTHSHAPE-RESEARCH-2",
         "version": "2.0",
-        "artifactType": "pretrained_model",
         "useRoles": [
           "fine_tune_base"
-        ],
-        "accessMode": "managed_service",
-        "provenanceStatus": "verified",
-        "authorityStatus": "verified",
-        "authorityEvidenceIds": [
-          "AGREEMENT-MOTIONMAP-MODEL-LICENCE"
-        ],
-        "supplierOrganisationId": "ORG-FICTIONAL-MOTION-SYSTEMS",
-        "upstreamModelIds": [],
-        "integrityIdentifier": "provider:model/MouthShape-Research@2.0"
+        ]
       }
     ],
     "collectionId": "COLLECTION-HH-VOICE-204",
@@ -142,9 +131,7 @@
     "toolEnvironmentId": "ENV-MOTIONMAP-AU-LAB",
     "product": "MotionMap Lab",
     "provider": "Fictional Motion Systems",
-    "model": "MouthShape Research",
-    "modelVersion": "2.0",
-    "modelArtifactIds": [
+    "modelIds": [
       "MODEL-MOUTHSHAPE-RESEARCH-2"
     ],
     "tenantOrAccountId": "northstar-au-research",

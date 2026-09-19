@@ -30,7 +30,7 @@
       "toolEnvironmentIds": [
         "ENV-MOTIONMAP-AU-LAB"
       ],
-      "modelArtifactIds": [
+      "modelIds": [
         "MODEL-MOUTHSHAPE-RESEARCH-2"
       ],
       "processingRegions": [
@@ -77,7 +77,7 @@
       "toolEnvironmentIds": [
         "ENV-MOTIONMAP-AU-LAB"
       ],
-      "modelArtifactIds": [
+      "modelIds": [
         "MODEL-MOUTHSHAPE-RESEARCH-2"
       ],
       "processingRegions": [
@@ -563,7 +563,7 @@
       "toolEnvironmentIds": [
         "ENV-MOTIONMAP-AU-LAB"
       ],
-      "modelArtifactIds": [
+      "modelIds": [
         "MODEL-MOUTHSHAPE-RESEARCH-2"
       ],
       "processingRegions": [
@@ -610,7 +610,7 @@
       "toolEnvironmentIds": [
         "ENV-MOTIONMAP-AU-LAB"
       ],
-      "modelArtifactIds": [
+      "modelIds": [
         "MODEL-MOUTHSHAPE-RESEARCH-2"
       ],
       "processingRegions": [

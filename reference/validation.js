@@ -95,18 +95,20 @@ export function semanticErrors(bundle) {
   if (decision.gateResults.some(g => ['approval_required', 'missing_information', 'prohibited'].includes(g.result)) && !decision.blockers.length) errors.push('Unresolved gates have no blockers');
   if (decision.gateResults.some(g => g.result === 'approval_required') && !decision.requiredApproverIds.length) errors.push('Approval gate has no approver');
   for (const material of use.source.materials ?? []) requireRecord(material.materialId, material.version);
-  const modelReferences = use.source.modelArtifacts ?? [];
+  const modelReferences = use.source.models ?? [];
   const modelIds = modelReferences.map(model => model.modelId);
-  if (new Set(modelIds).size !== modelIds.length) errors.push('Duplicate model artifact in proposed use');
+  if (new Set(modelIds).size !== modelIds.length) errors.push('Duplicate model in proposed use');
   for (const modelReference of modelReferences) {
     const modelRecord = requireRecord(modelReference.modelId, modelReference.version);
     if (modelRecord && (modelRecord.recordType !== 'material' || modelRecord.facts?.category !== 'model_or_adapter')) errors.push(`Model reference is not a model material ${modelReference.modelId}`);
-    for (const id of modelReference.authorityEvidenceIds) requireRecord(id);
-    if (modelReference.supplierOrganisationId) requireRecord(modelReference.supplierOrganisationId);
-    for (const id of modelReference.upstreamModelIds ?? []) {
-      requireRecord(id);
-      if (!modelIds.includes(id)) errors.push(`Upstream model is absent from model inventory ${id}`);
-    }
+    const facts = modelRecord?.facts ?? {};
+    const authorityEvidenceIds = Array.isArray(facts.authorityEvidenceIds) ? facts.authorityEvidenceIds : [];
+    for (const id of authorityEvidenceIds) requireRecord(id);
+    if (facts.supplierOrganisationId) requireRecord(facts.supplierOrganisationId);
+    for (const id of Array.isArray(facts.upstreamModelIds) ? facts.upstreamModelIds : []) requireRecord(id);
+    const requiredFacts = ['artifactType', 'accessMode', 'provenanceStatus', 'authorityStatus', 'authorityEvidenceIds', 'supplierOrganisationId', 'upstreamModelIds', 'integrityIdentifier'];
+    if (use.source.inventoryStatus === 'verified' && requiredFacts.some(key => facts[key] === undefined)) errors.push(`Verified model record is incomplete ${modelReference.modelId}`);
+    if (facts.authorityStatus === 'verified' && !authorityEvidenceIds.length) errors.push(`Verified model authority has no evidence ${modelReference.modelId}`);
   }
   if (use.source.collectionId) {
     const collection = requireRecord(use.source.collectionId, use.source.collectionVersion);
@@ -124,21 +126,21 @@ export function semanticErrors(bundle) {
     ...(use.environment.subprocessorIds ?? []), ...(use.environment.connectedServiceIds ?? [])
   ]) requireRecord(id);
   for (const key of ['toolEnvironmentId', 'securityApprovalId']) if (use.environment[key]) requireRecord(use.environment[key]);
-  for (const id of use.environment.modelArtifactIds ?? []) {
+  for (const id of use.environment.modelIds ?? []) {
     requireRecord(id);
     if (!modelIds.includes(id)) errors.push(`Environment model is absent from source model inventory ${id}`);
   }
+  if (!sameSet(modelIds, use.environment.modelIds ?? [])) errors.push('Environment model set differs from source model inventory');
   const expectedRelationships = deriveProductionRelationships(use.source.sourceProductionIds, use.purpose.destinationProductionIds);
   if (!sameSet(use.purpose.productionRelationships, expectedRelationships)) errors.push('Production relationships contradict source/destination IDs');
   if (['permitted', 'permitted_with_conditions'].includes(decision.outcome)) {
     if (use.source.inventoryStatus !== 'verified' || use.contractsAndContributors.contributorInventoryStatus !== 'verified' || use.environment.status !== 'verified') errors.push('Permission requires verified inventories and environment');
-    if (use.source.modelInventoryStatus !== 'verified') errors.push('Permission requires verified model inventory');
     for (const modelReference of modelReferences) {
-      if (modelReference.provenanceStatus !== 'verified') errors.push(`Permission requires verified model provenance ${modelReference.modelId}`);
-      if (modelReference.authorityStatus !== 'verified') errors.push(`Permission requires verified model authority ${modelReference.modelId}`);
       const modelRecord = byId.get(modelReference.modelId);
+      if (modelRecord?.facts?.provenanceStatus !== 'verified') errors.push(`Permission requires verified model provenance ${modelReference.modelId}`);
+      if (modelRecord?.facts?.authorityStatus !== 'verified') errors.push(`Permission requires verified model authority ${modelReference.modelId}`);
       if (modelRecord && !isCurrent(modelRecord, decision.evaluatedAt)) errors.push(`Inactive model source ${modelReference.modelId}`);
-      for (const id of modelReference.authorityEvidenceIds) {
+      for (const id of Array.isArray(modelRecord?.facts?.authorityEvidenceIds) ? modelRecord.facts.authorityEvidenceIds : []) {
         const record = byId.get(id);
         if (record && !isCurrent(record, decision.evaluatedAt)) errors.push(`Stale model authority evidence ${id}`);
       }

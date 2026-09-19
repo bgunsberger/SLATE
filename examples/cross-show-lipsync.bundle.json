@@ -10,24 +10,13 @@
     "businessOwnerId": "ROLE-CREATIVE-TECH-DIRECTOR",
     "source": {
       "inventoryStatus": "verified",
-      "modelInventoryStatus": "verified",
-      "modelArtifacts": [
+      "models": [
         {
           "modelId": "MODEL-MOUTHSHAPE-RESEARCH-2",
           "version": "2.0",
-          "artifactType": "pretrained_model",
           "useRoles": [
             "fine_tune_base"
-          ],
-          "accessMode": "managed_service",
-          "provenanceStatus": "verified",
-          "authorityStatus": "verified",
-          "authorityEvidenceIds": [
-            "AGREEMENT-MOTIONMAP-MODEL-LICENCE"
-          ],
-          "supplierOrganisationId": "ORG-FICTIONAL-MOTION-SYSTEMS",
-          "upstreamModelIds": [],
-          "integrityIdentifier": "provider:model/MouthShape-Research@2.0"
+          ]
         }
       ],
       "collectionId": "COLLECTION-HH-VOICE-204",
@@ -144,9 +133,7 @@
       "toolEnvironmentId": "ENV-MOTIONMAP-AU-LAB",
       "product": "MotionMap Lab",
       "provider": "Fictional Motion Systems",
-      "model": "MouthShape Research",
-      "modelVersion": "2.0",
-      "modelArtifactIds": [
+      "modelIds": [
         "MODEL-MOUTHSHAPE-RESEARCH-2"
       ],
       "tenantOrAccountId": "northstar-au-research",
@@ -410,7 +397,7 @@
         "version": "1.0",
         "status": "active",
         "verifiedAt": "2026-09-14T00:00:00Z",
-        "integrityValue": "sha256:f8292ccd51ad6eef8533058acd9b00f91a826174811e1bfff89e31fdc4d4b589"
+        "integrityValue": "sha256:4dc82e78734b4596c91656a523d5dfa98c79b5783d83364217262e6638cc7ea1"
       },
       {
         "recordId": "AGREEMENT-AVA-12",
@@ -487,7 +474,7 @@
         "version": "2.0",
         "status": "active",
         "verifiedAt": "2026-09-14T00:00:00Z",
-        "integrityValue": "sha256:9b912a3e1bcfefedd007e6e2fa5ee4a4c7499db659dd0efb64d007a4a8c0f8ab"
+        "integrityValue": "sha256:ded3fcc862b76b369b610b29830c4e3819f9bd3fd723de3f374af5d99033e676"
       },
       {
         "recordId": "COLLECTION-HH-VOICE-204",
@@ -501,14 +488,14 @@
         "version": "1.0",
         "status": "active",
         "verifiedAt": "2026-09-14T00:00:00Z",
-        "integrityValue": "sha256:348c3042441b008680b93bac8e3e4470bf79774bde22770444ad2a2a20a6d664"
+        "integrityValue": "sha256:127ebab555f2267d952ce49c6fcc8babf6ef5049f0e028d1601497fe3555f870"
       },
       {
         "recordId": "ENV-MOTIONMAP-AU-LAB",
         "version": "2.0",
         "status": "active",
         "verifiedAt": "2026-09-14T00:00:00Z",
-        "integrityValue": "sha256:38fe06ab9a7045e0507bf236ba94cad56382fec6d4988a1ff403650d8649fd1b"
+        "integrityValue": "sha256:ecfb52759c941891ed4b9b1f80406f1917d238879bce14e7ee20970abb4b8607"
       },
       {
         "recordId": "PROFILE-NORTHSTAR-PILOT",
@@ -564,7 +551,7 @@
         "version": "1.0",
         "status": "active",
         "verifiedAt": "2026-09-14T00:00:00Z",
-        "integrityValue": "sha256:d4914feaffed319bbafdf5c3a6180f68b175f9f4e29612c6f2b8b50a19383b80"
+        "integrityValue": "sha256:75cebef837664f9a12324e540ef337beadc3730b524093e06c3646666963ade8"
       },
       {
         "recordId": "FINDING-INVENTORY",
@@ -650,7 +637,7 @@
       "Client authority is added or amended",
       "A performer agreement, consent or collective term changes",
       "The material collection changes",
-      "A model artifact, upstream lineage, model licence or provider term changes",
+      "A model, upstream lineage, model licence or provider term changes",
       "The learned capability or destination changes",
       "The environment, region, access or retention changes"
     ],
@@ -804,7 +791,7 @@
       ],
       "facts": {
         "agreementType": "model_licence_and_service_terms",
-        "coveredModelArtifactIds": [
+        "coveredModelIds": [
           "MODEL-MOUTHSHAPE-RESEARCH-2"
         ],
         "termsVersion": "2026-08-15",
@@ -1237,6 +1224,7 @@
         "supplierOrganisationId": "ORG-FICTIONAL-MOTION-SYSTEMS",
         "accessMode": "managed_service",
         "provenanceStatus": "verified",
+        "authorityStatus": "verified",
         "authorityEvidenceIds": [
           "AGREEMENT-MOTIONMAP-MODEL-LICENCE"
         ],
@@ -1320,9 +1308,7 @@
           "toolEnvironmentId": "ENV-MOTIONMAP-AU-LAB",
           "product": "MotionMap Lab",
           "provider": "Fictional Motion Systems",
-          "model": "MouthShape Research",
-          "modelVersion": "2.0",
-          "modelArtifactIds": [
+          "modelIds": [
             "MODEL-MOUTHSHAPE-RESEARCH-2"
           ],
           "tenantOrAccountId": "northstar-au-research",
@@ -1389,9 +1375,7 @@
         "toolEnvironmentId": "ENV-MOTIONMAP-AU-LAB",
         "product": "MotionMap Lab",
         "provider": "Fictional Motion Systems",
-        "model": "MouthShape Research",
-        "modelVersion": "2.0",
-        "modelArtifactIds": [
+        "modelIds": [
           "MODEL-MOUTHSHAPE-RESEARCH-2"
         ],
         "tenantOrAccountId": "northstar-au-research",
@@ -1895,7 +1879,7 @@
             "ENV-MOTIONMAP-AU-LAB"
           ]
         },
-        "modelArtifactIds": {
+        "modelIds": {
           "operator": "all_in",
           "values": [
             "MODEL-MOUTHSHAPE-RESEARCH-2"

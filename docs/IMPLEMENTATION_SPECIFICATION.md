@@ -20,11 +20,11 @@ The system MUST capture and version all five SLATE dimensions. It MUST preserve 
 
 ### FR-02 — Identify exact material and models
 
-The system MUST accept individual material records or a versioned collection manifest and MUST capture a model inventory for every proposal. Each model reference identifies its version, type, use role, access mode, provenance status and authority evidence. The system MUST prevent a permitted outcome when the required material, represented-person or model-artifact set is unknown, or when model provenance or authority is unverified.
+The system MUST accept individual material records or a versioned collection manifest and MUST capture the models used by every proposal. One Source inventory status covers both. Each model reference contains its controlled ID, version and role in the proposed use. Model detail and authority live in the controlled record. The system MUST prevent permission when the required material, represented-person or model set is unknown, or when model provenance or authority is unverified.
 
 ### FR-03 — Link controlled evidence
 
-The system MUST link productions, materials, model artifacts, people, agreements, policy rules and tool environments through stable IDs. It MUST bind each Environment model ID to a Source model reference and record evidence version and status in every decision snapshot.
+The system MUST link productions, materials, models, people, agreements, policy rules and tool environments through stable IDs. Source and Environment model IDs MUST match, and every decision snapshot records the evidence version and status.
 
 ### FR-04 — Evaluate contributors individually
 
@@ -152,7 +152,7 @@ A controlled workbook can test the model before software development. One possib
 | `People` | Controlled ID, role, jurisdiction, agreement IDs, collective IDs, consent status |
 | `Agreements` | ID, type, parties, scope, effective dates, controlled document reference, verifier |
 | `Rules` | ID, version, effect, selectors, requirements, authority, dates, verifier |
-| `Environments` | ID, product, deployed model-artifact IDs, tenant, regions, access, provider training, retention, approval |
+| `Environments` | ID, product, deployed model IDs, tenant, regions, access, provider training, retention, approval |
 | `Requests` | Proposed Use fields and confirmation state |
 | `Decisions` | Outcome, scope, gates, rules, evidence snapshot, owner, validity |
 | `Obligations` | Decision, condition, owner, due date, status, completion evidence |
@@ -184,10 +184,10 @@ An initial implementation is ready for controlled internal use when it can demon
 
 1. published examples validate, and every active rule has authority, verification, effective status and positive and boundary tests;
 2. the same frozen snapshot produces the same gate results and resolves every cited rule and evidence version;
-3. contributor, material and model-artifact relationships are evaluated without combining unrelated rows, and whole-scope selectors do not turn partial coverage into permission;
+3. contributor, material and model relationships are evaluated without combining unrelated rows, and whole-scope selectors do not turn partial coverage into permission;
 4. unknown, stale, expired, withdrawn or changed facts cannot provide a positive basis and trigger reassessment or suspension as applicable;
 5. explicit prohibitions and every lower-severity blocker remain visible;
-6. every satisfied or non-applicable gate has the required evidence, scope and verifier, including current provenance and authority evidence for every model artifact;
+6. every satisfied or non-applicable gate has the required evidence, scope and verifier, including current provenance and authority evidence for every model;
 7. decisions, prerequisites, conditions and retained or released derivative obligations remain reconstructable, with owners and completion evidence;
 8. reverse lineage identifies decisions and derivatives affected by a source change;
 9. access, explanation, export, backup and deletion controls pass security and privacy testing;

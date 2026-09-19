@@ -142,15 +142,15 @@ Required domain fields:
 - lineage links;
 - integrity identifier such as a manifest entry, content hash or immutable version.
 
-#### Model artifact profile
+#### Model record profile
 
-A foundation model, pre-trained model, checkpoint, weights package, adapter or provider-hosted model used by a proposed operation is a material item with category `model_or_adapter`. Its record MUST additionally identify:
+A foundation model, pre-trained model, checkpoint, weights package, adapter or provider-hosted model is a material item with category `model_or_adapter`. Its controlled record MUST identify:
 
-- artifact type and intended use roles, such as inference, generation, fine-tune base, adapter, distillation source, evaluator, embedding or safety/moderation;
+- artifact type;
 - exact available model name, version, revision and integrity identifier, recognising that a provider service may expose a controlled version label rather than downloadable bytes;
 - access mode: provider service, managed service, studio-hosted, on-premises, embedded or other;
 - creator or supplier and the authoritative provenance source;
-- every known upstream model-artifact ID and applicable dependency relationship;
+- every known upstream model ID and applicable dependency relationship;
 - current authority evidence for the intended use, such as model or weights licences, provider terms, procurement agreements or an ownership determination; and
 - interpreted rights and restrictions relevant to commercial use, inference, modification, fine-tuning, retained or derivative weights, redistribution, sublicensing, outputs, attribution and acceptable use.
 
@@ -168,8 +168,8 @@ Represents an approved configuration, not a product brand in the abstract.
 
 Required domain fields:
 
-- product, provider, model and version;
-- deployed or invoked model-artifact IDs matching the Source inventory;
+- product and provider;
+- deployed or invoked model IDs matching the Source inventory;
 - deployment and tenant type;
 - contract and data-processing agreement IDs;
 - approved material and operation classes;
@@ -183,7 +183,7 @@ Required domain fields:
 
 ### 3.9 Proposed use
 
-Represents the request being assessed. It contains the five SLATE dimensions and references controlled records wherever possible. Source includes a model-inventory status and model-artifact references; Environment identifies which of those artifacts are deployed or invoked. The normative machine shape is defined in [`../schemas/slatecheck-proposed-use.schema.json`](../schemas/slatecheck-proposed-use.schema.json).
+Represents the request being assessed. It contains the five SLATE dimensions and references controlled records wherever possible. Source `inventoryStatus` covers both material and models. Each model reference contains only the model ID, exact record version and its role in this use. The controlled model record holds type, supplier, access mode, provenance, lineage and authority evidence. Environment repeats the model IDs to confirm what will actually run. The normative machine shape is defined in [`../schemas/slatecheck-proposed-use.schema.json`](../schemas/slatecheck-proposed-use.schema.json).
 
 The request MUST preserve unknown values explicitly. A user-friendly front end can collect plain language first, then require confirmation of the structured proposal.
 
@@ -225,8 +225,8 @@ Material    --originated in-> Production
 Material    --represents----> Person
 Material    --governed by---> Agreement
 Collection  --contains------> Material
-Proposed use--uses model----> Model artifact material
-Environment --deploys-------> Model artifact material
+Proposed use--uses model----> Model material
+Environment --deploys-------> Model material
 Derivative  --derived from--> Material or Collection
 Rule        --supported by--> Agreement or Policy
 Rule        --applies to----> SlateCheck selectors
@@ -248,7 +248,7 @@ Lineage answers three questions:
 2. Which people and agreements are represented through those sources?
 3. Which active restrictions, conditions and expiry events must be reconsidered?
 
-For a model artifact, the first question includes its upstream foundation models, pre-trained checkpoints, adapters and conversions. Provider-hosted models retain lineage through controlled identifiers and documented provider provenance even when their bytes are unavailable.
+For a model, the first question includes its upstream foundation models, pre-trained checkpoints, adapters and conversions. Provider-hosted models retain lineage through controlled identifiers and documented provider provenance even when their bytes are unavailable.
 
 Each lineage edge records:
 
@@ -267,11 +267,11 @@ Policy rules are modular because they match facts across standard selector group
 
 | Selector group | Examples |
 |---|---|
-| Source | production, material category, model-artifact ID, supplier, classification, lifecycle state |
+| Source | production, material category, model ID, supplier, classification, lifecycle state |
 | Legal authority/contributor | agreement, model authority evidence, party, contributor role, collective instrument, consent state, jurisdiction |
 | AI operation | summarisation, embeddings, generation, training, synthetic performance, automated decision |
 | Target use | same production, cross-production, reusable capability, public release, audience |
-| Environment | tool, model-artifact ID, tenant, deployment, region, access group, provider training, retention |
+| Environment | tool, model ID, tenant, deployment, region, access group, provider training, retention |
 | Time | effective period, expiry, production stage |
 
 Selectors may use controlled categories and explicit IDs. Free-text selectors MUST NOT drive an automated permission outcome.
@@ -284,7 +284,7 @@ The following table is an illustrative mapping for a larger studio. Minimum-over
 |---|---|---|---|
 | Productions and ownership | Production operations | Business and legal affairs | Greenlight, amendment, delivery, wrap |
 | Materials and lineage | Department or data steward | Production technology | Ingest, edit, collection change, archive |
-| Model artifacts and upstream lineage | ML or tool owner / procurement | Production technology and authorised rights reviewer | Model, checkpoint, adapter, supplier, licence or provider-term change |
+| Models and upstream lineage | ML or tool owner / procurement | Production technology and authorised rights reviewer | Model, checkpoint, adapter, supplier, licence or provider-term change |
 | Contributor identity and engagement | Casting / People and Culture | Business and legal affairs | Engagement, rider, withdrawal, role change |
 | Collective terms | People and Culture / labour relations | Qualified legal adviser | New agreement, jurisdiction or term |
 | Privacy basis and notices | Privacy owner | Privacy or legal adviser | New data class, purpose or notice |
@@ -312,7 +312,7 @@ A production implementation SHOULD provide:
 
 ## 9. Minimum viable dataset
 
-A useful pilot does not require every historic asset. It needs enough connected records to exercise the selected real cases: representative productions, materials and model artifacts; contributors with differing terms; verified agreement and model-authority summaries; materially different tool environments; the rules needed for those cases; expected outcome states; and at least one derivative lineage chain.
+A useful pilot does not require every historic asset. It needs enough connected records to exercise the selected real cases: representative productions, materials and models; contributors with differing terms; verified agreement and model-authority summaries; materially different tool environments; the rules needed for those cases; expected outcome states; and at least one derivative lineage chain.
 
 The pilot SHOULD measure how often answers are blocked by missing facts. That reveals which records need operational ownership before further automation.
 
