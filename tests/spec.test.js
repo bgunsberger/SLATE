@@ -154,9 +154,46 @@ test('collection-only intake requires a versioned manifest reference', () => {
   assert.equal(validators['proposed-use'](u), false);
 });
 
+test('proposed uses explicitly inventory and bind model artifacts', () => {
+  const missing = structuredClone(bundle.proposedUse); delete missing.source.modelInventoryStatus;
+  assert.equal(validators['proposed-use'](missing), false);
+  const empty = structuredClone(bundle.proposedUse); empty.source.modelArtifacts = [];
+  assert.equal(validators['proposed-use'](empty), false);
+  const unboundEnvironment = structuredClone(bundle.proposedUse); unboundEnvironment.environment.modelArtifactIds = [];
+  assert.equal(validators['proposed-use'](unboundEnvironment), false);
+  const preliminary = structuredClone(bundle.proposedUse);
+  Object.assign(preliminary.source, {modelInventoryStatus: 'unknown', modelArtifacts: []});
+  Object.assign(preliminary.environment, {status: 'provisional', modelArtifactIds: []});
+  schemaValid('proposed-use', preliminary);
+  const unbound = copy(); unbound.proposedUse.environment.modelArtifactIds = ['MODEL-NOT-IN-SOURCE'];
+  assert.ok(semanticErrors(unbound).includes('Environment model is absent from source model inventory MODEL-NOT-IN-SOURCE'));
+});
+
+test('verified model authority requires evidence and frozen record closure', () => {
+  const proposal = structuredClone(bundle.proposedUse); proposal.source.modelArtifacts[0].authorityEvidenceIds = [];
+  assert.equal(validators['proposed-use'](proposal), false);
+  for (const id of ['MODEL-MOUTHSHAPE-RESEARCH-2', 'AGREEMENT-MOTIONMAP-MODEL-LICENCE']) {
+    const b = copy(); b.records = b.records.filter(record => record.id !== id);
+    assert.ok(semanticErrors(b).includes(`Missing frozen record/version ${id}`));
+  }
+});
+
+test('permitted outcomes require verified model provenance and authority', () => {
+  const b = copy(); b.decision.outcome = 'permitted';
+  b.proposedUse.source.modelInventoryStatus = 'unknown';
+  Object.assign(b.proposedUse.source.modelArtifacts[0], {provenanceStatus: 'unknown', authorityStatus: 'unknown'});
+  const errors = semanticErrors(b);
+  assert.ok(errors.includes('Permission requires verified model inventory'));
+  assert.ok(errors.includes('Permission requires verified model provenance MODEL-MOUTHSHAPE-RESEARCH-2'));
+  assert.ok(errors.includes('Permission requires verified model authority MODEL-MOUTHSHAPE-RESEARCH-2'));
+});
+
 test('whole-scope permissions reject permissive any-member matching', () => {
   const r = {...rule, effect: 'permit', selectors: {processingRegions: {operator: 'any_of', values: ['AU']}}};
   assert.throws(() => matchRule(r, {processingRegions: ['AU', 'US']}, at), /whole-scope/);
+  const modelRule = {...rule, effect: 'permit', selectors: {modelArtifactIds: {operator: 'any_of', values: ['MODEL-MOUTHSHAPE-RESEARCH-2']}}};
+  schemaValid('policy-rule', modelRule);
+  assert.throws(() => matchRule(modelRule, {modelArtifactIds: ['MODEL-MOUTHSHAPE-RESEARCH-2', 'MODEL-OTHER']}, at), /whole-scope/);
 });
 
 test('expired, withdrawn and review-due rules cannot establish current coverage', () => {

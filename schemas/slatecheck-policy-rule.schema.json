@@ -151,6 +151,9 @@
         "toolEnvironmentIds": {
           "$ref": "#/$defs/setPredicate"
         },
+        "modelArtifactIds": {
+          "$ref": "#/$defs/setPredicate"
+        },
         "deploymentTypes": {
           "$ref": "#/$defs/setPredicate"
         },

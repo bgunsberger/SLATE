@@ -59,6 +59,8 @@ It MUST identify:
 - every represented contributor or a documented method for identifying them;
 - personal, sensitive, confidential, culturally sensitive and security classifications;
 - governing agreements and licences;
+- every foundation model, pre-trained model, checkpoint, weights package, adapter or other model artifact used to perform the operation, including provider-hosted artifacts;
+- each model artifact's exact available name, version or revision, artifact type, use role, access mode, supplier, provenance status, upstream model lineage and authority evidence;
 - upstream material and downstream derivatives through lineage links.
 
 Common source categories include:
@@ -69,9 +71,12 @@ Common source categories include:
 - production outputs: artwork, animation, renders, edit media, rigs, code, tools and models;
 - business and people records: contracts, HR data, performance data, finance and security logs;
 - external material: licensed libraries, stock assets, public-domain material and web content;
+- model artifacts: provider-hosted foundation models, pre-trained models, checkpoints, weights, adapters, LoRAs, embedding models, classifiers and safety models;
 - derived material: summaries, transcripts, labels, embeddings, indexes, synthetic outputs, adapters and model weights.
 
 Possession, access, payment and production completion are recorded as facts. They do not independently establish permission.
+
+A model artifact has a dual role. It is an upstream **Source** whose provenance and authority must be assessed, and it is a component of the **Environment** in which processing occurs. A provider-hosted service and an on-premises checkpoint follow the same rule: location or access method does not establish authority to use, modify, fine-tune, retain or distribute the model or its derivatives.
 
 ### 4.2 Legal authority and contributors
 
@@ -81,6 +86,8 @@ It MUST support:
 
 - production, client, co-production and distribution agreements;
 - licences and assignments;
+- model, weights, checkpoint, code and dependency licences;
+- provider service terms, acceptable-use restrictions and controlled ownership determinations for internally developed models;
 - employment and contractor agreements;
 - performer, artist and other contributor agreements;
 - consent records, riders and releases;
@@ -156,6 +163,7 @@ Environment describes the complete processing boundary.
 It MUST identify:
 
 - product, provider, model and material version where relevant;
+- the controlled model-artifact IDs deployed or invoked, bound to the Source inventory;
 - deployment type: local, studio-hosted, private tenant, managed enterprise service or public service;
 - account or tenant;
 - provider use of inputs, outputs and telemetry, including model improvement;
@@ -180,7 +188,7 @@ The per-gate evidence requirements are defined in the Decision Specification. Mi
 
 ### 5.2 Cumulative rights
 
-Applicable authorities accumulate. A client approval does not satisfy a performer consent requirement. An individual consent does not remove a collective minimum. Tool approval does not confer rights in the material.
+Applicable authorities accumulate. A client approval does not satisfy a performer consent requirement. An individual consent does not remove a collective minimum. Tool approval does not confer rights in the material or the model artifact. On-premises deployment does not replace the model licence, provider terms or other model authority.
 
 ### 5.3 Lineage and inheritance
 

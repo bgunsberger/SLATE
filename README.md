@@ -8,7 +8,7 @@ Author: **Ben Gunsberger**
 
 SlateCheck is a governance method for deciding whether a specific use of AI is permitted within a creative business.
 
-When someone proposes an AI activity, SlateCheck turns it into a structured case covering the exact material, the contracts and people connected to it, what the AI will do, why and where the result will be used, and the particular tool and account involved.
+When someone proposes an AI activity, SlateCheck turns it into a structured case covering the exact material and upstream models, the contracts, licences and people connected to them, what the AI will do, why and where the result will be used, and the particular deployment involved.
 
 SlateCheck brings together the relevant facts, organisational rules and authorised decisions. It produces one of five clear outcomes: proceed, proceed with conditions, supply more information, obtain approval, or stop under the current rules.
 
@@ -20,15 +20,15 @@ This repository currently contains a draft specification for the method: its gov
 
 SlateCheck answers a practical question:
 
-> Given this material, these contributors, these agreements, this AI activity, this destination and this tool, are we permitted to proceed?
+> Given these materials and model sources, these contributors and authorities, this AI activity, this destination and this environment, are we permitted to proceed?
 
 The **SLATE** model describes five dimensions of a proposed use:
 
-- **Source** — the material, its provenance and contents
-- **Legal authority and contributors** — the agreements, rights, people and collective terms governing it
+- **Source** — the material and upstream model artifacts, including their provenance and lineage
+- **Legal authority and contributors** — the agreements, licences, provider terms, rights, people and collective terms governing them
 - **AI operation** — what the AI system will do and retain
 - **Target use** — the intended purpose, beneficiary, destination and audience
-- **Environment** — the tool, account, provider, regions, access and retention settings
+- **Environment** — the tool, deployed model artifacts, account, provider, regions, access and retention settings
 
 **Slate** names the complete proposed-use record; **Check** names the evidence-backed assessment applied to it.
 

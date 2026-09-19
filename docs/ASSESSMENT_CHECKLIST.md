@@ -64,10 +64,11 @@ An AI-assisted implementation MUST link generated requirements to their basis, r
 A preliminary checklist asks:
 
 1. Which recordings, performers and source and destination productions are involved?
-2. Which client, contributor and collective agreements govern them?
-3. What will the model learn, generate and retain, including memorisation and deletion behaviour?
-4. Who will use the model and outputs, and will either leave the destination production?
-5. Which tool, tenant, regions, access groups, provider-training settings and retention rules apply?
+2. Which foundation model, pre-trained checkpoint, weights or adapters will be used, and what exact versions and upstream lineage apply?
+3. Which client, contributor, model-licence, provider-term and collective authorities govern the sources and operation?
+4. What will the model learn, generate and retain, including memorisation and deletion behaviour?
+5. Who will use the model and outputs, and will either leave the destination production?
+6. Which tool, deployed model artifacts, tenant, regions, access groups, provider-training settings and retention rules apply?
 
 Any approval routes remain potential until verified records establish that they apply.
 
@@ -77,7 +78,7 @@ The [cross-show decision](../examples/cross-show-lipsync.decision.json) produces
 
 - **Proposal:** USE-HH-MM-001 version 2.0
 - **Decision:** DECISION-HH-MM-001 version 2.0 — Hold: approval required
-- **Already established:** the material inventory and private tenant configuration are verified within the assessed scope.
+- **Already established:** the material and model inventories, base-model authority and private tenant configuration are verified within the assessed scope.
 
 | ID / kind | Question or action | Basis and scope | Owner / authority | Evidence and timing | Depends on |
 |---|---|---|---|---|---|
@@ -99,5 +100,6 @@ A conforming checklist implementation demonstrates that:
 - the evidence-backed view includes every unresolved gate finding and preserves independent authorities;
 - scope-defining questions precede dependent approvals;
 - prohibitions remain visible with other unresolved work;
-- resolution links to controlled evidence, approval or obligation records; and
-- changed scope or evidence produces reassessment and a checklist derived from the successor decision.
+- resolution links to controlled evidence, approval or obligation records;
+- changed scope or evidence produces reassessment and a checklist derived from the successor decision; and
+- an unidentified or unverified provider-hosted or on-premises model produces an explicit information item rather than inheriting tool approval.

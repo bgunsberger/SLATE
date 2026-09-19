@@ -16,7 +16,7 @@ The process answers two separate questions:
 An assessment requires:
 
 - one valid Proposed Use document;
-- current source, production, contributor, agreement and environment records;
+- current source-material, model-artifact, production, contributor, agreement and environment records;
 - active policy rules for the relevant organisation and jurisdictions;
 - the identity and authority of the requester;
 - an evaluation time;
@@ -30,8 +30,8 @@ Each proposal is evaluated through eight gates. Every gate produces `satisfied`,
 
 | Gate | Question |
 |---|---|
-| Inventory | Do we know the exact material and every represented contributor? |
-| Source authority | Is there a positive basis to use these sources in this way? |
+| Inventory | Do we know the exact source material, every represented contributor and every model artifact? |
+| Source authority | Is there a positive basis to use every material and model source in this way? |
 | Contributor rights | Are individual, employment and collective requirements satisfied for every person? |
 | Privacy and people impact | Is the personal-data processing justified, proportionate, transparent and appropriately controlled? |
 | Operation | Does authority cover what the system learns, produces and retains? |
@@ -49,7 +49,7 @@ Validate the request against the Proposed Use schema. Resolve controlled IDs, no
 
 ### Step 2 — Expand the source set
 
-Expand every material collection to its manifest. Traverse upstream lineage required to identify governing sources, agreements and represented people. Record the version of every traversed edge.
+Expand every material collection to its manifest and every model inventory to its exact artifact references. Traverse upstream lineage required to identify governing sources, agreements, model licences or terms, and represented people. Record the version of every traversed edge. A provider-hosted model remains an upstream source even when only a controlled service identifier and provider provenance are available.
 
 ### Step 3 — Build the authority set
 
@@ -57,6 +57,8 @@ Collect all potentially applicable:
 
 - production and client agreements;
 - ownership, licence and supplier records;
+- model, weights, checkpoint, adapter, code and dependency licences;
+- provider terms, acceptable-use restrictions and model-ownership determinations;
 - individual engagements, consents and riders;
 - guild, union, award and collective instruments;
 - privacy notices and processing bases;
@@ -73,6 +75,7 @@ Rules use the set predicates and relationship binding in §12. All populated pre
 Rule matching MUST consider:
 
 - the whole material set;
+- the whole model-artifact set and each model's declared use roles;
 - each represented person individually;
 - every relevant jurisdiction;
 - both source and destination production;
@@ -182,7 +185,7 @@ The requested operation must declare each expected durable artefact. The evaluat
 - distribution;
 - deletion or withdrawal response.
 
-“Training” is incomplete without naming whether the result is a base model, fine-tune, LoRA, embedding index, classifier, evaluation set or another retained capability.
+“Training” is incomplete without naming whether the result is a base model, fine-tune, LoRA, embedding index, classifier, evaluation set or another retained capability. The assessment also names every upstream model artifact and verifies that its authority covers the declared operation, retained derivative and distribution boundary.
 
 ## 9. Decision validity
 
@@ -192,7 +195,7 @@ A decision remains valid only while its facts, evidence and conditions remain va
 - agreement amendment, expiry, withdrawal or dispute;
 - destination or audience change;
 - operation, output or retention change;
-- tool, model, account, provider term, region or access change;
+- tool, model artifact, upstream lineage, model licence, account, provider term, region or access change;
 - new legal or collective requirements;
 - missed condition;
 - security or privacy incident;
@@ -229,7 +232,9 @@ A conforming implementation MUST document positive and boundary cases. A Level 3
 9. a valid specific exception;
 10. a derivative whose source permission is withdrawn;
 11. automated employment ranking prohibited by policy;
-12. a rule update that invalidates a previously permitted decision.
+12. a rule update that invalidates a previously permitted decision;
+13. an unknown or unlicensed model artifact in an otherwise approved proposal; and
+14. equivalent model-authority checks for a provider-hosted service and an on-premises checkpoint.
 
 Tests MUST assert the outcome, gate results, evidence set, conditions and responsible owner.
 
@@ -246,7 +251,7 @@ A selector is `{ "operator": "all_in", "values": ["AU"] }`, with a non-empty, un
 
 A confirmed empty actual set matches none of these operators. Missing facts, null and `unknown` are unknown. With partial knowledge, a known intersection establishes `any_of`; all required known members establish `contains_all`; a known disallowed member disproves `all_in` and `equals_set`. Other unresolved comparisons remain unknown. In an AND expression, false dominates unknown, and unknown dominates true. Unknown never supplies a positive basis. An unknown potentially applicable requirement is retained as an information blocker.
 
-Whole-proposal selectors on a `permit` rule MUST use `all_in` or `equals_set`: operations, persistence, destination productions, production relationships, business purposes, reuse intent, distribution, audiences, environment IDs, deployments, provider training, processing regions, access groups and jurisdictions. This prevents an Australia-only permission from covering an Australia-and-US environment. `any_of` can detect a prohibited member or trigger an approval requirement. An omitted whole-proposal selector is unrestricted only within the verified source authority; rule authors must substantiate that breadth.
+Whole-proposal selectors on a `permit` rule MUST use `all_in` or `equals_set`: operations, persistence, destination productions, production relationships, business purposes, reuse intent, distribution, audiences, environment IDs, model-artifact IDs, deployments, provider training, processing regions, access groups and jurisdictions. This prevents an Australia-only permission from covering an Australia-and-US environment or an approval for one model from silently covering another. `any_of` can detect a prohibited member or trigger an approval requirement. An omitted whole-proposal selector is unrestricted only within the verified source authority; rule authors must substantiate that breadth.
 
 Source selectors bind to a single material/person relationship. Each expanded row contains one material, its production, one relevant person (or an explicitly verified absence), and agreements linked to that material/person. A rule requiring Show A and Person B matches only where both belong to that row. Values from unrelated assets MUST NOT be joined to manufacture a match. Contributor-specific agreement, role and collective selectors use that person's linked records. Jurisdictions are the full applicable set for the proposal and are not inferred from a person's location alone.
 
@@ -262,14 +267,16 @@ Effective intervals are start-inclusive and end-exclusive in UTC. At a review de
 
 | Gate | Required basis | Accountable verifier |
 |---|---|---|
-| Inventory | Verified manifest, contributor mapping, exclusions and relevant lineage | Data steward |
-| Source authority | Bounded ownership/licence/contract/legal conclusion for each relevant source authority | Authorised rights reviewer |
+| Inventory | Verified material manifest, model inventory, contributor mapping, exclusions and relevant lineage | Data steward and technical owner |
+| Source authority | Bounded ownership/licence/contract/legal conclusion for each relevant material and model authority | Authorised rights reviewer |
 | Contributor rights | Individual and collective coverage, including an evidenced determination where a permission is unnecessary | Authorised rights and labour reviewer |
 | Privacy and people impact | Purpose-specific processing basis and required impact/people controls | Privacy owner |
 | Operation | Rights coverage plus verified technical account of processing and persistence | Rights reviewer and technical owner |
 | Purpose and destination | Rights coverage for beneficiaries, production boundaries, reuse and distribution | Authorised rights reviewer |
 | Environment | Current verified configuration and approval for the data/operation classes | IT/security and relevant privacy authority |
 | Obligations | Assigned, feasible, testable duties, prerequisites and consequences | Operational owner and duty authority |
+
+Permission requires a verified model inventory, verified provenance for each referenced model artifact, current model-authority evidence and an Environment binding to the deployed artifact IDs. An unknown model, an unverified checkpoint licence or a provider product name without controlled model evidence creates an information hold.
 
 Each satisfied or conditional gate records `basis` entries with kind, evidence, verifier and scope. A `not_applicable` gate records a `non_applicability` basis with equivalent evidence. Examples include a verified non-personal source or a qualified conclusion that a specific rights permission is unnecessary. A model's quality or an internal risk acceptance cannot supply a missing external right.
 

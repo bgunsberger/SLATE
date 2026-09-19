@@ -20,6 +20,7 @@ These scenarios demonstrate reasoning structure rather than real legal outcomes.
 | 6. Client-funded improvements to a studio rig | Rig code with mixed lineage | Fine-tune rigging assistant | Reusable studio capability | Studio-hosted model | Hold — information required |
 | 7. Approved source in a provider-training account | Cleared original-show art | Generate | Same production | Vendor account with training enabled | Prohibited under current rules |
 | 8. Internal-show performer experiment | Named performer recordings | Train mouth-shape predictor | Same production research | Australia-only research tenant | Permitted with conditions |
+| 9. Firefly or on-premises generation | Cleared artwork plus selected model artifact | Generate | Same production | Provider service or on-premises deployment | Hold — information required until model authority is verified |
 
 ## 1. Can we use voice recordings from a completed client show to train a lip-sync model for our own IP show?
 
@@ -27,8 +28,8 @@ The [assessment checklist example](ASSESSMENT_CHECKLIST.md#5-worked-example-clie
 
 ### Confirmed proposal
 
-- **Source:** Session HH-204 from the completed client service production *Harbor Heroes*. The manifest contains 12 WAV takes from Ava Lin and Mateo Ruiz.
-- **Legal authority and contributors:** StreamWave Kids controls archived production material. Ava's rider requires a purpose-specific training agreement. Mateo's rider prohibits synthetic voice substitution and does not expressly address mouth-shape training. Different fictional collective terms apply to each performer.
+- **Source:** Session HH-204 from the completed client service production *Harbor Heroes*, plus the versioned MouthShape Research 2.0 pre-trained model used as the fine-tuning base. The recording manifest contains 12 WAV takes from Ava Lin and Mateo Ruiz; the model record identifies its supplier, access mode and upstream lineage.
+- **Legal authority and contributors:** StreamWave Kids controls archived production material. Ava's rider requires a purpose-specific training agreement. Mateo's rider prohibits synthetic voice substitution and does not expressly address mouth-shape training. Different fictional collective terms apply to each performer. The fictional base-model licence separately permits the declared private-tenant fine-tuning and internal retained weights while prohibiting external redistribution.
 - **AI operation:** Train and retain a model that predicts mouth shapes from dialogue audio. The technical description says the model does not generate audio, but its learned representation and deletion behaviour still require confirmation.
 - **Target use:** Use the model on *Moss & Moon*, a different production owned by Northstar.
 - **Environment:** MotionMap Lab, an Australia-hosted private tenant with provider training disabled and 30-day service-output retention. The exported model is retained in the studio research registry, where its retention duration remains unresolved.
@@ -143,6 +144,18 @@ Nia Okafor signed a fictional rider permitting named *Moss & Moon* takes to trai
 
 **Permitted with conditions.** The decision lists the exact takes, team, environment, operation and dates. It requires payment evidence, source and model deletion records, lineage and immediate stop-use review if consent is withdrawn. US access, another performer, another show or a voice-generation feature creates a new assessment.
 
+## 9. Can we use Firefly or an on-premises model once the artwork itself is cleared?
+
+### Confirmed proposal
+
+Northstar has a cleared same-show artwork pack and wants to generate concept variations. The team is considering either an Adobe Firefly service or an on-premises model. The request identifies the artwork but has not yet recorded the exact Firefly model/service and applicable account terms, or the exact on-premises checkpoint, weights licence, upstream lineage, serving code and dependencies.
+
+### Decision
+
+**Hold — information required.** The cleared artwork satisfies only part of Source authority. For the provider-service option, Northstar records the current model identifier, provider provenance, applicable service and account terms, acceptable-use restrictions, output terms and the rights covering the intended commercial workflow. For the on-premises option, it records the exact checkpoint or weights revision, integrity identifier, supplier, upstream models, code and dependency terms, and the rights covering inference, modification, fine-tuning, retained derivatives and redistribution.
+
+The selected model is then bound to the actual Environment. Provider hosting and on-premises hosting change the technical boundary; each still requires verified model provenance and authority. This fictional scenario makes no finding about current Adobe terms or any unnamed open-weight licence.
+
 ## Additional boundary cases for version 0.2
 
 | Case | Expected finding | Evidence needed |
@@ -160,5 +173,6 @@ Nia Okafor signed a fictional rider permitting named *Moss & Moon* takes to trai
 | Reviewer establishes a source-specific duty does not govern an aggregate | Record a scoped release for that output | Transformation facts and qualified interpretation; other duties remain assessed |
 | Training-source influence cannot be removed after a withdrawal trigger | Suspend the affected model and record quarantine, retirement or retraining review | Lineage, applicability assessment, technical limits and accountable owner |
 | Conditional approval requires a research fee before processing | Await prerequisites until payment evidence is verified | Condition event and fresh operator preflight |
+| A provider product or on-premises deployment is approved, but the exact model authority is unknown | Hold for information; tool approval does not establish model rights | Exact model or checkpoint, upstream lineage, current licence or provider terms and intended-use coverage |
 
 These cases describe evaluation structure. Positive findings require the stated evidence and all other applicable gates. They establish no general legal rule about public-domain status, exceptions, consent or derivative rights.

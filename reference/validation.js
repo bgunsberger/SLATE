@@ -95,6 +95,19 @@ export function semanticErrors(bundle) {
   if (decision.gateResults.some(g => ['approval_required', 'missing_information', 'prohibited'].includes(g.result)) && !decision.blockers.length) errors.push('Unresolved gates have no blockers');
   if (decision.gateResults.some(g => g.result === 'approval_required') && !decision.requiredApproverIds.length) errors.push('Approval gate has no approver');
   for (const material of use.source.materials ?? []) requireRecord(material.materialId, material.version);
+  const modelReferences = use.source.modelArtifacts ?? [];
+  const modelIds = modelReferences.map(model => model.modelId);
+  if (new Set(modelIds).size !== modelIds.length) errors.push('Duplicate model artifact in proposed use');
+  for (const modelReference of modelReferences) {
+    const modelRecord = requireRecord(modelReference.modelId, modelReference.version);
+    if (modelRecord && (modelRecord.recordType !== 'material' || modelRecord.facts?.category !== 'model_or_adapter')) errors.push(`Model reference is not a model material ${modelReference.modelId}`);
+    for (const id of modelReference.authorityEvidenceIds) requireRecord(id);
+    if (modelReference.supplierOrganisationId) requireRecord(modelReference.supplierOrganisationId);
+    for (const id of modelReference.upstreamModelIds ?? []) {
+      requireRecord(id);
+      if (!modelIds.includes(id)) errors.push(`Upstream model is absent from model inventory ${id}`);
+    }
+  }
   if (use.source.collectionId) {
     const collection = requireRecord(use.source.collectionId, use.source.collectionVersion);
     if (collection?.facts.manifest) {
@@ -111,10 +124,25 @@ export function semanticErrors(bundle) {
     ...(use.environment.subprocessorIds ?? []), ...(use.environment.connectedServiceIds ?? [])
   ]) requireRecord(id);
   for (const key of ['toolEnvironmentId', 'securityApprovalId']) if (use.environment[key]) requireRecord(use.environment[key]);
+  for (const id of use.environment.modelArtifactIds ?? []) {
+    requireRecord(id);
+    if (!modelIds.includes(id)) errors.push(`Environment model is absent from source model inventory ${id}`);
+  }
   const expectedRelationships = deriveProductionRelationships(use.source.sourceProductionIds, use.purpose.destinationProductionIds);
   if (!sameSet(use.purpose.productionRelationships, expectedRelationships)) errors.push('Production relationships contradict source/destination IDs');
   if (['permitted', 'permitted_with_conditions'].includes(decision.outcome)) {
     if (use.source.inventoryStatus !== 'verified' || use.contractsAndContributors.contributorInventoryStatus !== 'verified' || use.environment.status !== 'verified') errors.push('Permission requires verified inventories and environment');
+    if (use.source.modelInventoryStatus !== 'verified') errors.push('Permission requires verified model inventory');
+    for (const modelReference of modelReferences) {
+      if (modelReference.provenanceStatus !== 'verified') errors.push(`Permission requires verified model provenance ${modelReference.modelId}`);
+      if (modelReference.authorityStatus !== 'verified') errors.push(`Permission requires verified model authority ${modelReference.modelId}`);
+      const modelRecord = byId.get(modelReference.modelId);
+      if (modelRecord && !isCurrent(modelRecord, decision.evaluatedAt)) errors.push(`Inactive model source ${modelReference.modelId}`);
+      for (const id of modelReference.authorityEvidenceIds) {
+        const record = byId.get(id);
+        if (record && !isCurrent(record, decision.evaluatedAt)) errors.push(`Stale model authority evidence ${id}`);
+      }
+    }
     if (expectedRelationships.includes('unknown')) errors.push('Permission requires known production relationships');
     if (decision.conditions.some(c => ['failed', 'expired'].includes(c.status))) errors.push('Permission has failed conditions');
     if (decision.outcome === 'permitted' && decision.conditions.some(c => c.status === 'open')) errors.push('Unconditional permission has open conditions');

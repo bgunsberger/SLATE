@@ -46,7 +46,9 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "inventoryStatus"
+        "inventoryStatus",
+        "modelInventoryStatus",
+        "modelArtifacts"
       ],
       "properties": {
         "inventoryStatus": {
@@ -55,6 +57,20 @@
             "provisional",
             "unknown"
           ]
+        },
+        "modelInventoryStatus": {
+          "enum": [
+            "verified",
+            "provisional",
+            "unknown"
+          ]
+        },
+        "modelArtifacts": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/modelArtifactReference"
+          }
         },
         "collectionId": {
           "$ref": "#/$defs/id"
@@ -110,6 +126,28 @@
             "collectionId": {},
             "collectionVersion": {},
             "manifestReference": {}
+          }
+        }
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "modelInventoryStatus": {
+                "const": "verified"
+              }
+            },
+            "required": [
+              "modelInventoryStatus"
+            ]
+          },
+          "then": {
+            "properties": {
+              "modelArtifacts": {
+                "type": "array",
+                "minItems": 1
+              }
+            }
           }
         }
       ],
@@ -405,6 +443,7 @@
         "status",
         "deploymentType",
         "providerTraining",
+        "modelArtifactIds",
         "processingRegions",
         "storageRegions",
         "accessGroupIds",
@@ -436,6 +475,13 @@
         "modelVersion": {
           "type": "string",
           "minLength": 1
+        },
+        "modelArtifactIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
         },
         "tenantOrAccountId": {
           "type": "string",
@@ -552,7 +598,29 @@
         "securityApprovalId": {
           "$ref": "#/$defs/id"
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "verified"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "modelArtifactIds": {
+                "type": "array",
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
     },
     "requestedControls": {
       "type": "array",
@@ -613,6 +681,132 @@
         "synthetic_voice_likeness_or_performance",
         "other",
         "unknown"
+      ]
+    },
+    "modelArtifactReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "modelId",
+        "version",
+        "artifactType",
+        "useRoles",
+        "accessMode",
+        "provenanceStatus",
+        "authorityStatus",
+        "authorityEvidenceIds"
+      ],
+      "properties": {
+        "modelId": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "$ref": "#/$defs/version"
+        },
+        "artifactType": {
+          "enum": [
+            "foundation_model",
+            "pretrained_model",
+            "checkpoint",
+            "weights",
+            "adapter",
+            "lora",
+            "embedding_model",
+            "classifier",
+            "safety_model",
+            "other",
+            "unknown"
+          ]
+        },
+        "useRoles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "inference",
+              "generation",
+              "fine_tune_base",
+              "training_initialisation",
+              "adapter",
+              "distillation_source",
+              "evaluator",
+              "embedding",
+              "safety_or_moderation",
+              "other",
+              "unknown"
+            ]
+          }
+        },
+        "accessMode": {
+          "enum": [
+            "provider_service",
+            "managed_service",
+            "studio_hosted",
+            "on_premises",
+            "embedded",
+            "other",
+            "unknown"
+          ]
+        },
+        "provenanceStatus": {
+          "enum": [
+            "verified",
+            "provisional",
+            "unknown"
+          ]
+        },
+        "authorityStatus": {
+          "enum": [
+            "verified",
+            "provisional",
+            "unknown"
+          ]
+        },
+        "authorityEvidenceIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "supplierOrganisationId": {
+          "$ref": "#/$defs/id"
+        },
+        "upstreamModelIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "integrityIdentifier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "authorityStatus": {
+                "const": "verified"
+              }
+            },
+            "required": [
+              "authorityStatus"
+            ]
+          },
+          "then": {
+            "properties": {
+              "authorityEvidenceIds": {
+                "type": "array",
+                "minItems": 1
+              }
+            }
+          }
+        }
       ]
     },
     "materialReference": {

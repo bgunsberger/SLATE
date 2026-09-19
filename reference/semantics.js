@@ -75,7 +75,7 @@ export function buildSourceRows(materials, globalFacts) {
   });
 }
 
-export const WHOLE_SCOPE_SELECTORS = ['operationTypes', 'persistenceTypes', 'destinationProductionIds', 'productionRelationships', 'businessPurposes', 'reuseIntents', 'distribution', 'audiences', 'toolEnvironmentIds', 'deploymentTypes', 'providerTrainingValues', 'processingRegions', 'accessGroupIds', 'jurisdictions'];
+export const WHOLE_SCOPE_SELECTORS = ['operationTypes', 'persistenceTypes', 'destinationProductionIds', 'productionRelationships', 'businessPurposes', 'reuseIntents', 'distribution', 'audiences', 'toolEnvironmentIds', 'modelArtifactIds', 'deploymentTypes', 'providerTrainingValues', 'processingRegions', 'accessGroupIds', 'jurisdictions'];
 export function matchRule(rule, row, at) {
   if (!isCurrent(rule, at)) return {result: null, reason: 'inactive_or_stale_rule'};
   if (rule.effect === 'permit' && Object.entries(rule.selectors).some(([key, predicate]) => WHOLE_SCOPE_SELECTORS.includes(key) && !['all_in', 'equals_set'].includes(predicate.operator))) {

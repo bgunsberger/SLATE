@@ -67,7 +67,7 @@ At engagement:
 5. record compensation, notice, consultation, expiry and withdrawal mechanisms;
 6. verify the structured interpretation before use.
 
-### 4.3 Material and dataset registration
+### 4.3 Material, dataset and model registration
 
 Before an assessment:
 
@@ -79,12 +79,20 @@ Before an assessment:
 6. verify lineage and exclusions;
 7. assign a data steward.
 
+For every model artifact used by an operation, also:
+
+1. create or resolve a controlled model material record, including provider-hosted models;
+2. record its exact available version, artifact type, use roles, access mode, supplier, provenance and upstream lineage;
+3. link current authority evidence for the intended inference, modification, fine-tuning, retained derivative and distribution scope;
+4. keep code, weights, adapters and runtime dependency terms distinct; and
+5. assign model-provenance and model-authority change triggers.
+
 ### 4.4 Tool onboarding
 
 Before an environment can satisfy a decision gate:
 
-1. identify the actual product, model, tenant and features;
-2. review vendor and data-processing terms;
+1. identify the actual product, controlled model-artifact IDs, tenant and features;
+2. bind deployed artifacts to the Source model inventory and review their licences, provider terms and acceptable-use restrictions;
 3. verify provider training and human-access settings;
 4. document regions, subprocessors and integrations;
 5. test access, retention, export and deletion controls;
@@ -100,6 +108,7 @@ The proposer describes the use in plain language and confirms all five SLATE dim
 The operational owner:
 
 - records durable derivatives and lineage;
+- monitors model, checkpoint, adapter, upstream-lineage and model-authority changes;
 - completes and evidences conditions;
 - monitors access and incidents;
 - reviews the decision when scope changes;

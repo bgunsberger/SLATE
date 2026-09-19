@@ -8,6 +8,26 @@
   "businessOwnerId": "ROLE-CREATIVE-TECH-DIRECTOR",
   "source": {
     "inventoryStatus": "verified",
+    "modelInventoryStatus": "verified",
+    "modelArtifacts": [
+      {
+        "modelId": "MODEL-MOUTHSHAPE-RESEARCH-2",
+        "version": "2.0",
+        "artifactType": "pretrained_model",
+        "useRoles": [
+          "fine_tune_base"
+        ],
+        "accessMode": "managed_service",
+        "provenanceStatus": "verified",
+        "authorityStatus": "verified",
+        "authorityEvidenceIds": [
+          "AGREEMENT-MOTIONMAP-MODEL-LICENCE"
+        ],
+        "supplierOrganisationId": "ORG-FICTIONAL-MOTION-SYSTEMS",
+        "upstreamModelIds": [],
+        "integrityIdentifier": "provider:model/MouthShape-Research@2.0"
+      }
+    ],
     "collectionId": "COLLECTION-HH-VOICE-204",
     "collectionVersion": "3.0",
     "manifestReference": "HH-204 manifest v3",
@@ -33,7 +53,7 @@
       "PRODUCTION-HARBOR-HEROES"
     ],
     "lineageComplete": true,
-    "notes": "Twelve dialogue takes from two represented performers."
+    "notes": "Twelve dialogue takes from two represented performers plus the verified MouthShape Research 2.0 pre-trained model used as the fine-tuning base."
   },
   "contractsAndContributors": {
     "contributorInventoryStatus": "verified",
@@ -43,7 +63,8 @@
     ],
     "representedCohortIds": [],
     "agreementIds": [
-      "AGREEMENT-HH-PRODUCTION"
+      "AGREEMENT-HH-PRODUCTION",
+      "AGREEMENT-MOTIONMAP-MODEL-LICENCE"
     ],
     "individualAgreementIds": [
       "AGREEMENT-AVA-12",
@@ -123,6 +144,9 @@
     "provider": "Fictional Motion Systems",
     "model": "MouthShape Research",
     "modelVersion": "2.0",
+    "modelArtifactIds": [
+      "MODEL-MOUTHSHAPE-RESEARCH-2"
+    ],
     "tenantOrAccountId": "northstar-au-research",
     "deploymentType": "private_tenant",
     "providerTraining": "disabled_by_contract",

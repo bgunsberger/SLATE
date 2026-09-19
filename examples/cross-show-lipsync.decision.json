@@ -10,37 +10,41 @@
     {
       "gate": "inventory",
       "result": "satisfied",
-      "explanation": "The exact recordings and both represented performers are identified in manifest version 3.0.",
+      "explanation": "The exact recordings, both represented performers and the pre-trained model used for fine-tuning are identified and versioned.",
       "ruleIds": [
         "RULE-EXACT-INVENTORY"
       ],
       "evidenceIds": [
-        "COLLECTION-HH-VOICE-204"
+        "COLLECTION-HH-VOICE-204",
+        "MODEL-MOUTHSHAPE-RESEARCH-2"
       ],
       "responsibleRole": "Production data steward",
       "basis": [
         {
           "kind": "inventory_verification",
           "evidenceIds": [
-            "COLLECTION-HH-VOICE-204"
+            "COLLECTION-HH-VOICE-204",
+            "MODEL-MOUTHSHAPE-RESEARCH-2"
           ],
           "verifiedBy": "ROLE-DATA-STEWARD",
           "scopeReferences": [
             "USE-HH-MM-001"
           ],
-          "explanation": "The exact recordings and both represented performers are identified in manifest version 3.0."
+          "explanation": "The exact recordings, both represented performers and the pre-trained model used for fine-tuning are identified and versioned."
         }
       ]
     },
     {
       "gate": "source_authority",
       "result": "approval_required",
-      "explanation": "No verified client permission covers training a retained model for a different production.",
+      "explanation": "The base-model licence permits the declared fine-tuning and internal retained weights, but no verified client permission covers training from the recordings for a different production.",
       "ruleIds": [
         "RULE-HH-CROSS-PRODUCTION-APPROVAL"
       ],
       "evidenceIds": [
-        "AGREEMENT-HH-PRODUCTION"
+        "AGREEMENT-HH-PRODUCTION",
+        "AGREEMENT-MOTIONMAP-MODEL-LICENCE",
+        "MODEL-MOUTHSHAPE-RESEARCH-2"
       ],
       "responsibleRole": "Business and Legal Affairs",
       "basis": []
@@ -202,11 +206,25 @@
       "integrityValue": "sha256:fcc396d931aead54d1646073f6e88d62ac18df2843d37d4b3857536c107a3532"
     },
     {
+      "recordId": "ORG-FICTIONAL-MOTION-SYSTEMS",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:7321db289fdd957996041b12b970962bbef22f4caf949be5422308a964d18ab2"
+    },
+    {
       "recordId": "AGREEMENT-HH-PRODUCTION",
       "version": "2.1",
       "status": "active",
       "verifiedAt": "2026-09-14T00:00:00Z",
       "integrityValue": "sha256:e5d76e0a487aeb5e5ad789f3e47c07fa7bcc3c3158fc98f6095928516677854f"
+    },
+    {
+      "recordId": "AGREEMENT-MOTIONMAP-MODEL-LICENCE",
+      "version": "1.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:f8292ccd51ad6eef8533058acd9b00f91a826174811e1bfff89e31fdc4d4b589"
     },
     {
       "recordId": "AGREEMENT-AVA-12",
@@ -279,6 +297,13 @@
       "integrityValue": "sha256:5b4d7d11559ad9af12ae0e6a65515864734a3f1e6fcbdf2c8b380658847a5ed5"
     },
     {
+      "recordId": "MODEL-MOUTHSHAPE-RESEARCH-2",
+      "version": "2.0",
+      "status": "active",
+      "verifiedAt": "2026-09-14T00:00:00Z",
+      "integrityValue": "sha256:9b912a3e1bcfefedd007e6e2fa5ee4a4c7499db659dd0efb64d007a4a8c0f8ab"
+    },
+    {
       "recordId": "COLLECTION-HH-VOICE-204",
       "version": "3.0",
       "status": "active",
@@ -290,14 +315,14 @@
       "version": "1.0",
       "status": "active",
       "verifiedAt": "2026-09-14T00:00:00Z",
-      "integrityValue": "sha256:927aca08dbcf85ece43c0e80b1d8218cd734af1cdbdf100935a1380fd8835ac0"
+      "integrityValue": "sha256:348c3042441b008680b93bac8e3e4470bf79774bde22770444ad2a2a20a6d664"
     },
     {
       "recordId": "ENV-MOTIONMAP-AU-LAB",
       "version": "2.0",
       "status": "active",
       "verifiedAt": "2026-09-14T00:00:00Z",
-      "integrityValue": "sha256:4ac9f6fea9901d38391e3fa5dcb97771a48e8d522f78f640f811d0229136af12"
+      "integrityValue": "sha256:38fe06ab9a7045e0507bf236ba94cad56382fec6d4988a1ff403650d8649fd1b"
     },
     {
       "recordId": "PROFILE-NORTHSTAR-PILOT",
@@ -353,21 +378,21 @@
       "version": "1.0",
       "status": "active",
       "verifiedAt": "2026-09-14T00:00:00Z",
-      "integrityValue": "sha256:9955aa39b10fe5047aad3f08d7f022f3d964c41df6fecc64c8cbf9cb9a95d97f"
+      "integrityValue": "sha256:d4914feaffed319bbafdf5c3a6180f68b175f9f4e29612c6f2b8b50a19383b80"
     },
     {
       "recordId": "FINDING-INVENTORY",
       "version": "1.0",
       "status": "active",
       "verifiedAt": "2026-09-16T03:00:00Z",
-      "integrityValue": "sha256:2471e41dae8bbfc7e5003e26dd92d800eebdfacbaa9bc7944f950ff5c1207576"
+      "integrityValue": "sha256:f4eede205ff4826be1c97e58601bb37300c2004f8702b522bba2f13dde8f6061"
     },
     {
       "recordId": "FINDING-SOURCE-AUTHORITY",
       "version": "1.0",
       "status": "active",
       "verifiedAt": "2026-09-16T03:00:00Z",
-      "integrityValue": "sha256:dd41397511e57589d09cab3f5aab8b971617d5a825f29da374ca3f0a2daf79e4"
+      "integrityValue": "sha256:329530feaa58737af61bfe666e7a1a73af75587258a8853e8777a4433a45853d"
     },
     {
       "recordId": "FINDING-CONTRIBUTOR-RIGHTS",
@@ -439,6 +464,7 @@
     "Client authority is added or amended",
     "A performer agreement, consent or collective term changes",
     "The material collection changes",
+    "A model artifact, upstream lineage, model licence or provider term changes",
     "The learned capability or destination changes",
     "The environment, region, access or retention changes"
   ],

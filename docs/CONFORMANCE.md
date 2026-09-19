@@ -12,6 +12,7 @@ Conformance levels describe capability, not staff count or organisational struct
 | Routine use within a bounded standing approval | Five-question manual confirmation | Managed confirmation and assignments | Automated bounded matching and preflight | Independently tested |
 | Preliminary intake and decision-derived action checklist | Manual preparation allowed | Managed assignments and authoritative resolution links | Integrated assessment workflow | Independently tested |
 | Current evidence, full authority review and prerequisite checks | Human controls allowed | Human controls allowed | Automated checks plus reserved human decisions | Independently tested |
+| Model inventory, provenance, authority and Environment binding | Controlled records and manual verification | Maintained model register and standard export | Automated closure, version and change checks | Independently tested |
 | Immutable decision and reconstructable evidence versions | Controlled archive allowed | Controlled archive and standard exports | Automated snapshots and replay | Independently tested |
 | Access control, audit history and source/derivative references | Manual controlled registers allowed | Maintained programme | Integrated registers | Independently tested |
 | Expiry, withdrawal, incident and suspension response | Named operator and events | Managed queues and service levels | Automated impact detection and enforcement | Exercised and audited |
@@ -26,7 +27,7 @@ An implementation claiming Level 1 still needs the rights, privacy, security, va
 ## Validation layers
 
 1. **Structural:** JSON Schema checks types, mandatory properties, gate cardinality and effect-specific requirements.
-2. **Semantic:** application checks cross-record references, exact versions and record digests, time, outcome aggregation, basis kinds, rule scope, conditions and approvals.
+2. **Semantic:** application checks cross-record references, exact versions and record digests, model-source closure and Environment binding, time, outcome aggregation, basis kinds, rule scope, conditions and approvals.
 3. **Domain:** qualified reviewers verify the source facts, authority completeness, interpretations, technical settings and effectiveness of duties.
 4. **Operational:** an operator or integration confirms the approved scope and prerequisites at execution, tracks changes and evidences completion.
 

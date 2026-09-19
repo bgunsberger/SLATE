@@ -1,6 +1,6 @@
 # SlateCheck Publication Review
 
-Review date: 17 September 2026
+Review date: 19 September 2026
 
 Specification: 0.2.0 working draft
 
@@ -31,6 +31,7 @@ Public distribution still needs an identified publication location and release s
 | Pilot scoring assumed five different requesters despite requiring only two | Expressed comprehension targets and denominators per case session. |
 | The operating model implied a large role catalogue and an eight-step minimum workflow | Reduced the core to four responsibility functions, added a five-question routine path and moved the larger registry model to an expansion pattern. |
 | Reuse terms were unresolved | Applied CC BY 4.0 to human-readable framework materials and Apache 2.0 to technical implementation materials; added a repository licence map, notice and brand policy. |
+| Foundation and pre-trained models were implicit within the tool environment | Added an explicit model-artifact Source inventory, provenance and authority evidence, upstream lineage, Environment binding, rule selectors and permission tests for provider-hosted and on-premises models. |
 
 ## Remaining release decisions
 
@@ -45,11 +46,11 @@ Editorial corrections can retain the working-draft version before release. After
 ## Validation and limits
 
 - All five JSON examples pass structural validation; the complete bundle passes selected semantic checks and manual decision replay.
-- All 43 existing tests pass, and reference JavaScript syntax checks pass.
+- All 46 tests pass, including model inventory, provenance, authority, environment-binding and whole-scope selector cases; reference JavaScript syntax checks pass.
 - All 67 local Markdown file links and all 6 local heading links resolve across 21 Markdown documents.
 - The five primary foundation links were retrieved from their publishers. [Interoperability](INTEROPERABILITY.md#primary-references) identifies the cited editions and guidance.
 - Validation environment: Node.js 25.8.1 and npm 11.11.0. Other runtime versions were not tested.
 
 The complete published bundle ends in an approval hold. Tests exercise individual matching and execution primitives; they do not constitute a full evaluator suite for every outcome, authority combination or lifecycle event. Before production automation, implement the required cases in [Decision Specification §11](DECISION_SPECIFICATION.md#11-required-evaluator-tests), including release enforcement, domain validation and authority coverage. Independent ports also need digest interoperability tests.
 
-The audit preserved existing uncommitted work and made no schema, evaluator, deployment or external publication changes. The repository now includes the selected licence terms. The remaining publisher decisions above remain open, and no external release was created.
+The review preserved the generated PDF artefact for later regeneration and made no deployment or external publication changes. The repository now includes the selected reuse terms and explicit model-source controls. The remaining publisher decisions above remain open, and no external release was created.

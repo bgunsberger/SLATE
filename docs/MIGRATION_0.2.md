@@ -13,6 +13,14 @@ Replace the single `purpose.relationship` with:
 
 A legacy value alone cannot establish the missing dimensions. Confirm them with the requester. Research can coexist with different-production use and public release. The migrated example explicitly records research and production work on a different show with internal distribution.
 
+## Model sources
+
+Add `source.modelInventoryStatus` and `source.modelArtifacts` to every Proposed Use. Each reference identifies the controlled model material record, exact version, artifact type, use roles, access mode, provenance status and authority evidence. Add `environment.modelArtifactIds` to bind the deployed or invoked models back to that Source inventory.
+
+A verified model inventory contains at least one model artifact. Preliminary intake may preserve an unknown inventory and an empty model list, but it cannot produce permission. Register provider-hosted models as model artifacts even when the provider exposes only a service model name or version; register on-premises weights and checkpoints by exact revision and integrity identifier where available.
+
+Existing 0.1 tool approvals do not establish model authority. Migrate model, weights, checkpoint, adapter, code and dependency licences or provider terms into controlled evidence, then reassess the intended inference, fine-tuning, derivative-retention and distribution scope.
+
 ## Rules
 
 Replace selector arrays with `{ "operator": "...", "values": [...] }`. Review each predicate's intended set semantics; automatic conversion to `any_of` is unsafe for permissions. Whole-proposal selectors in permit rules require `all_in` or `equals_set`. Empty selector values are invalid; omitted predicates are unrestricted within the rule's verified authority.
