@@ -34,13 +34,19 @@ The **SLATE** model describes five dimensions of a proposed use:
 
 SlateCheck records the evidence, authority, conditions and review triggers behind a bounded decision. It is designed for animation, VFX, games, film and other creative-production environments spanning client work, original IP, co-productions, employees, contractors and performers.
 
+## Interactive intake
+
+Try the [SlateCheck AI use review request](https://slatecheck.web.app). The guided intake helps a requester describe one proposed use across Source, Legal authority and contributors, AI operation, Target use and Environment, then formats the answers as a review request for Legal and other relevant authorities. It highlights unresolved details for follow-up; it does not decide whether a use is permitted or grant approval.
+
+The intake saves draft answers in the current browser and does not submit them to the app. The hosted page is public and does not require sign-in. It is a lightweight companion to the framework and is not a controlled approval-record system.
+
 ## Status and intended use
 
 **Version 0.2.0 — working draft for review and controlled pilot evaluation.** The [five-case usability pilot](pilot/README.md) has [not yet started](pilot/RESULTS.md). Effectiveness and operating cost remain untested in that pilot. The reference code validates examples and selected semantics; it is a specification harness.
 
 SlateCheck supports organisational decisions. It provides no legal advice or permission by itself. Adopters configure their own policies, authorities, jurisdictions and review process with qualified legal, privacy, security, production and workforce representatives.
 
-The canonical publication location and release snapshot remain unresolved; see the [publication review](docs/PUBLICATION_REVIEW.md). The repository now has explicit reuse terms. During the pilot, changes follow its evidence-led soft freeze.
+The public working source is available at [github.com/bgunsberger/SLATE](https://github.com/bgunsberger/SLATE). A tagged release snapshot remains unresolved; see the [publication review](docs/PUBLICATION_REVIEW.md). The repository has explicit reuse terms. During the pilot, changes follow its evidence-led soft freeze.
 
 ## Licensing
 

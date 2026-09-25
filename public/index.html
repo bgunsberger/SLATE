@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f2ec" />
+    <meta name="description" content="A guided SLATE intake that turns a proposed AI use into a clear request for review." />
+    <title>SlateCheck · AI use review request</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="wordmark" href="/" aria-label="SlateCheck home"><span class="mark">S</span><span>SLATECHECK</span></a>
+        <div class="topbar-right"><span class="draft-state"><span class="state-dot"></span><span id="saveState">Draft saved in this browser</span></span><button class="text-button" id="resetButton" type="button">Start over</button></div>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="pageTitle">
+          <p class="eyebrow">AI USE · REVIEW REQUEST</p>
+          <h1 id="pageTitle">Make the use clear.<br /><span>Get the right review.</span></h1>
+          <p class="intro-copy">Describe one specific AI use across the five SLATE dimensions. We’ll shape your answers into a concise request for your Legal team and other relevant reviewers.</p>
+          <div class="intro-note"><span class="note-icon" aria-hidden="true">i</span><span>This intake organises information. It does not determine whether a use is permitted or grant approval.</span></div>
+        </section>
+
+        <div class="wizard-layout">
+          <aside class="step-rail" aria-label="Wizard progress">
+            <div class="rail-heading">YOUR PROPOSAL</div>
+            <ol id="stepList"></ol>
+            <div class="rail-foot"><span class="rail-symbol">S·L·A·T·E</span><span>One proposed use<br />at a time</span></div>
+          </aside>
+
+          <section class="form-panel" aria-live="polite">
+            <div class="panel-meta"><span id="stepCounter">01 / 07</span><span class="required-key"><i></i> Required for summary</span></div>
+            <div id="stepContent"></div>
+            <div class="form-error" id="formError" role="alert" hidden></div>
+            <div class="wizard-actions">
+              <button id="backButton" class="button button-secondary" type="button">Back</button>
+              <span class="action-spacer"></span>
+              <button id="nextButton" class="button button-primary" type="button">Continue <span aria-hidden="true">→</span></button>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer><span>SLATE = Source · Legal authority & contributors · AI operation · Target use · Environment</span><span>Intake helper · v0.1 · © 2026 Ben Gunsberger</span></footer>
+    </div>
+  </body>
+</html>
